@@ -9,7 +9,7 @@ import { useAppStore } from "@/store/useAppStore";
 import { Badge } from "@/components/ui/Badge";
 import { QuickViewModal } from "@/components/products/QuickViewModal";
 
-export function ProductCard({ product }) {
+export function ProductCard({ product, view = "Grid" }) {
   const [quickOpen, setQuickOpen] = useState(false);
   const addToCart = useAppStore((state) => state.addToCart);
   const toggleWishlist = useAppStore((state) => state.toggleWishlist);
@@ -21,25 +21,27 @@ export function ProductCard({ product }) {
   const discount = Math.round(((product.mrp - product.price) / product.mrp) * 100);
   const showDiscount = discount >= 10; // only show meaningful discounts
 
+  const isList = view === "List";
+
   return (
     <>
       <motion.article
         whileHover={{ y: -6 }}
-        className="soft-card product-card group relative overflow-hidden rounded-[1.5rem] p-2 transition hover:shadow-premium"
+        className={`soft-card product-card group relative overflow-hidden rounded-[1.5rem] p-2 transition hover:shadow-premium ${isList ? "flex flex-col sm:flex-row gap-4 sm:gap-6 items-start sm:items-center pr-4" : ""}`}
         layout
       >
         {/* Wishlist overlay button */}
         <button
           onClick={() => toggleWishlist(product)}
-          className={`absolute right-4 top-4 z-10 grid h-9 w-9 place-items-center rounded-full shadow-card transition duration-200 hover:scale-110 ${isSaved ? "bg-rose-500 text-white" : "bg-white text-slate-400 hover:text-rose-500"}`}
+          className={`absolute z-10 grid h-9 w-9 place-items-center rounded-full shadow-card transition duration-200 hover:scale-110 ${isSaved ? "bg-rose-500 text-white" : "bg-white text-slate-400 hover:text-rose-500"} ${isList ? "right-4 top-4" : "right-4 top-4"}`}
           aria-label={isSaved ? "Remove from wishlist" : "Add to wishlist"}
         >
           <Heart size={16} fill={isSaved ? "currentColor" : "none"} />
         </button>
 
-        <Link href={`/products/${product.slug}`} className="block">
+        <Link href={`/products/${product.slug}`} className={`block ${isList ? "flex flex-1 flex-col sm:flex-row gap-4 sm:gap-6 w-full" : ""}`}>
           {/* Image container */}
-          <div className="relative aspect-[1.05] overflow-hidden rounded-xl bg-gradient-to-br from-sky-50 to-emerald-50">
+          <div className={`relative overflow-hidden rounded-xl bg-gradient-to-br from-sky-50 to-emerald-50 ${isList ? "aspect-square w-full sm:w-40 shrink-0" : "aspect-[1.05]"}`}>
             <div className="product-image-track absolute inset-0 flex">
               {loopImages.map((image, index) => (
                 <div key={`${product.id}-${image}-${index}`} className="relative h-full shrink-0" style={{ width: itemWidth }}>
@@ -67,25 +69,28 @@ export function ProductCard({ product }) {
           </div>
 
           {/* Product info */}
-          <div className="px-1 pt-3">
-            <p className="line-clamp-2 min-h-10 text-sm font-black leading-5 text-slate-900">{product.name}</p>
-            <p className="mt-1 text-xs font-semibold text-slate-500">{product.brand}</p>
-            <div className="mt-2 flex items-center gap-1.5">
-              <span className="flex items-center gap-1 text-xs font-black text-amber-500">
-                <Star size={12} fill="currentColor" /> {product.rating}
-              </span>
-              <span className="text-slate-300">·</span>
-              <Badge className="px-2 py-0.5 text-[10px]">{product.packSize}</Badge>
+          <div className={`px-1 pt-3 ${isList ? "flex flex-1 flex-col justify-center sm:pt-0" : ""}`}>
+            <div className={isList ? "pr-12" : ""}>
+              <p className={`text-sm font-black text-slate-900 ${isList ? "text-lg line-clamp-1" : "line-clamp-2 min-h-10 leading-5"}`}>{product.name}</p>
+              <p className="mt-1 text-xs font-semibold text-slate-500">{product.brand}</p>
+              <div className="mt-2 flex items-center gap-1.5">
+                <span className="flex items-center gap-1 text-xs font-black text-amber-500">
+                  <Star size={12} fill="currentColor" /> {product.rating}
+                </span>
+                <span className="text-slate-300">·</span>
+                <Badge className="px-2 py-0.5 text-[10px]">{product.packSize}</Badge>
+              </div>
             </div>
-            <div className="mt-2 flex items-end gap-2">
-              <span className="text-sm font-black text-slate-950">Rs. {product.price}</span>
-              <span className="text-xs font-bold text-slate-400 line-through">Rs. {product.mrp}</span>
+            
+            <div className={`mt-2 flex items-end gap-2 ${isList ? "mt-4" : ""}`}>
+              <span className={`${isList ? "text-xl" : "text-sm"} font-black text-slate-950`}>Rs. {product.price}</span>
+              <span className="text-xs font-bold text-slate-400 line-through mb-0.5">Rs. {product.mrp}</span>
             </div>
           </div>
         </Link>
 
         {/* Actions */}
-        <div className="mt-3 grid gap-2">
+        <div className={`mt-3 grid gap-2 ${isList ? "mt-0 w-full shrink-0 sm:w-40 sm:self-center" : ""}`}>
           <button
             onClick={(event) => {
               const result = addToCart(product);
@@ -102,14 +107,14 @@ export function ProductCard({ product }) {
               }
             }}
             disabled={!product.inStock}
-            className="focus-ring flex min-h-11 w-full items-center justify-center gap-2 rounded-xl bg-brand-blue px-3 py-2.5 text-sm font-black leading-tight text-white transition duration-200 hover:-translate-y-0.5 hover:bg-[#066CAB] hover:shadow-glow disabled:cursor-not-allowed disabled:bg-slate-200 disabled:text-slate-400"
+            className={`focus-ring flex items-center justify-center gap-2 rounded-xl bg-brand-blue px-3 py-2.5 text-sm font-black leading-tight text-white transition duration-200 hover:-translate-y-0.5 hover:bg-[#066CAB] hover:shadow-glow disabled:cursor-not-allowed disabled:bg-slate-200 disabled:text-slate-400 ${isList ? "min-h-12" : "min-h-11 w-full"}`}
           >
             <Plus size={16} />
             <span>{product.inStock ? "Add to cart" : "Out of stock"}</span>
           </button>
           <button
             onClick={() => setQuickOpen(true)}
-            className="focus-ring flex min-h-10 w-full items-center justify-center gap-2 rounded-xl bg-sky-50 px-3 py-2 text-xs font-black text-brand-blue transition hover:bg-sky-100"
+            className={`focus-ring flex items-center justify-center gap-2 rounded-xl bg-sky-50 px-3 py-2 text-xs font-black text-brand-blue transition hover:bg-sky-100 ${isList ? "min-h-10" : "min-h-10 w-full"}`}
           >
             <ShoppingBag size={14} /> Quick view
           </button>
