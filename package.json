@@ -1,0 +1,31 @@
+{
+  "name": "firstmed-frontend",
+  "version": "1.0.0",
+  "private": true,
+  "scripts": {
+    "dev": "set NEXT_DIST_DIR=.next-dev&& next dev -p 3001",
+    "build": "set NEXT_DIST_DIR=.next-build&& next build",
+    "start": "set NEXT_DIST_DIR=.next-build&& next start -p 3001",
+    "lint": "next lint"
+  },
+  "dependencies": {
+    "@tanstack/react-query": "^5.80.7",
+    "axios": "^1.9.0",
+    "framer-motion": "^12.16.0",
+    "lucide-react": "^0.468.0",
+    "next": "^15.3.3",
+    "react": "^19.1.0",
+    "react-dom": "^19.1.0",
+    "react-hook-form": "^7.57.0",
+    "socket.io-client": "^4.8.1",
+    "swiper": "^11.2.8",
+    "zustand": "^5.0.5"
+  },
+  "devDependencies": {
+    "autoprefixer": "^10.4.21",
+    "eslint": "^9.29.0",
+    "eslint-config-next": "^15.3.3",
+    "postcss": "^8.5.6",
+    "tailwindcss": "^3.4.17"
+  }
+}

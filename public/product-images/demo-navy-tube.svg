@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 360 360" role="img" aria-label="Navy demo self care tube">
+  <rect width="360" height="360" rx="44" fill="#F7FAFD"/>
+  <path d="M106 92c0-22 18-40 40-40h68c22 0 40 18 40 40v176c0 22-18 40-40 40h-68c-22 0-40-18-40-40V92Z" fill="#071529"/>
+  <rect x="130" y="94" width="100" height="46" rx="16" fill="#0878BE"/>
+  <rect x="130" y="166" width="100" height="15" rx="7.5" fill="#F1E300"/>
+  <rect x="130" y="194" width="74" height="12" rx="6" fill="#fff" opacity=".68"/>
+  <rect x="130" y="216" width="88" height="12" rx="6" fill="#fff" opacity=".68"/>
+  <circle cx="214" cy="244" r="20" fill="#F1E300"/>
+  <text x="180" y="126" text-anchor="middle" font-family="Arial, sans-serif" font-size="22" font-weight="900" fill="#fff">SKIN</text>
+</svg>

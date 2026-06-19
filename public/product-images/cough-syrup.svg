@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 360 360" role="img" aria-label="Cough syrup bottle">
+  <rect width="360" height="360" rx="42" fill="#FFFCE8"/>
+  <rect x="138" y="48" width="84" height="38" rx="12" fill="#0878BE"/>
+  <rect x="112" y="82" width="136" height="226" rx="34" fill="#fff"/>
+  <rect x="128" y="118" width="104" height="78" rx="20" fill="#EAF7FF"/>
+  <text x="180" y="151" text-anchor="middle" font-family="Arial, sans-serif" font-size="24" font-weight="900" fill="#0878BE">COUGH</text>
+  <text x="180" y="178" text-anchor="middle" font-family="Arial, sans-serif" font-size="18" font-weight="800" fill="#0878BE">SYRUP</text>
+  <rect x="136" y="220" width="88" height="14" rx="7" fill="#F1E300"/>
+  <rect x="148" y="246" width="64" height="12" rx="6" fill="#64748B" opacity=".45"/>
+</svg>

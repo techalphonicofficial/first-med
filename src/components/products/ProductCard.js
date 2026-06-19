@@ -1,0 +1,122 @@
+"use client";
+
+import Link from "next/link";
+import Image from "next/image";
+import { Heart, LockKeyhole, Plus, ShoppingBag, Star } from "lucide-react";
+import { motion } from "framer-motion";
+import { useState } from "react";
+import { useAppStore } from "@/store/useAppStore";
+import { Badge } from "@/components/ui/Badge";
+import { QuickViewModal } from "@/components/products/QuickViewModal";
+
+export function ProductCard({ product }) {
+  const [quickOpen, setQuickOpen] = useState(false);
+  const addToCart = useAppStore((state) => state.addToCart);
+  const toggleWishlist = useAppStore((state) => state.toggleWishlist);
+  const wishlist = useAppStore((state) => state.wishlist);
+  const isSaved = wishlist.some((item) => item.id === product.id);
+  const gallery = product.gallery || [product.image];
+  const loopImages = [...gallery, ...gallery];
+  const itemWidth = `${100 / loopImages.length}%`;
+  const discount = Math.round(((product.mrp - product.price) / product.mrp) * 100);
+  const showDiscount = discount >= 10; // only show meaningful discounts
+
+  return (
+    <>
+      <motion.article
+        whileHover={{ y: -6 }}
+        className="soft-card product-card group relative overflow-hidden rounded-[1.5rem] p-2 transition hover:shadow-premium"
+        layout
+      >
+        {/* Wishlist overlay button */}
+        <button
+          onClick={() => toggleWishlist(product)}
+          className={`absolute right-4 top-4 z-10 grid h-9 w-9 place-items-center rounded-full shadow-card transition duration-200 hover:scale-110 ${isSaved ? "bg-rose-500 text-white" : "bg-white text-slate-400 hover:text-rose-500"}`}
+          aria-label={isSaved ? "Remove from wishlist" : "Add to wishlist"}
+        >
+          <Heart size={16} fill={isSaved ? "currentColor" : "none"} />
+        </button>
+
+        <Link href={`/products/${product.slug}`} className="block">
+          {/* Image container */}
+          <div className="relative aspect-[1.05] overflow-hidden rounded-xl bg-gradient-to-br from-sky-50 to-emerald-50">
+            <div className="product-image-track absolute inset-0 flex">
+              {loopImages.map((image, index) => (
+                <div key={`${product.id}-${image}-${index}`} className="relative h-full shrink-0" style={{ width: itemWidth }}>
+                  <Image src={image} alt={index === 0 ? product.imageAlt || product.name : ""} fill sizes="(min-width: 900px) 14vw, 45vw" className="object-contain p-4" />
+                </div>
+              ))}
+            </div>
+
+            {/* Badges */}
+            {product.rxRequired && (
+              <span className="absolute left-2 top-2 inline-flex items-center gap-1 rounded-full bg-slate-950/88 px-2 py-1 text-[10px] font-black text-white">
+                <LockKeyhole size={11} /> Rx
+              </span>
+            )}
+            {showDiscount && (
+              <span className="absolute right-10 top-2 rounded-full bg-brand-yellow px-2 py-1 text-[10px] font-black text-brand-blue">
+                {discount}% off
+              </span>
+            )}
+            {!product.inStock && (
+              <span className="absolute inset-x-3 bottom-3 rounded-xl bg-white/92 px-3 py-2 text-center text-xs font-black text-rose-600 shadow-card">
+                Currently unavailable
+              </span>
+            )}
+          </div>
+
+          {/* Product info */}
+          <div className="px-1 pt-3">
+            <p className="line-clamp-2 min-h-10 text-sm font-black leading-5 text-slate-900">{product.name}</p>
+            <p className="mt-1 text-xs font-semibold text-slate-500">{product.brand}</p>
+            <div className="mt-2 flex items-center gap-1.5">
+              <span className="flex items-center gap-1 text-xs font-black text-amber-500">
+                <Star size={12} fill="currentColor" /> {product.rating}
+              </span>
+              <span className="text-slate-300">·</span>
+              <Badge className="px-2 py-0.5 text-[10px]">{product.packSize}</Badge>
+            </div>
+            <div className="mt-2 flex items-end gap-2">
+              <span className="text-sm font-black text-slate-950">Rs. {product.price}</span>
+              <span className="text-xs font-bold text-slate-400 line-through">Rs. {product.mrp}</span>
+            </div>
+          </div>
+        </Link>
+
+        {/* Actions */}
+        <div className="mt-3 grid gap-2">
+          <button
+            onClick={(event) => {
+              const result = addToCart(product);
+              if (!result.blocked && typeof window !== "undefined") {
+                const rect = event.currentTarget.getBoundingClientRect();
+                window.dispatchEvent(new CustomEvent("firstmed:cart-fly", {
+                  detail: {
+                    id: product.id,
+                    name: product.name,
+                    image: product.image,
+                    origin: { x: rect.left + rect.width / 2, y: rect.top + rect.height / 2 }
+                  }
+                }));
+              }
+            }}
+            disabled={!product.inStock}
+            className="focus-ring flex min-h-11 w-full items-center justify-center gap-2 rounded-xl bg-brand-blue px-3 py-2.5 text-sm font-black leading-tight text-white transition duration-200 hover:-translate-y-0.5 hover:bg-[#066CAB] hover:shadow-glow disabled:cursor-not-allowed disabled:bg-slate-200 disabled:text-slate-400"
+          >
+            <Plus size={16} />
+            <span>{product.inStock ? "Add to cart" : "Out of stock"}</span>
+          </button>
+          <button
+            onClick={() => setQuickOpen(true)}
+            className="focus-ring flex min-h-10 w-full items-center justify-center gap-2 rounded-xl bg-sky-50 px-3 py-2 text-xs font-black text-brand-blue transition hover:bg-sky-100"
+          >
+            <ShoppingBag size={14} /> Quick view
+          </button>
+        </div>
+      </motion.article>
+
+      <QuickViewModal product={product} open={quickOpen} onClose={() => setQuickOpen(false)} />
+    </>
+  );
+}

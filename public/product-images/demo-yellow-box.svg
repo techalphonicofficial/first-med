@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 360 360" role="img" aria-label="Yellow demo wellness box">
+  <rect width="360" height="360" rx="44" fill="#F7FAFD"/>
+  <rect x="78" y="78" width="204" height="204" rx="30" fill="#F1E300"/>
+  <rect x="104" y="108" width="152" height="54" rx="18" fill="#fff"/>
+  <rect x="116" y="188" width="128" height="16" rx="8" fill="#0878BE"/>
+  <rect x="116" y="218" width="92" height="14" rx="7" fill="#0878BE" opacity=".72"/>
+  <circle cx="234" cy="228" r="22" fill="#fff"/>
+  <path d="M224 228h20M234 218v20" stroke="#0878BE" stroke-width="8" stroke-linecap="round"/>
+  <text x="180" y="143" text-anchor="middle" font-family="Arial, sans-serif" font-size="28" font-weight="900" fill="#0878BE">VITA</text>
+</svg>

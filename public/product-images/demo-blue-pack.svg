@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 360 360" role="img" aria-label="Blue demo medicine pack">
+  <rect width="360" height="360" rx="44" fill="#EAF7FF"/>
+  <rect x="92" y="56" width="176" height="248" rx="28" fill="#0878BE"/>
+  <rect x="114" y="84" width="132" height="56" rx="16" fill="#fff"/>
+  <rect x="114" y="162" width="92" height="14" rx="7" fill="#F1E300"/>
+  <rect x="114" y="188" width="116" height="12" rx="6" fill="#B9E7FF"/>
+  <rect x="114" y="212" width="82" height="12" rx="6" fill="#B9E7FF"/>
+  <circle cx="228" cy="232" r="24" fill="#F1E300"/>
+  <path d="M228 217v30M213 232h30" stroke="#0878BE" stroke-width="10" stroke-linecap="round"/>
+  <text x="180" y="120" text-anchor="middle" font-family="Arial, sans-serif" font-size="24" font-weight="800" fill="#0878BE">FIRSTMED</text>
+</svg>

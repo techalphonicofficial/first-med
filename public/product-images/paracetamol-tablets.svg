@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 360 360" role="img" aria-label="Paracetamol tablets pack">
+  <rect width="360" height="360" rx="42" fill="#EAF7FF"/>
+  <rect x="58" y="84" width="244" height="170" rx="26" fill="#fff"/>
+  <rect x="58" y="84" width="244" height="56" rx="26" fill="#0878BE"/>
+  <rect x="58" y="116" width="244" height="24" fill="#0878BE"/>
+  <text x="180" y="122" text-anchor="middle" font-family="Arial, sans-serif" font-size="25" font-weight="900" fill="#fff">PARACETAMOL</text>
+  <text x="180" y="178" text-anchor="middle" font-family="Arial, sans-serif" font-size="34" font-weight="900" fill="#0878BE">500 mg</text>
+  <rect x="105" y="202" width="150" height="18" rx="9" fill="#F1E300"/>
+  <circle cx="105" cy="276" r="24" fill="#fff"/>
+  <circle cx="165" cy="276" r="24" fill="#fff"/>
+  <circle cx="225" cy="276" r="24" fill="#fff"/>
+</svg>
