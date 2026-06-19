@@ -39,7 +39,7 @@ export function ProductCard({ product, view = "Grid" }) {
           <Heart size={16} fill={isSaved ? "currentColor" : "none"} />
         </button>
 
-        <Link href={`/products/${product.slug}`} className={`block ${isList ? "flex flex-1 flex-col sm:flex-row gap-4 sm:gap-6 w-full" : ""}`}>
+        <Link href={`/products/${product.slug}`} className={isList ? "flex flex-1 flex-col sm:flex-row gap-4 sm:gap-6 w-full" : "block"}>
           {/* Image container */}
           <div className={`relative overflow-hidden rounded-xl bg-gradient-to-br from-sky-50 to-emerald-50 ${isList ? "aspect-square w-full sm:w-40 shrink-0" : "aspect-[1.05]"}`}>
             <div className="product-image-track absolute inset-0 flex">

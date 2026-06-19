@@ -178,10 +178,10 @@ export function CatalogClient({ initialCategory = "All", initialQuery = "", init
           </div>
           <button
             onClick={() => setView(view === "Grid" ? "List" : "Grid")}
-            className="hidden items-center gap-2 rounded-full bg-white px-5 py-3 text-sm font-black text-brand-blue shadow-card hover:bg-sky-50 sm:flex"
+            className="hidden items-center gap-2 rounded-full border border-sky-100 bg-white px-5 py-3 text-sm font-black text-brand-blue shadow-sm hover:border-brand-blue hover:bg-sky-50 sm:flex transition"
           >
-            {view === "Grid" ? <Grid2X2 size={16} /> : <List size={16} />}
-            {view}
+            {view === "Grid" ? <List size={16} /> : <Grid2X2 size={16} />}
+            {view === "Grid" ? "List View" : "Grid View"}
           </button>
         </div>
 
