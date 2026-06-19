@@ -1,5 +1,6 @@
 "use client";
 
+import Link from "next/link";
 import { useForm } from "react-hook-form";
 import { Camera, Save, Trash2 } from "lucide-react";
 import { Button } from "@/components/ui/Button";
