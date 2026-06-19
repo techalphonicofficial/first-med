@@ -29,6 +29,16 @@ export function ProductDetailClient({ product, similar }) {
   const addToCart = useAppStore((state) => state.addToCart);
   const prescription = useAppStore((state) => state.prescription);
 
+  const [zoomPos, setZoomPos] = useState({ x: 50, y: 50 });
+  const [isZooming, setIsZooming] = useState(false);
+
+  function handleMouseMove(e) {
+    const { left, top, width, height } = e.currentTarget.getBoundingClientRect();
+    const x = ((e.clientX - left) / width) * 100;
+    const y = ((e.clientY - top) / height) * 100;
+    setZoomPos({ x, y });
+  }
+
   function handleAdd(event) {
     const result = addToCart(product);
     setBlocked(Boolean(result.blocked));
@@ -112,13 +122,22 @@ export function ProductDetailClient({ product, similar }) {
 
           {/* Main image */}
           <div className="flex-1">
-            <div className="soft-card relative aspect-square overflow-hidden rounded-2xl bg-sky-50">
+            <div 
+              className="soft-card relative aspect-square overflow-hidden rounded-2xl bg-sky-50 cursor-crosshair group"
+              onMouseMove={handleMouseMove}
+              onMouseEnter={() => setIsZooming(true)}
+              onMouseLeave={() => setIsZooming(false)}
+            >
               <Image
                 src={activeImage}
                 alt={product.imageAlt || product.name}
                 fill
                 sizes="(min-width: 1024px) 38vw, 92vw"
-                className="object-contain p-10 transition duration-300"
+                className={`object-contain p-10 transition-transform duration-200 ease-out`}
+                style={{
+                  transformOrigin: `${zoomPos.x}% ${zoomPos.y}%`,
+                  transform: isZooming ? "scale(2.2)" : "scale(1)"
+                }}
                 priority
               />
               {discount >= 10 && (
