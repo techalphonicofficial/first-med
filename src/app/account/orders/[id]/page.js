@@ -1,3 +1,5 @@
+"use client";
+
 import Link from "next/link";
 import { ArrowLeft, Box, CheckCircle2, Download, ExternalLink, MapPin, Navigation, Receipt } from "lucide-react";
 import Image from "next/image";
@@ -19,7 +21,7 @@ export default function OrderDetailPage({ params }) {
   return (
     <div className="mx-auto max-w-4xl px-4 py-10 pb-28 sm:px-6 lg:px-8">
       {!isSuccess && (
-        <Link href="/account/orders" className="mb-6 inline-flex items-center gap-2 text-sm font-black text-brand-blue hover:underline">
+        <Link href="/account/orders" className="mb-6 inline-flex items-center gap-2 text-sm font-black text-brand-blue hover:underline print:hidden">
           <ArrowLeft size={16} /> Back to Orders
         </Link>
       )}
@@ -29,21 +31,21 @@ export default function OrderDetailPage({ params }) {
         
         {isSuccess ? (
           <>
-            <div className="mx-auto mb-6 grid h-20 w-20 place-items-center rounded-full bg-emerald-500 text-white shadow-glow">
+            <div className="mx-auto mb-6 grid h-20 w-20 place-items-center rounded-full bg-emerald-500 text-white shadow-glow print:hidden">
               <CheckCircle2 size={40} />
             </div>
             <h1 className="text-3xl font-black text-emerald-800 md:text-5xl">Order Confirmed!</h1>
-            <p className="mt-4 text-lg font-semibold text-emerald-700/80 max-w-lg mx-auto">
+            <p className="mt-4 text-lg font-semibold text-emerald-700/80 max-w-lg mx-auto print:hidden">
               Your prescription has been verified and your order is being packed. Delivery is expected within 90 minutes.
             </p>
           </>
         ) : (
           <>
-            <div className="absolute -left-20 -top-20 h-64 w-64 rounded-full bg-brand-blue/30 blur-[80px]" />
+            <div className="absolute -left-20 -top-20 h-64 w-64 rounded-full bg-brand-blue/30 blur-[80px] print:hidden" />
             <div className="relative z-10">
               <p className="text-xs font-black uppercase tracking-widest text-brand-yellow">Order Details</p>
               <h1 className="mt-2 text-4xl font-black">{displayId}</h1>
-              <span className="mt-4 inline-flex items-center gap-2 rounded-full bg-brand-blue/30 px-4 py-1.5 text-sm font-black backdrop-blur-md">
+              <span className="mt-4 inline-flex items-center gap-2 rounded-full bg-brand-blue/30 px-4 py-1.5 text-sm font-black backdrop-blur-md print:text-black print:bg-slate-100">
                 <span className="h-2 w-2 rounded-full bg-emerald-400" /> Preparing for dispatch
               </span>
             </div>
@@ -56,7 +58,7 @@ export default function OrderDetailPage({ params }) {
         <div className="grid gap-6">
           <div className="soft-card rounded-[2rem] p-6 sm:p-8">
             <h2 className="mb-6 flex items-center gap-2 text-xl font-black">
-              <Box size={20} className="text-brand-blue" /> Items in this order
+              <Box size={20} className="text-brand-blue print:text-black" /> Items in this order
             </h2>
             
             <div className="grid gap-6">
@@ -81,11 +83,11 @@ export default function OrderDetailPage({ params }) {
         {/* Right Column: Summary & Actions */}
         <div className="grid gap-6 h-fit">
           {/* Actions */}
-          <div className="soft-card rounded-[2rem] p-6 text-center">
+          <div className="soft-card rounded-[2rem] p-6 text-center print:hidden">
             <Link href={`/track/${displayId}`} className="flex w-full items-center justify-center gap-2 rounded-xl bg-brand-blue py-3.5 text-sm font-black text-white shadow-glow hover:bg-[#066CAB] transition">
               <Navigation size={18} /> Track Delivery
             </Link>
-            <button className="mt-3 flex w-full items-center justify-center gap-2 rounded-xl bg-sky-50 py-3 text-sm font-black text-brand-blue hover:bg-sky-100 transition">
+            <button onClick={() => window.print()} className="mt-3 flex w-full items-center justify-center gap-2 rounded-xl bg-sky-50 py-3 text-sm font-black text-brand-blue hover:bg-sky-100 transition">
               <Receipt size={16} /> Download Invoice
             </button>
           </div>
