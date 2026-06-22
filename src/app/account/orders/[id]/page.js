@@ -1,12 +1,14 @@
 "use client";
 
+import { use } from "react";
 import Link from "next/link";
 import { ArrowLeft, Box, CheckCircle2, Download, ExternalLink, MapPin, Navigation, Receipt } from "lucide-react";
 import Image from "next/image";
 
 export default function OrderDetailPage({ params }) {
-  const isSuccess = params.id === "success"; // Magic ID for checkout success
-  const displayId = isSuccess ? "FM-3042" : params.id;
+  const unwrappedParams = use(params);
+  const isSuccess = unwrappedParams.id === "success"; // Magic ID for checkout success
+  const displayId = isSuccess ? "FM-3042" : unwrappedParams.id;
 
   const orderItems = [
     { id: 1, name: "Paracetamol 500mg Tablets", qty: 2, price: 89, total: 178, img: "/product-images/paracetamol-tablets.svg" },
