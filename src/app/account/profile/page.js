@@ -1,11 +1,13 @@
 "use client";
 
 import Link from "next/link";
+import { useRouter } from "next/navigation";
 import { useForm } from "react-hook-form";
-import { Camera, Save, Trash2 } from "lucide-react";
+import { Camera, LogOut, Save, Trash2 } from "lucide-react";
 import { Button } from "@/components/ui/Button";
 
 export default function ProfilePage() {
+  const router = useRouter();
   const { register, handleSubmit, formState: { errors } } = useForm({
     defaultValues: {
       name: "Akash Sharma",
@@ -13,6 +15,11 @@ export default function ProfilePage() {
       phone: "+91 98765 43210"
     }
   });
+
+  const handleLogout = () => {
+    // Clear any auth tokens / session storage here
+    router.push("/login");
+  };
 
   return (
     <div className="mx-auto max-w-[104rem] px-4 py-10 pb-28 sm:px-6 lg:px-8 xl:px-10">
@@ -101,6 +108,15 @@ export default function ProfilePage() {
               Delete account
             </button>
           </div>
+
+          {/* Logout */}
+          <button
+            onClick={handleLogout}
+            className="flex w-full items-center justify-center gap-2.5 rounded-[2rem] border-2 border-rose-200 bg-rose-50 px-6 py-4 text-sm font-black text-rose-600 transition hover:bg-rose-100 hover:border-rose-300 hover:shadow-sm active:scale-95"
+          >
+            <LogOut size={18} />
+            Log out of your account
+          </button>
         </div>
       </div>
     </div>

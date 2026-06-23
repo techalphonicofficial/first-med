@@ -1,11 +1,18 @@
 "use client";
 
 import Link from "next/link";
-import { ArrowRight, Bell, Heart, MapPin, Package, ShieldCheck, User } from "lucide-react";
+import { useRouter } from "next/navigation";
+import { ArrowRight, Bell, Heart, LogOut, MapPin, Package, ShieldCheck, User } from "lucide-react";
 import { useAppStore } from "@/store/useAppStore";
 
 export default function AccountDashboardPage() {
+  const router = useRouter();
   const prescription = useAppStore((state) => state.prescription);
+
+  const handleLogout = () => {
+    // Clear any auth tokens / session storage here
+    router.push("/login");
+  };
   
   return (
     <div className="mx-auto max-w-[104rem] px-4 py-8 pb-28 sm:px-6 lg:px-8 xl:px-10">
@@ -101,6 +108,14 @@ export default function AccountDashboardPage() {
                   <Icon size={18} className="text-brand-blue" /> {label}
                 </Link>
               ))}
+            </div>
+            <div className="mt-3 border-t border-slate-100 pt-3">
+              <button
+                onClick={handleLogout}
+                className="flex w-full items-center gap-3 rounded-xl p-3 text-sm font-bold text-rose-500 transition hover:bg-rose-50 hover:text-rose-600"
+              >
+                <LogOut size={18} className="text-rose-500" /> Log out
+              </button>
             </div>
           </div>
 
