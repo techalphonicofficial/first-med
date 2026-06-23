@@ -21,7 +21,7 @@ export default function OrderDetailPage({ params }) {
   const total = subtotal + deliveryFee - discount;
 
   return (
-    <div className="mx-auto max-w-4xl px-4 py-10 pb-28 sm:px-6 lg:px-8">
+    <div className="mx-auto max-w-4xl px-4 py-10 pb-28 sm:px-6 lg:px-8 print:p-0 print:m-0 print:w-full">
       {!isSuccess && (
         <Link href="/account/orders" className="mb-6 inline-flex items-center gap-2 text-sm font-black text-brand-blue hover:underline print:hidden">
           <ArrowLeft size={16} /> Back to Orders
@@ -65,7 +65,7 @@ export default function OrderDetailPage({ params }) {
             
             <div className="grid gap-6">
               {orderItems.map((item) => (
-                <div key={item.id} className="flex gap-4 border-b border-sky-50 pb-6 last:border-0 last:pb-0">
+                <div key={item.id} className="flex gap-4 border-b border-sky-50 pb-6 last:border-0 last:pb-0 print:break-inside-avoid">
                   <div className="grid h-20 w-20 shrink-0 place-items-center rounded-2xl bg-sky-50 p-2">
                     <Image src={item.img} alt={item.name} width={50} height={50} className="object-contain mix-blend-multiply" />
                   </div>
@@ -108,7 +108,7 @@ export default function OrderDetailPage({ params }) {
           </div>
 
           {/* Payment Summary */}
-          <div className="soft-card rounded-[2rem] p-6">
+          <div className="soft-card rounded-[2rem] p-6 print:break-inside-avoid">
             <h3 className="mb-4 text-base font-black">Payment Summary</h3>
             <div className="grid gap-3 text-sm">
               <div className="flex justify-between font-semibold text-slate-600">

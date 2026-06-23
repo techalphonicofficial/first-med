@@ -16,7 +16,7 @@ export function BottomNav() {
   const pathname = usePathname();
   const count = useAppStore((state) => state.cart.reduce((sum, item) => sum + item.quantity, 0));
   return (
-    <nav className="fixed inset-x-3 bottom-3 z-50 grid grid-cols-4 rounded-[1.4rem] border border-white/80 bg-white/92 p-2 shadow-premium backdrop-blur-xl md:hidden" aria-label="Mobile navigation">
+    <nav className="fixed inset-x-3 bottom-3 z-50 grid grid-cols-4 rounded-[1.4rem] border border-white/80 bg-white/92 p-2 shadow-premium backdrop-blur-xl md:hidden print:hidden" aria-label="Mobile navigation">
       {items.map((item) => {
         const Icon = item.icon;
         const active = pathname === item.href || (item.href !== "/" && pathname.startsWith(item.href.replace(/\/$/, "")));

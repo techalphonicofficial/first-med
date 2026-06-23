@@ -8,6 +8,8 @@ import { useAppStore } from "@/store/useAppStore";
 import { ProductShelf } from "./ProductShelf";
 import { Button } from "@/components/ui/Button";
 import { Badge } from "@/components/ui/Badge";
+import { toast } from "sonner";
+import { TransformWrapper, TransformComponent } from "react-zoom-pan-pinch";
 
 const TABS = ["Overview", "Usage & Warnings", "Specs", "Reviews", "FAQs"];
 
@@ -43,6 +45,7 @@ export function ProductDetailClient({ product, similar }) {
     const result = addToCart(product);
     setBlocked(Boolean(result.blocked));
     if (!result.blocked && typeof window !== "undefined") {
+      toast.success(`${product.name} added to cart`);
       const rect = event.currentTarget.getBoundingClientRect();
       window.dispatchEvent(new CustomEvent("firstmed:cart-fly", {
         detail: {
@@ -122,30 +125,36 @@ export function ProductDetailClient({ product, similar }) {
 
           {/* Main image */}
           <div className="flex-1">
-            <div 
-              className="soft-card relative aspect-square overflow-hidden rounded-2xl bg-sky-50 cursor-crosshair group"
-              onMouseMove={handleMouseMove}
-              onMouseEnter={() => setIsZooming(true)}
-              onMouseLeave={() => setIsZooming(false)}
-            >
-              <Image
-                src={activeImage}
-                alt={product.imageAlt || product.name}
-                fill
-                sizes="(min-width: 1024px) 38vw, 92vw"
-                className={`object-contain p-10 transition-transform duration-200 ease-out`}
-                style={{
-                  transformOrigin: `${zoomPos.x}% ${zoomPos.y}%`,
-                  transform: isZooming ? "scale(2.2)" : "scale(1)"
+            <TransformWrapper wheel={{ step: 0.1 }}>
+              <div 
+                className="soft-card relative aspect-square overflow-hidden rounded-2xl bg-sky-50 cursor-crosshair group"
+                onMouseMove={handleMouseMove}
+                onMouseEnter={() => {
+                  if (window.innerWidth >= 1024) setIsZooming(true);
                 }}
-                priority
-              />
-              {discount >= 10 && (
-                <span className="absolute left-3 top-3 rounded-full bg-brand-yellow px-3 py-1 text-xs font-black text-brand-blue shadow-card">
-                  {discount}% off
-                </span>
-              )}
-            </div>
+                onMouseLeave={() => setIsZooming(false)}
+              >
+                <TransformComponent wrapperClass="w-full h-full !absolute inset-0">
+                  <Image
+                    src={activeImage}
+                    alt={product.imageAlt || product.name}
+                    fill
+                    sizes="(min-width: 1024px) 38vw, 92vw"
+                    className={`object-contain p-10 transition-transform duration-200 ease-out`}
+                    style={{
+                      transformOrigin: `${zoomPos.x}% ${zoomPos.y}%`,
+                      transform: isZooming ? "scale(2.2)" : "scale(1)"
+                    }}
+                    priority
+                  />
+                </TransformComponent>
+                {discount >= 10 && (
+                  <span className="absolute left-3 top-3 rounded-full bg-brand-yellow px-3 py-1 text-xs font-black text-brand-blue shadow-card">
+                    {discount}% off
+                  </span>
+                )}
+              </div>
+            </TransformWrapper>
 
             {/* Mobile thumbnails */}
             <div className="mt-3 flex gap-2 overflow-auto no-scrollbar md:hidden">
@@ -256,7 +265,11 @@ export function ProductDetailClient({ product, similar }) {
               {product.inStock ? "Buy now" : "Find alternatives"}
             </Button>
             <button
-              onClick={() => setWishlisted(!wishlisted)}
+              onClick={() => {
+                setWishlisted(!wishlisted);
+                if (wishlisted) toast.success("Removed from wishlist");
+                else toast.success("Added to wishlist");
+              }}
               className={`flex items-center gap-2 rounded-full px-5 py-3 font-black transition ${wishlisted ? "bg-rose-50 text-rose-500" : "bg-sky-50 text-brand-blue hover:bg-sky-100"}`}
             >
               <Heart size={17} fill={wishlisted ? "currentColor" : "none"} />

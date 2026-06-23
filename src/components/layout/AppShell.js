@@ -13,6 +13,7 @@ import { ScrollProgress } from "@/components/motion/ScrollProgress";
 import { ToastViewport } from "@/components/ui/ToastViewport";
 import { ProtectedNotice } from "@/components/layout/ProtectedNotice";
 import { BottomNav } from "@/components/layout/BottomNav";
+import { GlobalSearch } from "@/components/layout/GlobalSearch";
 
 const nav = [
   ["Products", "/products"],
@@ -30,6 +31,7 @@ const footerLinks = [
 export function AppShell({ children }) {
   const pathname = usePathname();
   const [drawerOpen, setDrawerOpen] = useState(false);
+  const [searchOpen, setSearchOpen] = useState(false);
   const cartCount = useAppStore((state) => state.cart.reduce((sum, item) => sum + item.quantity, 0));
 
   return (
@@ -38,9 +40,10 @@ export function AppShell({ children }) {
       <CartDrawer />
       <ScrollProgress />
       <ToastViewport />
+      <GlobalSearch open={searchOpen} onClose={() => setSearchOpen(false)} />
 
       {/* Sticky Header */}
-      <header className="sticky top-0 z-50 border-b border-sky-100/80 bg-white/82 backdrop-blur-xl">
+      <header className="sticky top-0 z-50 border-b border-sky-100/80 bg-white/82 backdrop-blur-xl print:hidden">
         <nav className="mx-auto flex h-16 max-w-[104rem] items-center justify-between px-4 sm:px-6 lg:px-8 xl:px-10 2xl:px-12" aria-label="Main navigation">
           {/* Logo */}
           <Link href="/" className="flex shrink-0 items-center gap-2 font-black text-brand-blue">
@@ -69,14 +72,14 @@ export function AppShell({ children }) {
 
           {/* Actions */}
           <div className="flex items-center gap-2">
-            <Link
-              href="/search"
+            <button
+              onClick={() => setSearchOpen(true)}
               id="nav-search-btn"
               className="hidden rounded-full bg-sky-50 p-3 text-brand-blue transition hover:bg-sky-100 sm:inline-flex"
               aria-label="Search"
             >
               <Search size={18} />
-            </Link>
+            </button>
             <Link
               href="/account/dashboard"
               id="nav-account-btn"
@@ -167,7 +170,13 @@ export function AppShell({ children }) {
 
                 {/* Quick links */}
                 <div className="mt-6 grid grid-cols-2 gap-2">
-                  {[["Search", "/search"], ["Cart", "/cart"], ["Account", "/account/dashboard"], ["Wishlist", "/account/wishlist"]].map(([label, href]) => (
+                  <button
+                    onClick={() => { setDrawerOpen(false); setSearchOpen(true); }}
+                    className="rounded-2xl bg-white px-4 py-3 text-center text-sm font-bold text-slate-600 shadow-card hover:text-brand-blue"
+                  >
+                    Search
+                  </button>
+                  {[["Cart", "/cart"], ["Account", "/account/dashboard"], ["Wishlist", "/account/wishlist"]].map(([label, href]) => (
                     <Link
                       key={label}
                       href={href}
@@ -189,10 +198,10 @@ export function AppShell({ children }) {
         )}
       </AnimatePresence>
 
-      <ProtectedNotice />
-      <main>{children}</main>
+      <div className="print:hidden"><ProtectedNotice /></div>
+      <main className="print:p-0 print:m-0 print:w-full">{children}</main>
       <BottomNav />
-      <Footer />
+      <div className="print:hidden"><Footer /></div>
     </>
   );
 }

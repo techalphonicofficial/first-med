@@ -8,6 +8,7 @@ import { useState } from "react";
 import { useAppStore } from "@/store/useAppStore";
 import { Badge } from "@/components/ui/Badge";
 import { QuickViewModal } from "@/components/products/QuickViewModal";
+import { toast } from "sonner";
 
 export function ProductCard({ product, view = "Grid" }) {
   const [quickOpen, setQuickOpen] = useState(false);
@@ -32,8 +33,12 @@ export function ProductCard({ product, view = "Grid" }) {
       >
         {/* Wishlist overlay button */}
         <button
-          onClick={() => toggleWishlist(product)}
-          className={`absolute z-10 grid h-9 w-9 place-items-center rounded-full shadow-card transition duration-200 hover:scale-110 ${isSaved ? "bg-rose-500 text-white" : "bg-white text-slate-400 hover:text-rose-500"} ${isList ? "right-4 top-4" : "right-4 top-4"}`}
+          onClick={() => {
+            toggleWishlist(product);
+            if (isSaved) toast.success("Removed from wishlist");
+            else toast.success("Added to wishlist");
+          }}
+          className={`absolute z-10 grid h-9 w-9 place-items-center rounded-full shadow-card transition duration-200 hover:scale-110 ${isSaved ? "bg-rose-500 text-white" : "bg-white text-slate-500 hover:text-rose-500"} ${isList ? "right-4 top-4" : "right-4 top-4"}`}
           aria-label={isSaved ? "Remove from wishlist" : "Add to wishlist"}
         >
           <Heart size={16} fill={isSaved ? "currentColor" : "none"} />
@@ -84,7 +89,7 @@ export function ProductCard({ product, view = "Grid" }) {
             
             <div className={`mt-2 flex items-end gap-2 ${isList ? "mt-4" : ""}`}>
               <span className={`${isList ? "text-xl" : "text-sm"} font-black text-slate-950`}>Rs. {product.price}</span>
-              <span className="text-xs font-bold text-slate-400 line-through mb-0.5">Rs. {product.mrp}</span>
+              <span className="text-xs font-bold text-slate-500 line-through mb-0.5">Rs. {product.mrp}</span>
             </div>
           </div>
         </Link>
@@ -95,6 +100,7 @@ export function ProductCard({ product, view = "Grid" }) {
             onClick={(event) => {
               const result = addToCart(product);
               if (!result.blocked && typeof window !== "undefined") {
+                toast.success(`${product.name} added to cart`);
                 const rect = event.currentTarget.getBoundingClientRect();
                 window.dispatchEvent(new CustomEvent("firstmed:cart-fly", {
                   detail: {
@@ -107,14 +113,14 @@ export function ProductCard({ product, view = "Grid" }) {
               }
             }}
             disabled={!product.inStock}
-            className={`focus-ring flex items-center justify-center gap-2 rounded-xl bg-brand-blue px-3 py-2.5 text-sm font-black leading-tight text-white transition duration-200 hover:-translate-y-0.5 hover:bg-[#066CAB] hover:shadow-glow disabled:cursor-not-allowed disabled:bg-slate-200 disabled:text-slate-400 ${isList ? "min-h-12" : "min-h-11 w-full"}`}
+            className={`focus-ring flex items-center justify-center gap-2 rounded-xl bg-brand-blue px-3 py-2.5 text-sm font-black leading-tight text-white transition duration-200 hover:-translate-y-0.5 hover:bg-[#066CAB] hover:shadow-glow disabled:cursor-not-allowed disabled:bg-slate-200 disabled:text-slate-500 active:scale-95 ${isList ? "min-h-12" : "min-h-11 w-full"}`}
           >
             <Plus size={16} />
             <span>{product.inStock ? "Add to cart" : "Out of stock"}</span>
           </button>
           <button
             onClick={() => setQuickOpen(true)}
-            className={`focus-ring flex items-center justify-center gap-2 rounded-xl bg-sky-50 px-3 py-2 text-xs font-black text-brand-blue transition hover:bg-sky-100 ${isList ? "min-h-10" : "min-h-10 w-full"}`}
+            className={`focus-ring flex items-center justify-center gap-2 rounded-xl bg-sky-50 px-3 py-2 text-xs font-black text-brand-blue transition hover:bg-sky-100 active:scale-95 ${isList ? "min-h-10" : "min-h-10 w-full"}`}
           >
             <ShoppingBag size={14} /> Quick view
           </button>

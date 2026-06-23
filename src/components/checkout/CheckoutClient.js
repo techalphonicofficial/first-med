@@ -8,6 +8,7 @@ import { useRouter } from "next/navigation";
 import { Button } from "@/components/ui/Button";
 import { Stepper } from "@/components/ui/Stepper";
 import { EmptyState } from "@/components/ui/EmptyState";
+import { toast } from "sonner";
 
 const steps = ["Address", "Delivery Slot", "Payment", "Review", "Confirmation"];
 const prescriptionFields = ["patientName", "doctorName", "clinicName", "registrationNumber", "issueDate"];
@@ -31,19 +32,20 @@ export function CheckoutClient() {
   async function validatePrescription() {
     const validFields = await trigger(prescriptionFields);
     if (!validFields || !fileName) {
-      pushToast({ type: "error", title: "Prescription incomplete", text: "Fill every prescription field and upload a file." });
+      toast.error("Fill every prescription field and upload a file.");
       return;
     }
     approvePrescription(getValues(), fileName);
+    toast.success("Prescription approved!");
   }
 
   function submit(values) {
     if (!cart.length) {
-      pushToast({ type: "error", title: "Cart is empty", text: "Add products before checkout." });
+      toast.error("Add products before checkout.");
       return;
     }
     if (hasBlockedRx) {
-      pushToast({ type: "error", title: "Prescription pending", text: "Approve prescription before checking out Rx items." });
+      toast.error("Approve prescription before checking out Rx items.");
       return;
     }
     placeOrder(values);
@@ -172,7 +174,7 @@ export function CheckoutClient() {
             </label>
             </section>
           </div>
-          <aside className="h-fit rounded-2xl bg-brand-navy p-6 text-white shadow-soft">
+          <aside className="sticky top-24 h-fit rounded-2xl bg-brand-navy p-6 text-white shadow-soft">
             <div className="flex items-center gap-3">
               <span className="grid size-10 place-items-center rounded-2xl bg-white/10 text-brand-yellow"><CreditCard size={18} /></span>
               <h2 className="text-xl font-black">Review</h2>

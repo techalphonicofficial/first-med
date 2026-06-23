@@ -51,7 +51,7 @@ export function CatalogClient({ initialCategory = "All", initialQuery = "", init
     <div className="grid gap-5">
       {/* Category */}
       <div>
-        <p className="mb-2 text-xs font-black uppercase tracking-[0.14em] text-slate-400">Category</p>
+        <p className="mb-2 text-xs font-black uppercase tracking-[0.14em] text-slate-500">Category</p>
         <div className="grid gap-1">
           {["All", ...categories].map((item) => (
             <button
@@ -68,7 +68,7 @@ export function CatalogClient({ initialCategory = "All", initialQuery = "", init
 
       {/* Type */}
       <div>
-        <p className="mb-2 text-xs font-black uppercase tracking-[0.14em] text-slate-400">Type</p>
+        <p className="mb-2 text-xs font-black uppercase tracking-[0.14em] text-slate-500">Type</p>
         <div className="flex flex-wrap gap-2">
           {["All", "OTC", "Prescription"].map((item) => (
             <button
@@ -84,7 +84,7 @@ export function CatalogClient({ initialCategory = "All", initialQuery = "", init
 
       {/* Sort */}
       <div>
-        <p className="mb-2 text-xs font-black uppercase tracking-[0.14em] text-slate-400">Sort by</p>
+        <p className="mb-2 text-xs font-black uppercase tracking-[0.14em] text-slate-500">Sort by</p>
         <div className="relative">
           <select
             value={sort}
@@ -95,14 +95,14 @@ export function CatalogClient({ initialCategory = "All", initialQuery = "", init
               <option key={item}>{item}</option>
             ))}
           </select>
-          <ChevronDown size={16} className="pointer-events-none absolute right-4 top-1/2 -translate-y-1/2 text-slate-400" />
+          <ChevronDown size={16} className="pointer-events-none absolute right-4 top-1/2 -translate-y-1/2 text-slate-500" />
         </div>
       </div>
 
       {/* Price range */}
       <div>
         <div className="mb-2 flex items-center justify-between">
-          <p className="text-xs font-black uppercase tracking-[0.14em] text-slate-400">Max price</p>
+          <p className="text-xs font-black uppercase tracking-[0.14em] text-slate-500">Max price</p>
           <span className="text-sm font-black text-brand-blue">Rs. {maxPrice}</span>
         </div>
         <input
@@ -111,7 +111,7 @@ export function CatalogClient({ initialCategory = "All", initialQuery = "", init
           onChange={(e) => setMaxPrice(Number(e.target.value))}
           className="w-full accent-brand-blue"
         />
-        <div className="mt-1 flex justify-between text-[11px] font-semibold text-slate-400">
+        <div className="mt-1 flex justify-between text-[11px] font-semibold text-slate-500">
           <span>Rs. 100</span><span>Rs. 1200</span>
         </div>
       </div>

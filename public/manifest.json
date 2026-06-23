@@ -1,0 +1,17 @@
+{
+  "name": "FirstMED Pharmacy",
+  "short_name": "FirstMED",
+  "description": "Your trusted 90-minute delivery pharmacy.",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#f8fafc",
+  "theme_color": "#0878be",
+  "orientation": "portrait-primary",
+  "icons": [
+    {
+      "src": "/favicon.ico",
+      "sizes": "64x64",
+      "type": "image/x-icon"
+    }
+  ]
+}
