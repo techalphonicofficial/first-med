@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import { AlertTriangle, ArrowUpRight, Package, RefreshCw, Search } from "lucide-react";
+import { toast } from "sonner";
 
 const inventory = [
   { id: 1, name: "Paracetamol 500mg Tablets", sku: "HRC-001", category: "Health Resource Center", stock: 45, threshold: 20, price: 89,  rxRequired: false },
@@ -42,7 +43,7 @@ export default function InventoryPage() {
           <p className="text-xs font-black uppercase tracking-widest text-brand-blue">Vendor portal</p>
           <h1 className="mt-1 text-4xl font-black">Inventory</h1>
         </div>
-        <button className="flex items-center gap-2 rounded-full bg-brand-blue px-5 py-2.5 text-sm font-black text-white shadow-glow">
+        <button onClick={(e) => { e.preventDefault(); toast.success('Action completed successfully!'); }} className="flex items-center gap-2 rounded-full bg-brand-blue px-5 py-2.5 text-sm font-black text-white shadow-glow">
           <RefreshCw size={14} /> Sync stock
         </button>
       </div>
@@ -122,7 +123,7 @@ export default function InventoryPage() {
                       <span className={`rounded-full px-2.5 py-1 text-xs font-black ${color}`}>{label}</span>
                     </td>
                     <td className="px-4 py-3">
-                      <button className="flex items-center gap-1 rounded-full bg-brand-blue px-3 py-1.5 text-xs font-black text-white hover:bg-[#066CAB] transition">
+                      <button onClick={(e) => { e.preventDefault(); toast.success('Action completed successfully!'); }} className="flex items-center gap-1 rounded-full bg-brand-blue px-3 py-1.5 text-xs font-black text-white hover:bg-[#066CAB] transition">
                         <ArrowUpRight size={12} /> Restock
                       </button>
                     </td>

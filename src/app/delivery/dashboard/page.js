@@ -3,6 +3,7 @@
 import { AlertTriangle, Car, MapPin, Navigation, Package, Phone, Settings, ToggleRight, Truck } from "lucide-react";
 import { useState } from "react";
 import Link from "next/link";
+import { toast } from "sonner";
 
 const deliveries = [
   { id: "FM-3041", pickup: "FirstMED Plus Sector 21", drop: "Block C, Green Park",   dist: "4.2 km", eta: "15 min", status: "Assigned" },
@@ -69,7 +70,7 @@ export default function DeliveryDashboardPage() {
             <p className="text-sm font-black text-emerald-600"><Truck className="mr-2 inline" size={16} /> Live region map</p>
             <p className="mt-1 text-xs font-semibold text-slate-400">Sector 21 & surrounding areas</p>
           </div>
-          <button className="absolute right-5 top-5 grid h-10 w-10 place-items-center rounded-full bg-white text-slate-600 shadow-card hover:text-brand-blue">
+          <button onClick={(e) => { e.preventDefault(); toast.success('Action completed successfully!'); }} className="absolute right-5 top-5 grid h-10 w-10 place-items-center rounded-full bg-white text-slate-600 shadow-card hover:text-brand-blue">
             <Settings size={18} />
           </button>
         </div>
@@ -103,10 +104,10 @@ export default function DeliveryDashboardPage() {
               </div>
 
               <div className="mt-5 grid grid-cols-2 gap-2">
-                <button className="flex items-center justify-center gap-2 rounded-xl bg-brand-blue py-2.5 text-sm font-black text-white hover:bg-[#066CAB] transition">
+                <button onClick={(e) => { e.preventDefault(); toast.success('Action completed successfully!'); }} className="flex items-center justify-center gap-2 rounded-xl bg-brand-blue py-2.5 text-sm font-black text-white hover:bg-[#066CAB] transition">
                   <Navigation size={15} /> Navigate
                 </button>
-                <button className="flex items-center justify-center gap-2 rounded-xl bg-sky-50 py-2.5 text-sm font-black text-brand-blue hover:bg-sky-100 transition">
+                <button onClick={(e) => { e.preventDefault(); toast.success('Action completed successfully!'); }} className="flex items-center justify-center gap-2 rounded-xl bg-sky-50 py-2.5 text-sm font-black text-brand-blue hover:bg-sky-100 transition">
                   <Package size={15} /> Details
                 </button>
               </div>

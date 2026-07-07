@@ -35,23 +35,25 @@ export function CartClient() {
         <div className="mt-8 grid gap-6 lg:grid-cols-[1fr_360px]">
           <div className="grid gap-4">
             {cart.map((item) => (
-              <div key={item.id} className="soft-card grid items-center gap-4 rounded-2xl p-4 sm:grid-cols-[108px_minmax(0,1fr)_132px]">
-                <div className="relative size-24 overflow-hidden rounded-2xl bg-sky-50">
-                  <Image src={item.image} alt={item.imageAlt || item.name} fill sizes="96px" className="object-contain bg-sky-50 p-3" />
+              <div key={item.id} className="group grid items-center gap-6 rounded-[1.5rem] border border-slate-200 bg-white p-5 shadow-sm transition duration-300 hover:-translate-y-1 hover:shadow-premium sm:grid-cols-[112px_minmax(0,1fr)_132px]">
+                <div className="relative h-28 w-28 shrink-0 overflow-hidden rounded-2xl bg-gradient-to-br from-sky-50 to-emerald-50">
+                  <Image src={item.image} alt={item.imageAlt || item.name} fill sizes="112px" className="object-contain p-3 transition duration-500 group-hover:scale-110" />
                 </div>
                 <div className="min-w-0 self-center">
-                  <Link href={`/products/${item.slug}`} className="font-black">{item.name}</Link>
-                  <p className="mt-1 text-sm font-bold text-slate-500">Rs. {item.price}</p>
-                  <div className="mt-2 flex flex-wrap gap-2">
+                  <Link href={`/products/${item.slug}`} className="text-lg font-black text-slate-800 hover:text-brand-blue">{item.name}</Link>
+                  <p className="mt-1 text-sm font-bold text-slate-500">Rs. {item.price} <span className="text-xs line-through text-slate-400 ml-1">Rs. {item.mrp}</span></p>
+                  <div className="mt-3 flex flex-wrap gap-2">
                     {item.rxRequired ? <Badge variant="yellow">Rx required</Badge> : <Badge variant="green">OTC</Badge>}
                     <Badge>{item.delivery}</Badge>
                   </div>
-                  <button className="mt-3 text-sm font-black text-rose-600" onClick={() => removeFromCart(item.id)}><Trash2 className="mr-1 inline" size={15} /> Remove</button>
+                  <button className="mt-4 flex items-center text-xs font-black text-rose-500 transition hover:text-rose-700" onClick={() => removeFromCart(item.id)}><Trash2 className="mr-1 inline" size={14} /> Remove</button>
                 </div>
-                <div className="flex items-center justify-start gap-2 sm:justify-end">
-                  <button className="grid size-9 place-items-center rounded-full bg-sky-50 text-brand-blue" onClick={() => updateQty(item.id, item.quantity - 1)} aria-label="Decrease quantity"><Minus size={16} /></button>
-                  <span className="w-8 text-center font-black">{item.quantity}</span>
-                  <button className="grid size-9 place-items-center rounded-full bg-sky-50 text-brand-blue" onClick={() => updateQty(item.id, item.quantity + 1)} aria-label="Increase quantity"><Plus size={16} /></button>
+                <div className="flex items-center justify-start gap-3 sm:justify-end">
+                  <div className="flex items-center gap-1 rounded-full border border-sky-100 bg-sky-50 p-1">
+                    <button className="grid size-8 place-items-center rounded-full bg-white text-brand-blue shadow-sm hover:bg-brand-blue hover:text-white transition" onClick={() => updateQty(item.id, item.quantity - 1)} aria-label="Decrease quantity"><Minus size={14} /></button>
+                    <span className="w-8 text-center text-sm font-black text-brand-dark">{item.quantity}</span>
+                    <button className="grid size-8 place-items-center rounded-full bg-white text-brand-blue shadow-sm hover:bg-brand-blue hover:text-white transition" onClick={() => updateQty(item.id, item.quantity + 1)} aria-label="Increase quantity"><Plus size={14} /></button>
+                  </div>
                 </div>
               </div>
             ))}

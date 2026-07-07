@@ -8,12 +8,21 @@ export const routes = {
   orders: "/account/orders/",
   login: "/login/",
   vendor: "/vendor/dashboard/",
-  delivery: "/delivery/dashboard/"
+  delivery: "/delivery/dashboard/",
+  warehouse: "/warehouse/",
+  admin: "/admin/",
+  subscription: "/subscription/",
+  membership: "/membership/"
 };
 
 export const protectedRoutes = [
   "/account",
   "/checkout",
   "/vendor",
-  "/delivery"
+  "/delivery",
+  "/warehouse",
+  "/admin",
+  "/subscription",
+  "/membership",
+  "/support"
 ];

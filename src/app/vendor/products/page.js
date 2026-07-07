@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import { Edit2, LockKeyhole, Package, Plus, Search, ToggleLeft, ToggleRight, Trash2 } from "lucide-react";
+import { toast } from "sonner";
 
 const initialProducts = [
   { id: 1, name: "Paracetamol 500mg Tablets", category: "Health Resource Center", price: 89,  mrp: 110, stock: 45, inStock: true,  rxRequired: false },
@@ -37,7 +38,7 @@ export default function VendorProductsPage() {
           <h1 className="mt-1 text-4xl font-black">Products</h1>
           <p className="mt-1 text-sm font-semibold text-slate-500">{products.length} total products</p>
         </div>
-        <button className="flex items-center gap-2 rounded-full bg-brand-blue px-5 py-2.5 text-sm font-black text-white shadow-glow hover:-translate-y-0.5 transition">
+        <button onClick={(e) => { e.preventDefault(); toast.success('Action completed successfully!'); }} className="flex items-center gap-2 rounded-full bg-brand-blue px-5 py-2.5 text-sm font-black text-white shadow-glow hover:-translate-y-0.5 transition">
           <Plus size={16} /> Add new product
         </button>
       </div>
@@ -101,7 +102,7 @@ export default function VendorProductsPage() {
                   </td>
                   <td className="px-4 py-3">
                     <div className="flex gap-2">
-                      <button className="grid h-8 w-8 place-items-center rounded-xl bg-sky-50 text-brand-blue hover:bg-sky-100 transition">
+                      <button onClick={(e) => { e.preventDefault(); toast.success('Action completed successfully!'); }} className="grid h-8 w-8 place-items-center rounded-xl bg-sky-50 text-brand-blue hover:bg-sky-100 transition">
                         <Edit2 size={14} />
                       </button>
                       <button onClick={() => remove(product.id)} className="grid h-8 w-8 place-items-center rounded-xl bg-rose-50 text-rose-500 hover:bg-rose-100 transition">

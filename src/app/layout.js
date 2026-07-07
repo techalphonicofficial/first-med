@@ -31,6 +31,11 @@ export const metadata = {
   robots: {
     index: false,
     follow: false
+  },
+  icons: {
+    icon: "/firstmed-logo.png",
+    shortcut: "/firstmed-logo.png",
+    apple: "/firstmed-logo.png"
   }
 };
 

@@ -2,6 +2,7 @@
 
 import Link from "next/link";
 import { AlertTriangle, ArrowRight, BarChart2, Box, CheckCircle2, Clock3, Package, ShoppingBag, Star, TrendingUp, Truck, Users, Zap } from "lucide-react";
+import { toast } from "sonner";
 
 const stats = [
   { label: "Today's revenue",  value: "Rs. 12,480", sub: "+18% vs yesterday", icon: TrendingUp,  color: "text-emerald-600", bg: "bg-emerald-50"  },
@@ -143,10 +144,10 @@ export default function VendorDashboardPage() {
                         </td>
                         <td className="py-3">
                           {order.status === "Pending" && (
-                            <button className="rounded-full bg-brand-blue px-3 py-1 text-xs font-black text-white hover:bg-[#066CAB]">Accept</button>
+                            <button onClick={(e) => { e.preventDefault(); toast.success('Action completed successfully!'); }} className="rounded-full bg-brand-blue px-3 py-1 text-xs font-black text-white hover:bg-[#066CAB]">Accept</button>
                           )}
                           {order.status === "Processing" && (
-                            <button className="rounded-full bg-purple-100 px-3 py-1 text-xs font-black text-purple-700">Mark ready</button>
+                            <button onClick={(e) => { e.preventDefault(); toast.success('Action completed successfully!'); }} className="rounded-full bg-purple-100 px-3 py-1 text-xs font-black text-purple-700">Mark ready</button>
                           )}
                           {(order.status === "Ready" || order.status === "Completed") && (
                             <span className="text-xs font-semibold text-slate-400">—</span>

@@ -14,6 +14,15 @@ export const useAppStore = create(
       orders: [],
       session: { isAuthenticated: true, role: "customer" },
       user: { name: "Akash Sharma", email: "akash@example.com", phone: "+91 98765 43210" },
+      auditTrail: [],
+      setRole: (role) => set({ session: { ...get().session, role } }),
+      addAudit: (event) =>
+        set({
+          auditTrail: [
+            { id: `${Date.now()}-${Math.random()}`, time: new Date().toLocaleTimeString(), ...event },
+            ...get().auditTrail
+          ].slice(0, 20)
+        }),
       pushToast: (toast) => {
         const id = `${Date.now()}-${Math.random()}`;
         set({ toasts: [...get().toasts.slice(-3), { id, type: "info", ...toast }] });

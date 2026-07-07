@@ -1,7 +1,6 @@
-import { PrescriptionForm } from "@/components/prescription/PrescriptionForm";
+import { redirect } from "next/navigation";
 
-export const metadata = { title: "Prescription Verification" };
-
-export default function PrescriptionPage() {
-  return <PrescriptionForm />;
+export default function PrescriptionRedirectPage() {
+  // Redirect singular /prescription to plural /prescriptions to match ROUTES.md
+  redirect("/prescriptions");
 }

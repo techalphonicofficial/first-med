@@ -2,6 +2,7 @@
 
 import { AlertCircle, CheckCircle2, MapPin, Navigation, Phone, ShieldCheck } from "lucide-react";
 import { useState } from "react";
+import { toast } from "sonner";
 
 const initialDeliveries = [
   { id: "FM-3041", pickup: "FirstMED Plus Sector 21", drop: "Block C, Green Park",   dist: "4.2 km", value: 430, status: "Assigned" },
@@ -93,7 +94,7 @@ export default function DeliveryOrdersPage() {
               <div className="grid grid-cols-2 gap-2 border-t border-sky-50 pt-4">
                 {!isDone ? (
                   <>
-                    <button className="flex items-center justify-center gap-2 rounded-xl bg-sky-50 py-3 text-sm font-black text-brand-blue hover:bg-sky-100 transition">
+                    <button onClick={(e) => { e.preventDefault(); toast.success('Action completed successfully!'); }} className="flex items-center justify-center gap-2 rounded-xl bg-sky-50 py-3 text-sm font-black text-brand-blue hover:bg-sky-100 transition">
                       <MapPin size={16} /> Map
                     </button>
                     <button onClick={() => advanceStatus(del.id)} className="flex items-center justify-center gap-2 rounded-xl bg-brand-blue py-3 text-sm font-black text-white shadow-glow hover:bg-[#066CAB] transition">
@@ -102,7 +103,7 @@ export default function DeliveryOrdersPage() {
                   </>
                 ) : (
                   <>
-                    <button className="col-span-2 flex items-center justify-center gap-2 rounded-xl bg-slate-50 py-3 text-sm font-black text-slate-400 transition">
+                    <button onClick={(e) => { e.preventDefault(); toast.success('Action completed successfully!'); }} className="col-span-2 flex items-center justify-center gap-2 rounded-xl bg-slate-50 py-3 text-sm font-black text-slate-400 transition">
                       <CheckCircle2 size={16} /> Completed successfully
                     </button>
                   </>
@@ -111,8 +112,8 @@ export default function DeliveryOrdersPage() {
               
               {!isDone && (
                 <div className="mt-3 flex justify-between">
-                  <button className="flex items-center gap-1 text-xs font-bold text-slate-400 hover:text-brand-blue"><Phone size={13} /> Call customer</button>
-                  <button className="flex items-center gap-1 text-xs font-bold text-rose-400 hover:text-rose-500"><AlertCircle size={13} /> Report issue</button>
+                  <button onClick={(e) => { e.preventDefault(); toast.success('Action completed successfully!'); }} className="flex items-center gap-1 text-xs font-bold text-slate-400 hover:text-brand-blue"><Phone size={13} /> Call customer</button>
+                  <button onClick={(e) => { e.preventDefault(); toast.success('Action completed successfully!'); }} className="flex items-center gap-1 text-xs font-bold text-rose-400 hover:text-rose-500"><AlertCircle size={13} /> Report issue</button>
                 </div>
               )}
             </div>

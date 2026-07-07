@@ -36,7 +36,7 @@ export function CartFlyLayer() {
       setFlights((items) => [...items.slice(-3), flight]);
       window.setTimeout(() => {
         setFlights((items) => items.filter((item) => item.id !== flight.id));
-      }, reduceMotion ? 650 : 1150);
+      }, reduceMotion ? 650 : 1800);
     }
     window.addEventListener("firstmed:cart-fly", onFly);
     return () => window.removeEventListener("firstmed:cart-fly", onFly);
@@ -45,20 +45,26 @@ export function CartFlyLayer() {
   return (
     <div className="pointer-events-none fixed inset-0 z-[80] overflow-hidden" aria-hidden="true">
       <AnimatePresence>
-        {flights.map((flight) => (
+        {flights.map((flight) => {
+          const centerX = typeof window !== 'undefined' ? window.innerWidth / 2 : 500;
+          return (
           <motion.div
             key={flight.id}
-            className="absolute left-0 top-0 flex h-14 w-[min(220px,calc(100vw-32px))] items-center gap-2 rounded-full border border-white/85 bg-white/95 px-2.5 shadow-premium backdrop-blur-xl"
-            initial={reduceMotion ? { x: flight.target.x - 110, y: flight.target.y + 18, opacity: 0, scale: 0.96 } : { x: flight.origin.x - 110, y: flight.origin.y - 28, opacity: 0, scale: 0.82, rotate: -2 }}
+            className="fixed left-0 top-0 flex h-14 w-[min(220px,calc(100vw-32px))] items-center gap-2 rounded-full border border-sky-200 bg-white px-2.5 shadow-premium backdrop-blur-xl z-[90]"
+            initial={reduceMotion ? { x: flight.target.x - 110, y: flight.target.y + 18, opacity: 0, scale: 0.96 } : { x: centerX - 110, y: -100, opacity: 0, scale: 0.6 }}
             animate={reduceMotion ? { x: flight.target.x - 110, y: flight.target.y + 18, opacity: 1, scale: 1 } : {
-              x: [flight.origin.x - 110, (flight.origin.x + flight.target.x) / 2 - 90, flight.target.x - 42],
-              y: [flight.origin.y - 28, Math.min(flight.origin.y, flight.target.y) - 92, flight.target.y - 28],
-              opacity: [0, 1, 1],
-              scale: [0.82, 1.04, 0.38],
-              rotate: [-2, 3, 0]
+              x: [centerX - 110, centerX - 110, centerX - 110, flight.target.x - 42],
+              y: [-100, 50, 50, flight.target.y - 28],
+              opacity: [0, 1, 1, 1],
+              scale: [0.6, 1.05, 1, 0.35],
+              rotate: [0, 2, -1, 0]
             }}
-            exit={{ opacity: 0, scale: 0.34 }}
-            transition={{ duration: reduceMotion ? 0.18 : 0.82, ease: "easeInOut" }}
+            exit={{ opacity: 0, scale: 0.2 }}
+            transition={{ 
+              duration: reduceMotion ? 0.18 : 1.6,
+              times: [0, 0.25, 0.7, 1],
+              ease: "easeInOut" 
+            }}
           >
             <span className="relative grid size-10 shrink-0 place-items-center overflow-hidden rounded-full bg-brand-softBlue">
               <span className="absolute inset-0 bg-contain bg-center bg-no-repeat" style={{ backgroundImage: `url(${flight.image})` }} />
@@ -68,7 +74,7 @@ export function CartFlyLayer() {
               <span className="block text-[10px] font-black uppercase tracking-[0.12em] text-brand-blue">Added to cart</span>
             </span>
           </motion.div>
-        ))}
+        )})}
       </AnimatePresence>
     </div>
   );

@@ -9,7 +9,6 @@ import { ProductShelf } from "./ProductShelf";
 import { Button } from "@/components/ui/Button";
 import { Badge } from "@/components/ui/Badge";
 import { toast } from "sonner";
-import { TransformWrapper, TransformComponent } from "react-zoom-pan-pinch";
 
 const TABS = ["Overview", "Usage & Warnings", "Specs", "Reviews", "FAQs"];
 
@@ -123,38 +122,33 @@ export function ProductDetailClient({ product, similar }) {
             ))}
           </div>
 
-          {/* Main image */}
           <div className="flex-1">
-            <TransformWrapper wheel={{ step: 0.1 }}>
-              <div 
-                className="soft-card relative aspect-square overflow-hidden rounded-2xl bg-sky-50 cursor-crosshair group"
-                onMouseMove={handleMouseMove}
-                onMouseEnter={() => {
-                  if (window.innerWidth >= 1024) setIsZooming(true);
+            <div
+              className="soft-card relative aspect-square overflow-hidden rounded-2xl bg-sky-50 cursor-crosshair group"
+              onMouseMove={handleMouseMove}
+              onMouseEnter={() => {
+                if (window.innerWidth >= 1024) setIsZooming(true);
+              }}
+              onMouseLeave={() => setIsZooming(false)}
+            >
+              <Image
+                src={activeImage}
+                alt={product.imageAlt || product.name}
+                fill
+                sizes="(min-width: 1024px) 38vw, 92vw"
+                className={`object-contain p-10 transition-transform duration-200 ease-out`}
+                style={{
+                  transformOrigin: `${zoomPos.x}% ${zoomPos.y}%`,
+                  transform: isZooming ? "scale(2.2)" : "scale(1)"
                 }}
-                onMouseLeave={() => setIsZooming(false)}
-              >
-                <TransformComponent wrapperClass="w-full h-full !absolute inset-0">
-                  <Image
-                    src={activeImage}
-                    alt={product.imageAlt || product.name}
-                    fill
-                    sizes="(min-width: 1024px) 38vw, 92vw"
-                    className={`object-contain p-10 transition-transform duration-200 ease-out`}
-                    style={{
-                      transformOrigin: `${zoomPos.x}% ${zoomPos.y}%`,
-                      transform: isZooming ? "scale(2.2)" : "scale(1)"
-                    }}
-                    priority
-                  />
-                </TransformComponent>
-                {discount >= 10 && (
-                  <span className="absolute left-3 top-3 rounded-full bg-brand-yellow px-3 py-1 text-xs font-black text-brand-blue shadow-card">
-                    {discount}% off
-                  </span>
-                )}
-              </div>
-            </TransformWrapper>
+                priority
+              />
+              {discount >= 10 && (
+                <span className="absolute left-3 top-3 rounded-full bg-brand-yellow px-3 py-1 text-xs font-black text-brand-blue shadow-card">
+                  {discount}% off
+                </span>
+              )}
+            </div>
 
             {/* Mobile thumbnails */}
             <div className="mt-3 flex gap-2 overflow-auto no-scrollbar md:hidden">
@@ -373,7 +367,7 @@ export function ProductDetailClient({ product, similar }) {
                 <div className="text-center">
                   <p className="text-5xl font-black text-slate-900">{product.rating}</p>
                   <div className="mt-2 flex justify-center gap-1">
-                    {[1,2,3,4,5].map((s) => (
+                    {[1, 2, 3, 4, 5].map((s) => (
                       <Star key={s} size={18} fill={s <= Math.round(parseFloat(product.rating)) ? "#F59E0B" : "none"} className="text-amber-400" />
                     ))}
                   </div>
@@ -408,7 +402,7 @@ export function ProductDetailClient({ product, similar }) {
                         <span className="font-black text-slate-800">{name}</span>
                       </div>
                       <div className="flex gap-0.5">
-                        {[1,2,3,4,5].map((s) => (
+                        {[1, 2, 3, 4, 5].map((s) => (
                           <Star key={s} size={13} fill={s <= stars ? "#F59E0B" : "none"} className="text-amber-400" />
                         ))}
                       </div>

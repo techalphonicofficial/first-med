@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import { useRouter } from "next/navigation";
-import { ArrowRight, Bell, Heart, LogOut, MapPin, Package, ShieldCheck, User } from "lucide-react";
+import { ArrowRight, Bell, CreditCard, Heart, LogOut, MapPin, Package, ReceiptText, ShieldCheck, UsersRound, User } from "lucide-react";
 import { useAppStore } from "@/store/useAppStore";
 
 export default function AccountDashboardPage() {
@@ -102,6 +102,10 @@ export default function AccountDashboardPage() {
                 { label: "Orders", href: "/account/orders", icon: Package },
                 { label: "Wishlist", href: "/account/wishlist", icon: Heart },
                 { label: "Addresses", href: "/account/addresses", icon: MapPin },
+                { label: "Family Profiles", href: "/account/family", icon: UsersRound },
+                { label: "Payment Methods", href: "/account/payment-methods", icon: CreditCard },
+                { label: "Invoices", href: "/account/invoices", icon: ReceiptText },
+                { label: "Notifications", href: "/account/notifications", icon: Bell },
                 { label: "Profile Settings", href: "/account/profile", icon: User },
               ].map(({ label, href, icon: Icon }) => (
                 <Link key={label} href={href} className="flex items-center gap-3 rounded-xl p-3 text-sm font-bold text-slate-600 transition hover:bg-sky-50 hover:text-brand-blue">
