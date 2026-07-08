@@ -3,6 +3,7 @@
 import { useState } from "react";
 import { Search, Package, Plus, Filter, CheckCircle2, Clock3 } from "lucide-react";
 import { toast } from "sonner";
+import { Modal } from "@/components/ui/Modal";
 
 const mockProducts = [
   { id: "PRD-991", name: "Paracetamol 500mg", category: "Medicines", price: "Rs. 45", stock: "High", vendor: "Apollo Pharma", status: "Approved" },
@@ -13,12 +14,40 @@ const mockProducts = [
 ];
 
 export default function AdminProductsPage() {
+  const [products, setProducts] = useState(mockProducts);
   const [searchTerm, setSearchTerm] = useState("");
+  const [modalOpen, setModalOpen] = useState(false);
+  const [editingProduct, setEditingProduct] = useState(null);
 
-  const filtered = mockProducts.filter(p => 
+  const filtered = products.filter(p => 
     p.name.toLowerCase().includes(searchTerm.toLowerCase()) || 
     p.vendor.toLowerCase().includes(searchTerm.toLowerCase())
   );
+
+  function approveProduct(id) {
+    setProducts(prev => prev.map(p => p.id === id ? { ...p, status: "Approved" } : p));
+    toast.success("Product approved successfully!");
+  }
+
+  function openEdit(product) {
+    setEditingProduct(product);
+    setModalOpen(true);
+  }
+
+  function saveProduct(e) {
+    e.preventDefault();
+    const formData = new FormData(e.target);
+    const name = formData.get("name");
+    const category = formData.get("category");
+    const price = formData.get("price");
+    const stock = formData.get("stock");
+
+    if (editingProduct) {
+      setProducts(prev => prev.map(p => p.id === editingProduct.id ? { ...p, name, category, price, stock } : p));
+      toast.success("Product updated successfully!");
+    }
+    setModalOpen(false);
+  }
 
   return (
     <div className="grid gap-6">
@@ -90,11 +119,11 @@ export default function AdminProductsPage() {
                   </td>
                   <td className="px-5 py-4 text-right">
                     {product.status === 'Pending' ? (
-                      <button onClick={(e) => { e.preventDefault(); toast.success('Action completed successfully!'); }} className="rounded-full bg-brand-blue px-4 py-1.5 text-xs font-black text-white hover:bg-[#066CAB] transition shadow-glow">
+                      <button onClick={() => approveProduct(product.id)} className="rounded-full bg-brand-blue px-4 py-1.5 text-xs font-black text-white hover:bg-[#066CAB] transition shadow-glow">
                         Approve
                       </button>
                     ) : (
-                      <button onClick={(e) => { e.preventDefault(); toast.success('Action completed successfully!'); }} className="rounded-full bg-slate-100 px-4 py-1.5 text-xs font-black text-slate-600 hover:bg-slate-200 transition">
+                      <button onClick={() => openEdit(product)} className="rounded-full bg-slate-100 px-4 py-1.5 text-xs font-black text-slate-600 hover:bg-slate-200 transition">
                         Edit
                       </button>
                     )}
@@ -105,6 +134,37 @@ export default function AdminProductsPage() {
           </table>
         </div>
       </div>
+
+      <Modal open={modalOpen} onClose={() => setModalOpen(false)} title="Edit Product details">
+        <form onSubmit={saveProduct} className="grid gap-4">
+          <label className="grid gap-2 text-sm font-black">
+            Product Name
+            <input name="name" required defaultValue={editingProduct?.name || ""} className="rounded-2xl border border-sky-100 bg-sky-50 px-4 py-3 font-semibold outline-brand-blue" />
+          </label>
+          <label className="grid gap-2 text-sm font-black">
+            Category
+            <input name="category" required defaultValue={editingProduct?.category || ""} className="rounded-2xl border border-sky-100 bg-sky-50 px-4 py-3 font-semibold outline-brand-blue" />
+          </label>
+          <div className="grid grid-cols-2 gap-4">
+            <label className="grid gap-2 text-sm font-black">
+              Price
+              <input name="price" required defaultValue={editingProduct?.price || ""} className="rounded-2xl border border-sky-100 bg-sky-50 px-4 py-3 font-semibold outline-brand-blue" />
+            </label>
+            <label className="grid gap-2 text-sm font-black">
+              Stock Status
+              <select name="stock" required defaultValue={editingProduct?.stock || "High"} className="rounded-2xl border border-sky-100 bg-sky-50 px-4 py-3 font-semibold outline-brand-blue">
+                <option value="High">High</option>
+                <option value="Medium">Medium</option>
+                <option value="Low">Low</option>
+                <option value="Out of Stock">Out of Stock</option>
+              </select>
+            </label>
+          </div>
+          <button type="submit" className="mt-4 rounded-full bg-brand-blue py-3 font-black text-white shadow-glow hover:bg-[#066CAB] transition">
+            Save Changes
+          </button>
+        </form>
+      </Modal>
     </div>
   );
 }

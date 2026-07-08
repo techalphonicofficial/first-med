@@ -15,7 +15,7 @@ export function SearchBar({ large = false }) {
         event.preventDefault();
         router.push(`/search?q=${encodeURIComponent(query)}`);
       }}
-      className={`glass relative flex items-center gap-3 rounded-full p-2 shadow-soft ${large ? "mx-auto max-w-4xl" : ""}`}
+      className={`glass relative z-50 flex items-center gap-3 rounded-full p-2 shadow-soft ${large ? "mx-auto max-w-4xl" : ""}`}
     >
       <Search className="ml-3 text-brand-blue" size={20} />
       <input value={query} onChange={(event) => setQuery(event.target.value)} placeholder="Search medicines, wellness and self-care" className="min-w-0 flex-1 bg-transparent py-3 text-sm font-semibold outline-none placeholder:text-slate-400" />

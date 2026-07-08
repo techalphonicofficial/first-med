@@ -44,6 +44,7 @@ const footerLinks = [
 
 export function AppShell({ children }) {
   const pathname = usePathname();
+  const isInternalModule = ["/admin", "/warehouse", "/delivery", "/vendor"].some((path) => pathname.startsWith(path));
   const [drawerOpen, setDrawerOpen] = useState(false);
   const [searchOpen, setSearchOpen] = useState(false);
   const cartCount = useAppStore((state) => state.cart.reduce((sum, item) => sum + item.quantity, 0));
@@ -65,24 +66,26 @@ export function AppShell({ children }) {
           </Link>
 
           {/* Desktop nav links */}
-          <div className="hidden items-center gap-7 text-sm font-bold text-slate-600 md:flex">
-            {nav.map(([label, href]) => {
-              const base = href.split("?")[0];
-              const active = pathname === base || (base !== "/" && pathname.startsWith(base));
-              return (
-                <Link
-                  key={label}
-                  href={href}
-                  className={`relative pb-1 transition-colors duration-150 ${active ? "text-brand-blue" : "hover:text-brand-blue"}`}
-                >
-                  {label}
-                  {active && (
-                    <span className="absolute inset-x-0 bottom-0 h-0.5 rounded-full bg-brand-blue" />
-                  )}
-                </Link>
-              );
-            })}
-          </div>
+          {!isInternalModule && (
+            <div className="hidden items-center gap-7 text-sm font-bold text-slate-600 md:flex">
+              {nav.map(([label, href]) => {
+                const base = href.split("?")[0];
+                const active = pathname === base || (base !== "/" && pathname.startsWith(base));
+                return (
+                  <Link
+                    key={label}
+                    href={href}
+                    className={`relative pb-1 transition-colors duration-150 ${active ? "text-brand-blue" : "hover:text-brand-blue"}`}
+                  >
+                    {label}
+                    {active && (
+                      <span className="absolute inset-x-0 bottom-0 h-0.5 rounded-full bg-brand-blue" />
+                    )}
+                  </Link>
+                );
+              })}
+            </div>
+          )}
 
           {/* Actions */}
           <div className="flex items-center gap-2">
@@ -127,24 +130,26 @@ export function AppShell({ children }) {
           </div>
         </nav>
         {/* Horizontal Mega Menu */}
-        <div className="hidden border-t border-sky-100/50 bg-slate-50/80 backdrop-blur-md lg:block">
-          <div className="mx-auto max-w-[104rem] px-4 sm:px-6 lg:px-8 xl:px-10 2xl:px-12">
-            <div className="flex items-center gap-3 overflow-x-auto py-3 no-scrollbar">
-              {megaMenuCategories.map((item, idx) => (
-                <Link
-                  key={idx}
-                  href={item.href}
-                  className="group flex shrink-0 items-center gap-2 rounded-full border border-sky-100 bg-white px-4 py-2 text-[13px] font-black text-slate-600 shadow-sm transition duration-200 hover:-translate-y-0.5 hover:border-brand-blue hover:bg-sky-50 hover:text-brand-blue hover:shadow-card"
-                >
-                  <span className="flex h-4 w-4 items-center justify-center text-slate-400 transition-colors group-hover:text-brand-blue">
-                    {item.icon}
-                  </span>
-                  {item.name}
-                </Link>
-              ))}
+        {!isInternalModule && (
+          <div className="hidden border-t border-sky-100/50 bg-slate-50/80 backdrop-blur-md lg:block">
+            <div className="mx-auto max-w-[104rem] px-4 sm:px-6 lg:px-8 xl:px-10 2xl:px-12">
+              <div className="flex items-center gap-3 overflow-x-auto py-3 no-scrollbar">
+                {megaMenuCategories.map((item, idx) => (
+                  <Link
+                    key={idx}
+                    href={item.href}
+                    className="group flex shrink-0 items-center gap-2 rounded-full border border-sky-100 bg-white px-4 py-2 text-[13px] font-black text-slate-600 shadow-sm transition duration-200 hover:-translate-y-0.5 hover:border-brand-blue hover:bg-sky-50 hover:text-brand-blue hover:shadow-card"
+                  >
+                    <span className="flex h-4 w-4 items-center justify-center text-slate-400 transition-colors group-hover:text-brand-blue">
+                      {item.icon}
+                    </span>
+                    {item.name}
+                  </Link>
+                ))}
+              </div>
             </div>
           </div>
-        </div>
+        )}
       </header>
 
       {/* Mobile Slide-in Drawer */}

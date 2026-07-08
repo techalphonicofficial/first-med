@@ -2,8 +2,8 @@
 
 import Link from "next/link";
 import Image from "next/image";
-import { Heart, LockKeyhole, Plus, ShoppingBag, Star } from "lucide-react";
-import { motion } from "framer-motion";
+import { Heart, LockKeyhole, Plus, ShoppingBag, Star, Loader2, Check } from "lucide-react";
+import { motion, AnimatePresence } from "framer-motion";
 import { useState } from "react";
 import { useAppStore } from "@/store/useAppStore";
 import { Badge } from "@/components/ui/Badge";
@@ -12,6 +12,9 @@ import { toast } from "sonner";
 
 export function ProductCard({ product, view = "Grid" }) {
   const [quickOpen, setQuickOpen] = useState(false);
+  const [buttonState, setButtonState] = useState("idle");
+  const [rotateX, setRotateX] = useState(0);
+  const [rotateY, setRotateY] = useState(0);
   const addToCart = useAppStore((state) => state.addToCart);
   const toggleWishlist = useAppStore((state) => state.toggleWishlist);
   const wishlist = useAppStore((state) => state.wishlist);
@@ -24,11 +27,34 @@ export function ProductCard({ product, view = "Grid" }) {
 
   const isList = view === "List";
 
+  const handleMouseMove = (e) => {
+    const rect = e.currentTarget.getBoundingClientRect();
+    const width = rect.width;
+    const height = rect.height;
+    const mouseX = e.clientX - rect.left;
+    const mouseY = e.clientY - rect.top;
+    
+    const rY = ((mouseX / width) - 0.5) * 8;
+    const rX = ((mouseY / height) - 0.5) * -8;
+    
+    setRotateX(rX);
+    setRotateY(rY);
+  };
+
+  const handleMouseLeave = () => {
+    setRotateX(0);
+    setRotateY(0);
+  };
+
   return (
     <>
       <motion.article
-        whileHover={{ y: -6 }}
-        className={`soft-card product-card group relative overflow-hidden rounded-[1.5rem] p-2 transition hover:shadow-premium ${isList ? "flex flex-col sm:flex-row gap-4 sm:gap-6 items-start sm:items-center pr-4" : ""}`}
+        onMouseMove={handleMouseMove}
+        onMouseLeave={handleMouseLeave}
+        animate={{ rotateX, rotateY, scale: rotateX || rotateY ? 1.02 : 1 }}
+        transition={{ type: "spring", stiffness: 300, damping: 20 }}
+        style={{ transformPerspective: 1000 }}
+        className={`soft-card product-card group relative overflow-hidden rounded-[1.5rem] p-2 transition-shadow duration-300 hover:shadow-premium ${isList ? "flex flex-col sm:flex-row gap-4 sm:gap-6 items-start sm:items-center pr-4" : ""}`}
         layout
       >
         {/* Wishlist overlay button */}
@@ -98,25 +124,50 @@ export function ProductCard({ product, view = "Grid" }) {
         <div className={`mt-3 grid gap-2 ${isList ? "mt-0 w-full shrink-0 sm:w-40 sm:self-center" : ""}`}>
           <button
             onClick={(event) => {
-              const result = addToCart(product);
-              if (!result.blocked && typeof window !== "undefined") {
-                toast.success(`${product.name} added to cart`);
-                const rect = event.currentTarget.getBoundingClientRect();
-                window.dispatchEvent(new CustomEvent("firstmed:cart-fly", {
-                  detail: {
-                    id: product.id,
-                    name: product.name,
-                    image: product.image,
-                    origin: { x: rect.left + rect.width / 2, y: rect.top + rect.height / 2 }
-                  }
-                }));
-              }
+              if (buttonState !== "idle") return;
+              setButtonState("loading");
+              
+              const rect = event.currentTarget.getBoundingClientRect();
+              
+              setTimeout(() => {
+                const result = addToCart(product);
+                if (!result.blocked && typeof window !== "undefined") {
+                  setButtonState("success");
+                  toast.success(`${product.name} added to cart`);
+                  window.dispatchEvent(new CustomEvent("firstmed:cart-fly", {
+                    detail: {
+                      id: product.id,
+                      name: product.name,
+                      image: product.image,
+                      origin: { x: rect.left + rect.width / 2, y: rect.top + rect.height / 2 }
+                    }
+                  }));
+                  setTimeout(() => setButtonState("idle"), 1500);
+                } else {
+                  setButtonState("idle");
+                }
+              }, 400); // Simulated delay for premium feel
             }}
             disabled={!product.inStock}
-            className={`focus-ring flex items-center justify-center gap-2 rounded-xl bg-brand-blue px-3 py-2.5 text-sm font-black leading-tight text-white transition duration-200 hover:-translate-y-0.5 hover:bg-[#066CAB] hover:shadow-glow disabled:cursor-not-allowed disabled:bg-slate-200 disabled:text-slate-500 active:scale-95 ${isList ? "min-h-12" : "min-h-11 w-full"}`}
+            className={`focus-ring flex items-center justify-center gap-2 rounded-xl bg-brand-blue px-3 py-2.5 text-sm font-black leading-tight text-white transition duration-200 hover:-translate-y-0.5 hover:bg-[#066CAB] hover:shadow-glow disabled:cursor-not-allowed disabled:bg-slate-200 disabled:text-slate-500 active:scale-95 ${isList ? "min-h-12" : "min-h-11 w-full"} ${buttonState !== "idle" ? "pointer-events-none" : ""}`}
           >
-            <Plus size={16} />
-            <span>{product.inStock ? "Add to cart" : "Out of stock"}</span>
+            <AnimatePresence mode="wait">
+              {buttonState === "idle" && (
+                <motion.div key="idle" initial={{ opacity: 0, scale: 0.8 }} animate={{ opacity: 1, scale: 1 }} exit={{ opacity: 0, scale: 0.8 }} className="flex items-center gap-2">
+                  <Plus size={16} /> <span>{product.inStock ? "Add to cart" : "Out of stock"}</span>
+                </motion.div>
+              )}
+              {buttonState === "loading" && (
+                <motion.div key="loading" initial={{ opacity: 0, scale: 0.8 }} animate={{ opacity: 1, scale: 1 }} exit={{ opacity: 0, scale: 0.8 }}>
+                  <Loader2 size={16} className="animate-spin" />
+                </motion.div>
+              )}
+              {buttonState === "success" && (
+                <motion.div key="success" initial={{ opacity: 0, scale: 0.8 }} animate={{ opacity: 1, scale: 1 }} exit={{ opacity: 0, scale: 0.8 }} className="flex items-center gap-2">
+                  <Check size={16} /> <span>Added</span>
+                </motion.div>
+              )}
+            </AnimatePresence>
           </button>
           <button
             onClick={() => setQuickOpen(true)}

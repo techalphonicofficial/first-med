@@ -11,11 +11,11 @@ Document the expected frontend route structure for FirstMED.
 ```txt
 /
 /products
-/products/[slug]
+/products/[slug] (e.g. /products/otc-1)
 /cart
 /checkout
 /orders
-/orders/[id]
+/orders/[id] (e.g. /orders/ORD-77291)
 /prescriptions
 /account
 

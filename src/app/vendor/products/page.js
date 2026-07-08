@@ -3,6 +3,7 @@
 import { useState } from "react";
 import { Edit2, LockKeyhole, Package, Plus, Search, ToggleLeft, ToggleRight, Trash2 } from "lucide-react";
 import { toast } from "sonner";
+import { Modal } from "@/components/ui/Modal";
 
 const initialProducts = [
   { id: 1, name: "Paracetamol 500mg Tablets", category: "Health Resource Center", price: 89,  mrp: 110, stock: 45, inStock: true,  rxRequired: false },
@@ -16,10 +17,42 @@ const initialProducts = [
 export default function VendorProductsPage() {
   const [products, setProducts] = useState(initialProducts);
   const [search, setSearch] = useState("");
+  const [modalOpen, setModalOpen] = useState(false);
+  const [editingProduct, setEditingProduct] = useState(null);
 
   const filtered = products.filter((p) =>
     p.name.toLowerCase().includes(search.toLowerCase()) || p.category.toLowerCase().includes(search.toLowerCase())
   );
+
+  function openAdd() {
+    setEditingProduct(null);
+    setModalOpen(true);
+  }
+
+  function openEdit(product) {
+    setEditingProduct(product);
+    setModalOpen(true);
+  }
+
+  function saveProduct(e) {
+    e.preventDefault();
+    const formData = new FormData(e.target);
+    const name = formData.get("name");
+    const category = formData.get("category");
+    const price = Number(formData.get("price"));
+    const mrp = Number(formData.get("mrp"));
+    const stock = Number(formData.get("stock"));
+    const rxRequired = formData.get("rxRequired") === "true";
+
+    if (editingProduct) {
+      setProducts(prev => prev.map(p => p.id === editingProduct.id ? { ...p, name, category, price, mrp, stock, rxRequired, inStock: stock > 0 } : p));
+      toast.success("Product updated successfully!");
+    } else {
+      setProducts(prev => [{ id: Date.now(), name, category, price, mrp, stock, rxRequired, inStock: stock > 0 }, ...prev]);
+      toast.success("New product added!");
+    }
+    setModalOpen(false);
+  }
 
   function toggleStock(id) {
     setProducts((prev) => prev.map((p) => p.id === id ? { ...p, inStock: !p.inStock } : p));
@@ -38,7 +71,7 @@ export default function VendorProductsPage() {
           <h1 className="mt-1 text-4xl font-black">Products</h1>
           <p className="mt-1 text-sm font-semibold text-slate-500">{products.length} total products</p>
         </div>
-        <button onClick={(e) => { e.preventDefault(); toast.success('Action completed successfully!'); }} className="flex items-center gap-2 rounded-full bg-brand-blue px-5 py-2.5 text-sm font-black text-white shadow-glow hover:-translate-y-0.5 transition">
+        <button onClick={openAdd} className="flex items-center gap-2 rounded-full bg-brand-blue px-5 py-2.5 text-sm font-black text-white shadow-glow hover:-translate-y-0.5 transition">
           <Plus size={16} /> Add new product
         </button>
       </div>
@@ -102,7 +135,7 @@ export default function VendorProductsPage() {
                   </td>
                   <td className="px-4 py-3">
                     <div className="flex gap-2">
-                      <button onClick={(e) => { e.preventDefault(); toast.success('Action completed successfully!'); }} className="grid h-8 w-8 place-items-center rounded-xl bg-sky-50 text-brand-blue hover:bg-sky-100 transition">
+                      <button onClick={() => openEdit(product)} className="grid h-8 w-8 place-items-center rounded-xl bg-sky-50 text-brand-blue hover:bg-sky-100 transition">
                         <Edit2 size={14} />
                       </button>
                       <button onClick={() => remove(product.id)} className="grid h-8 w-8 place-items-center rounded-xl bg-rose-50 text-rose-500 hover:bg-rose-100 transition">
@@ -116,6 +149,51 @@ export default function VendorProductsPage() {
           </table>
         </div>
       </div>
+
+      <Modal open={modalOpen} onClose={() => setModalOpen(false)} title={editingProduct ? "Edit Product" : "Add New Product"}>
+        <form onSubmit={saveProduct} className="grid gap-4">
+          <label className="grid gap-2 text-sm font-black">
+            Product Name
+            <input name="name" required defaultValue={editingProduct?.name || ""} placeholder="e.g. Paracetamol 500mg" className="rounded-2xl border border-sky-100 bg-sky-50 px-4 py-3 font-semibold outline-brand-blue" />
+          </label>
+          <label className="grid gap-2 text-sm font-black">
+            Category
+            <select name="category" required defaultValue={editingProduct?.category || "Health Resource Center"} className="rounded-2xl border border-sky-100 bg-sky-50 px-4 py-3 font-semibold outline-brand-blue">
+              <option value="Health Resource Center">Health Resource Center</option>
+              <option value="Vitamins & Nutrition">Vitamins & Nutrition</option>
+              <option value="Fitness & Health">Fitness & Health</option>
+              <option value="Personal Care">Personal Care</option>
+              <option value="Ayurveda">Ayurveda</option>
+            </select>
+          </label>
+          <div className="grid grid-cols-2 gap-4">
+            <label className="grid gap-2 text-sm font-black">
+              Selling Price (Rs.)
+              <input type="number" name="price" required min="1" defaultValue={editingProduct?.price || ""} placeholder="89" className="rounded-2xl border border-sky-100 bg-sky-50 px-4 py-3 font-semibold outline-brand-blue" />
+            </label>
+            <label className="grid gap-2 text-sm font-black">
+              MRP (Rs.)
+              <input type="number" name="mrp" required min="1" defaultValue={editingProduct?.mrp || ""} placeholder="110" className="rounded-2xl border border-sky-100 bg-sky-50 px-4 py-3 font-semibold outline-brand-blue" />
+            </label>
+          </div>
+          <div className="grid grid-cols-2 gap-4">
+            <label className="grid gap-2 text-sm font-black">
+              Stock Quantity
+              <input type="number" name="stock" required min="0" defaultValue={editingProduct?.stock ?? 10} placeholder="e.g. 50" className="rounded-2xl border border-sky-100 bg-sky-50 px-4 py-3 font-semibold outline-brand-blue" />
+            </label>
+            <label className="grid gap-2 text-sm font-black">
+              Prescription Required
+              <select name="rxRequired" required defaultValue={editingProduct?.rxRequired ? "true" : "false"} className="rounded-2xl border border-sky-100 bg-sky-50 px-4 py-3 font-semibold outline-brand-blue">
+                <option value="false">No (OTC)</option>
+                <option value="true">Yes (Rx)</option>
+              </select>
+            </label>
+          </div>
+          <button type="submit" className="mt-4 rounded-full bg-brand-blue py-3 font-black text-white shadow-glow hover:bg-[#066CAB] transition">
+            {editingProduct ? "Save Changes" : "Create Product"}
+          </button>
+        </form>
+      </Modal>
     </div>
   );
 }
