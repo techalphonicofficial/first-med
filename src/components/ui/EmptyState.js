@@ -22,7 +22,7 @@ export function EmptyState({
           <circle cx="100" cy="90" r="12" fill="#BAE6FD" opacity="0.5" />
         </svg>
       </div>
-      <h2 className="mt-4 text-2xl font-black text-brand-dark">{title}</h2>
+      <h2 className="mt-4 text-2xl font-black text-brand-dark dark:text-white">{title}</h2>
       <p className="mx-auto mt-2 max-w-md text-sm leading-6 text-brand-gray">{text}</p>
       {tips.length ? (
         <div className="mx-auto mt-5 grid max-w-xl gap-2 sm:grid-cols-3">

@@ -26,7 +26,7 @@ export default function WarehouseInventoryPage() {
       <div className="flex flex-wrap items-center justify-between gap-4">
         <div>
           <p className="text-xs font-black uppercase tracking-[0.18em] text-brand-blue">Warehouse Operations</p>
-          <h1 className="mt-1 text-3xl font-black text-slate-900">Inventory Management</h1>
+          <h1 className="mt-1 text-3xl font-black text-slate-900 dark:text-slate-100">Inventory Management</h1>
         </div>
         <div className="flex gap-3">
           <form onSubmit={(e) => { e.preventDefault(); toast.success("Search submitted!"); }} className="relative">
@@ -39,7 +39,7 @@ export default function WarehouseInventoryPage() {
               className="w-64 rounded-full border border-sky-100 bg-white py-2.5 pl-10 pr-4 text-sm font-bold outline-brand-blue shadow-sm"
             />
           </form>
-          <button onClick={(e) => { e.preventDefault(); toast.success('Action completed successfully!'); }} className="flex items-center gap-2 rounded-full bg-brand-blue px-5 py-2.5 text-sm font-black text-white shadow-glow hover:-translate-y-0.5 transition">
+          <button onClick={(e) => { e.preventDefault(); toast.info('Initializing barcode scanner...'); }} className="flex items-center gap-2 rounded-full bg-brand-blue px-5 py-2.5 text-sm font-black text-white shadow-glow hover:-translate-y-0.5 transition">
             <ScanLine size={16} /> Scan Barcode
           </button>
         </div>
@@ -65,7 +65,7 @@ export default function WarehouseInventoryPage() {
                     <p className="text-xs font-semibold text-slate-400">SKU: {item.id}</p>
                   </td>
                   <td className="px-5 py-4">
-                    <p className="font-bold text-slate-700">{item.batch}</p>
+                    <p className="font-bold text-slate-700 dark:text-slate-300">{item.batch}</p>
                     <p className="text-xs font-semibold text-slate-500">Exp: {item.expiry}</p>
                   </td>
                   <td className="px-5 py-4">
@@ -74,7 +74,7 @@ export default function WarehouseInventoryPage() {
                     </span>
                   </td>
                   <td className="px-5 py-4">
-                    <p className="font-black text-slate-900 text-lg">{item.quantity} <span className="text-xs font-bold text-slate-500">units</span></p>
+                    <p className="font-black text-slate-900 dark:text-slate-100 text-lg">{item.quantity} <span className="text-xs font-bold text-slate-500">units</span></p>
                     <span className={`text-[10px] font-black uppercase tracking-wider ${
                       item.status === 'Out of Stock' ? 'text-rose-600' : 
                       item.status === 'Low Stock' ? 'text-amber-600' : 'text-emerald-600'
@@ -83,7 +83,7 @@ export default function WarehouseInventoryPage() {
                     </span>
                   </td>
                   <td className="px-5 py-4 text-right">
-                    <button onClick={(e) => { e.preventDefault(); toast.success('Action completed successfully!'); }} className="inline-flex items-center gap-1 rounded-full bg-slate-100 px-3 py-1.5 text-xs font-black text-slate-600 hover:bg-slate-200 transition">
+                    <button onClick={(e) => { e.preventDefault(); toast.info('Opening stock adjustment panel...'); }} className="inline-flex items-center gap-1 rounded-full bg-slate-100 px-3 py-1.5 text-xs font-black text-slate-600 dark:text-slate-400 hover:bg-slate-200 transition">
                       Adjust <ArrowRight size={14} />
                     </button>
                   </td>

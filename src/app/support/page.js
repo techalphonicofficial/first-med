@@ -43,7 +43,7 @@ export default function SupportPage() {
           <div className="grid gap-4 p-5 max-h-[500px] overflow-y-auto">
             {messages.map((message, i) => (
               <div key={i} className={`flex ${message.side === "right" ? "justify-end" : "justify-start"}`}>
-                <div className={`max-w-[78%] rounded-2xl px-4 py-3 text-sm font-semibold leading-6 ${message.side === "right" ? "bg-brand-blue text-white" : "bg-sky-50 text-slate-600"}`}>
+                <div className={`max-w-[78%] rounded-2xl px-4 py-3 text-sm font-semibold leading-6 ${message.side === "right" ? "bg-brand-blue text-white" : "bg-sky-50 text-slate-600 dark:text-slate-400"}`}>
                   {message.text}
                 </div>
               </div>

@@ -8,7 +8,7 @@ export function StaticPage({ title, text, sections = [], actions = [] }) {
         <div>
           <p className="text-xs font-black uppercase tracking-[0.18em] text-brand-blue">FirstMED</p>
           <h1 className="mt-2 text-4xl font-black">{title}</h1>
-          <p className="mt-5 max-w-3xl leading-7 text-slate-600">{text}</p>
+          <p className="mt-5 max-w-3xl leading-7 text-slate-600 dark:text-slate-400">{text}</p>
           {actions.length ? (
             <div className="mt-6 flex flex-wrap gap-3">
               {actions.map((action) => (
@@ -35,7 +35,7 @@ export function StaticPage({ title, text, sections = [], actions = [] }) {
           {sections.map((section) => (
             <section key={section.title} className="soft-card rounded-2xl p-5">
               <h2 className="text-xl font-black">{section.title}</h2>
-              <p className="mt-2 text-sm font-semibold leading-6 text-slate-600">{section.text}</p>
+              <p className="mt-2 text-sm font-semibold leading-6 text-slate-600 dark:text-slate-400">{section.text}</p>
             </section>
           ))}
       </div>

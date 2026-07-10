@@ -44,14 +44,14 @@ export default function FaqPage() {
     <div className="mx-auto max-w-[104rem] px-4 py-10 pb-28 sm:px-6 lg:px-8 xl:px-10">
       {/* Header with Search */}
       <div className="rounded-[2.5rem] bg-brand-softBlue px-6 py-16 text-center sm:px-12 md:py-24">
-        <h1 className="text-4xl font-black text-brand-dark md:text-5xl">How can we help?</h1>
+        <h1 className="text-4xl font-black text-brand-dark dark:text-white md:text-5xl">How can we help?</h1>
         <div className="relative mx-auto mt-8 max-w-2xl">
           <Search className="absolute left-5 top-1/2 -translate-y-1/2 text-brand-blue" size={20} />
           <input
             value={search}
             onChange={(e) => setSearch(e.target.value)}
             placeholder="Search for answers..."
-            className="w-full rounded-full border-2 border-white bg-white py-4 pl-14 pr-6 text-base font-bold text-slate-800 shadow-premium outline-brand-blue"
+            className="w-full rounded-full border-2 border-white bg-white py-4 pl-14 pr-6 text-base font-bold text-slate-800 dark:text-slate-200 shadow-premium outline-brand-blue"
           />
         </div>
       </div>
@@ -71,14 +71,14 @@ export default function FaqPage() {
               <div className="grid gap-4">
                 {filteredItems.map(({ q, a }) => (
                   <details key={q} className="group soft-card rounded-2xl bg-white p-6 transition-all open:ring-2 open:ring-brand-blue/20">
-                    <summary className="flex cursor-pointer items-center justify-between font-black text-slate-800 outline-none group-open:text-brand-blue text-lg">
+                    <summary className="flex cursor-pointer items-center justify-between font-black text-slate-800 dark:text-slate-200 outline-none group-open:text-brand-blue text-lg">
                       {q}
                       <span className="ml-4 shrink-0 rounded-full bg-sky-50 p-2 text-brand-blue transition group-open:rotate-180">
                         <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round"><path d="m6 9 6 6 6-6"/></svg>
                       </span>
                     </summary>
                     <div className="mt-4 border-t border-sky-50 pt-4">
-                      <p className="font-semibold leading-7 text-slate-600">{a}</p>
+                      <p className="font-semibold leading-7 text-slate-600 dark:text-slate-400">{a}</p>
                       
                       {/* Micro-interaction: Feedback */}
                       <div className="mt-6 flex items-center gap-4 rounded-xl bg-slate-50 p-3 text-sm font-bold text-slate-500">

@@ -27,8 +27,8 @@ export default function PrivacyPage() {
               ))}
             </nav>
             <div className="mt-8 border-t border-sky-100 pt-6">
-              <p className="text-xs font-semibold text-slate-500">Last updated:<br/><span className="font-bold text-slate-800">June 19, 2026</span></p>
-              <button className="mt-4 flex w-full items-center justify-center gap-2 rounded-xl bg-white py-2 text-xs font-black text-slate-600 shadow-sm hover:bg-slate-50">
+              <p className="text-xs font-semibold text-slate-500">Last updated:<br/><span className="font-bold text-slate-800 dark:text-slate-200">June 19, 2026</span></p>
+              <button className="mt-4 flex w-full items-center justify-center gap-2 rounded-xl bg-white py-2 text-xs font-black text-slate-600 dark:text-slate-400 shadow-sm hover:bg-slate-50">
                 <Printer size={14} /> Print Policy
               </button>
             </div>
@@ -45,15 +45,15 @@ export default function PrivacyPage() {
           <div className="mt-10 grid gap-10">
             {sections.map((section) => (
               <section key={section.id} id={section.id} className="scroll-mt-24">
-                <h2 className="text-2xl font-black text-brand-dark">{section.title}</h2>
+                <h2 className="text-2xl font-black text-brand-dark dark:text-white">{section.title}</h2>
                 <div className="mt-4 rounded-2xl bg-slate-50 p-6">
-                  <p className="font-semibold leading-7 text-slate-600">{section.text}</p>
+                  <p className="font-semibold leading-7 text-slate-600 dark:text-slate-400">{section.text}</p>
                 </div>
               </section>
             ))}
           </div>
           
-          <div className="mt-12 rounded-2xl border border-sky-100 bg-sky-50 p-6 text-sm font-semibold text-slate-600 lg:hidden">
+          <div className="mt-12 rounded-2xl border border-sky-100 bg-sky-50 p-6 text-sm font-semibold text-slate-600 dark:text-slate-400 lg:hidden">
             Last updated: June 19, 2026
           </div>
         </main>

@@ -19,7 +19,7 @@ export default function VendorReportsPage() {
           <h1 className="mt-1 text-4xl font-black">Financial Reports</h1>
         </div>
         <div className="flex gap-3">
-          <button onClick={(e) => { e.preventDefault(); toast.success('Action completed successfully!'); }} className="flex items-center gap-2 rounded-full bg-white px-5 py-2.5 text-sm font-black text-brand-blue shadow-card hover:bg-sky-50 transition">
+          <button onClick={(e) => { e.preventDefault(); toast.info('Generating PDF report...'); }} className="flex items-center gap-2 rounded-full bg-white px-5 py-2.5 text-sm font-black text-brand-blue shadow-card hover:bg-sky-50 transition">
             <Download size={15} /> Export PDF
           </button>
         </div>
@@ -31,7 +31,7 @@ export default function VendorReportsPage() {
           <div className="soft-card rounded-2xl p-6">
             <div className="flex items-center justify-between mb-6">
               <h2 className="text-xl font-black">Revenue Overview</h2>
-              <select className="rounded-full border border-sky-100 bg-white px-3 py-1.5 text-sm font-bold text-slate-600 outline-brand-blue">
+              <select className="rounded-full border border-sky-100 bg-white px-3 py-1.5 text-sm font-bold text-slate-600 dark:text-slate-400 outline-brand-blue">
                 <option>This Month</option>
                 <option>Last 3 Months</option>
                 <option>Year to Date</option>
@@ -77,7 +77,7 @@ export default function VendorReportsPage() {
               {recentSettlements.map((settlement) => (
                 <div key={settlement.id} className="flex items-center justify-between border-b border-sky-50 pb-3 last:border-0 last:pb-0">
                   <div>
-                    <p className="text-sm font-black text-slate-800">{settlement.amount}</p>
+                    <p className="text-sm font-black text-slate-800 dark:text-slate-200">{settlement.amount}</p>
                     <p className="text-xs font-semibold text-slate-500">{settlement.date} • {settlement.id}</p>
                   </div>
                   <span className="rounded-full bg-emerald-100 px-2 py-1 text-[10px] font-black uppercase tracking-widest text-emerald-700">
@@ -86,7 +86,7 @@ export default function VendorReportsPage() {
                 </div>
               ))}
             </div>
-            <button onClick={(e) => { e.preventDefault(); toast.success('Action completed successfully!'); }} className="mt-4 w-full rounded-xl bg-sky-50 py-2.5 text-sm font-black text-brand-blue hover:bg-sky-100 transition">
+            <button onClick={(e) => { e.preventDefault(); toast.info('Loading full statement history...'); }} className="mt-4 w-full rounded-xl bg-sky-50 py-2.5 text-sm font-black text-brand-blue hover:bg-sky-100 transition">
               View All Statements
             </button>
           </div>

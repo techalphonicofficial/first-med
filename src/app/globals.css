@@ -13,6 +13,12 @@
   --transition-page: 220ms ease;
 }
 
+.dark {
+  color-scheme: dark;
+  --bg: #020617;      /* slate-950 */
+  --text: #f8fafc;    /* slate-50 */
+}
+
 * {
   box-sizing: border-box;
 }
@@ -20,7 +26,6 @@
 html {
   width: 100%;
   max-width: 100%;
-  overflow-x: clip;
   scroll-behavior: smooth;
 }
 
@@ -49,7 +54,6 @@ body {
   font-family: 'Inter', var(--font-geist-sans), ui-sans-serif, system-ui, sans-serif;
   width: 100%;
   max-width: 100%;
-  overflow-x: clip;
   padding-bottom: env(safe-area-inset-bottom);
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
@@ -90,6 +94,11 @@ textarea {
   border: 1px solid rgba(255, 255, 255, 0.85);
 }
 
+.dark .glass {
+  background: rgba(15, 23, 42, 0.6);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
 .blue-button {
   display: inline-flex;
   align-items: center;
@@ -120,6 +129,13 @@ textarea {
   border: 1px solid rgba(255, 255, 255, 0.86);
   background: rgba(255, 255, 255, 0.92);
   box-shadow: 0 14px 36px rgba(15, 23, 42, 0.08);
+  transition: background-color 0.2s, border-color 0.2s;
+}
+
+.dark .soft-card {
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  background: rgba(15, 23, 42, 0.6);
+  box-shadow: 0 14px 36px rgba(0, 0, 0, 0.4);
 }
 
 .fm-focus:focus-visible {
@@ -144,11 +160,24 @@ textarea {
   text-transform: uppercase;
 }
 
+.dark .fm-pill {
+  background: rgba(15, 23, 42, 0.8);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  color: #38bdf8;
+  box-shadow: 0 14px 34px rgba(0, 0, 0, 0.3);
+}
+
 .fm-glass {
   border: 1px solid rgba(255, 255, 255, 0.75);
   background: rgba(255, 255, 255, 0.8);
   box-shadow: 0 28px 90px rgba(8, 120, 190, 0.13), 0 12px 30px rgba(15, 23, 42, 0.07);
   backdrop-filter: blur(40px);
+}
+
+.dark .fm-glass {
+  background: rgba(15, 23, 42, 0.6);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  box-shadow: 0 28px 90px rgba(0, 0, 0, 0.4);
 }
 
 /* ─── Animations ─── */

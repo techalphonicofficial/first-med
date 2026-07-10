@@ -5,7 +5,7 @@ import { Search, MoreVertical, Shield, UserX, CheckCircle2 } from "lucide-react"
 import { toast } from "sonner";
 
 // Mock Data
-const mockUsers = [
+const initialUsers = [
   { id: "USR-001", name: "Ravi Sharma", email: "ravi.s@example.com", phone: "+91 9876543210", role: "Customer", status: "Active", joined: "2026-01-12" },
   { id: "USR-002", name: "Priya Patel", email: "priya.p@example.com", phone: "+91 9876543211", role: "Customer", status: "Active", joined: "2026-02-15" },
   { id: "USR-003", name: "Anil Kumar", email: "anil.k@example.com", phone: "+91 9876543212", role: "Admin", status: "Active", joined: "2025-11-05" },
@@ -14,9 +14,21 @@ const mockUsers = [
 ];
 
 export default function AdminUsersPage() {
+  const [users, setUsers] = useState(initialUsers);
   const [searchTerm, setSearchTerm] = useState("");
   
-  const filteredUsers = mockUsers.filter(u => 
+  function toggleStatus(id) {
+    setUsers(prev => prev.map(u => {
+      if (u.id === id) {
+        const newStatus = u.status === 'Active' ? 'Suspended' : 'Active';
+        toast.success(`User ${u.id} is now ${newStatus}`);
+        return { ...u, status: newStatus };
+      }
+      return u;
+    }));
+  }
+  
+  const filteredUsers = users.filter(u => 
     u.name.toLowerCase().includes(searchTerm.toLowerCase()) || 
     u.email.toLowerCase().includes(searchTerm.toLowerCase()) ||
     u.id.toLowerCase().includes(searchTerm.toLowerCase())
@@ -27,7 +39,7 @@ export default function AdminUsersPage() {
       <div className="flex flex-wrap items-center justify-between gap-4">
         <div>
           <p className="text-xs font-black uppercase tracking-[0.18em] text-brand-blue">Platform</p>
-          <h1 className="mt-1 text-3xl font-black text-slate-900">User Management</h1>
+          <h1 className="mt-1 text-3xl font-black text-slate-900 dark:text-slate-100">User Management</h1>
         </div>
         <form onSubmit={(e) => { e.preventDefault(); toast.success("Search submitted!"); }} className="relative">
           <Search className="absolute left-3 top-1/2 -translate-y-1/2 text-brand-blue" size={16} />
@@ -66,7 +78,7 @@ export default function AdminUsersPage() {
                       <p className="text-xs font-semibold text-slate-400">{user.id} • Joined {user.joined}</p>
                     </td>
                     <td className="px-5 py-4">
-                      <p className="font-bold text-slate-700">{user.email}</p>
+                      <p className="font-bold text-slate-700 dark:text-slate-300">{user.email}</p>
                       <p className="text-xs font-semibold text-slate-500">{user.phone}</p>
                     </td>
                     <td className="px-5 py-4">
@@ -88,7 +100,7 @@ export default function AdminUsersPage() {
                       </span>
                     </td>
                     <td className="px-5 py-4 text-right">
-                      <button onClick={(e) => { e.preventDefault(); toast.success('Action completed successfully!'); }} className="rounded-full p-2 text-slate-400 hover:bg-slate-100 hover:text-brand-blue transition">
+                      <button onClick={() => toggleStatus(user.id)} className="rounded-full p-2 text-slate-400 hover:bg-slate-100 hover:text-brand-blue transition">
                         <MoreVertical size={18} />
                       </button>
                     </td>
@@ -101,8 +113,8 @@ export default function AdminUsersPage() {
         <div className="border-t border-sky-50 bg-slate-50 px-5 py-3 flex items-center justify-between text-xs font-bold text-slate-500">
           <span>Showing {filteredUsers.length} users</span>
           <div className="flex gap-2">
-            <button onClick={(e) => { e.preventDefault(); toast.success('Action completed successfully!'); }} className="px-3 py-1 rounded border border-slate-200 hover:bg-white disabled:opacity-50" disabled>Prev</button>
-            <button onClick={(e) => { e.preventDefault(); toast.success('Action completed successfully!'); }} className="px-3 py-1 rounded border border-slate-200 hover:bg-white disabled:opacity-50" disabled>Next</button>
+            <button className="px-3 py-1 rounded border border-slate-200 hover:bg-white disabled:opacity-50" disabled>Prev</button>
+            <button className="px-3 py-1 rounded border border-slate-200 hover:bg-white disabled:opacity-50" disabled>Next</button>
           </div>
         </div>
       </div>

@@ -40,7 +40,7 @@ export function CartClient() {
                   <Image src={item.image} alt={item.imageAlt || item.name} fill sizes="112px" className="object-contain p-3 transition duration-500 group-hover:scale-110" />
                 </div>
                 <div className="min-w-0 self-center">
-                  <Link href={`/products/${item.slug}`} className="text-lg font-black text-slate-800 hover:text-brand-blue">{item.name}</Link>
+                  <Link href={`/products/${item.slug}`} className="text-lg font-black text-slate-800 dark:text-slate-200 hover:text-brand-blue">{item.name}</Link>
                   <p className="mt-1 text-sm font-bold text-slate-500">Rs. {item.price} <span className="text-xs line-through text-slate-400 ml-1">Rs. {item.mrp}</span></p>
                   <div className="mt-3 flex flex-wrap gap-2">
                     {item.rxRequired ? <Badge variant="yellow">Rx required</Badge> : <Badge variant="green">OTC</Badge>}
@@ -51,7 +51,7 @@ export function CartClient() {
                 <div className="flex items-center justify-start gap-3 sm:justify-end">
                   <div className="flex items-center gap-1 rounded-full border border-sky-100 bg-sky-50 p-1">
                     <button className="grid size-8 place-items-center rounded-full bg-white text-brand-blue shadow-sm hover:bg-brand-blue hover:text-white transition" onClick={() => updateQty(item.id, item.quantity - 1)} aria-label="Decrease quantity"><Minus size={14} /></button>
-                    <span className="w-8 text-center text-sm font-black text-brand-dark">{item.quantity}</span>
+                    <span className="w-8 text-center text-sm font-black text-brand-dark dark:text-white">{item.quantity}</span>
                     <button className="grid size-8 place-items-center rounded-full bg-white text-brand-blue shadow-sm hover:bg-brand-blue hover:text-white transition" onClick={() => updateQty(item.id, item.quantity + 1)} aria-label="Increase quantity"><Plus size={14} /></button>
                   </div>
                 </div>

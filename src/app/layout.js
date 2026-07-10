@@ -1,11 +1,7 @@
-import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import { Providers } from "./providers";
 import { AppShell } from "@/components/layout/AppShell";
 import { Toaster } from "sonner";
-
-const geistSans = Geist({ variable: "--font-geist-sans", subsets: ["latin"] });
-const geistMono = Geist_Mono({ variable: "--font-geist-mono", subsets: ["latin"] });
 
 export const viewport = {
   themeColor: "#0878be",
@@ -21,16 +17,20 @@ export const metadata = {
   metadataBase: new URL("https://firstmed.local"),
   openGraph: {
     title: "FirstMED Online Pharmacy",
-    description: "A modern pharmacy shelf for everyday care.",
+    description: "Shop medicines, OTC care, wellness, nutrition and personal self-care products with prescription-safe checkout.",
+    url: "https://firstmed.local",
+    siteName: "FirstMED",
+    locale: "en_US",
     type: "website"
   },
   twitter: {
     card: "summary_large_image",
-    title: "FirstMED Online Pharmacy"
+    title: "FirstMED Online Pharmacy",
+    description: "Shop medicines, OTC care, wellness, nutrition and personal self-care products with prescription-safe checkout."
   },
   robots: {
-    index: false,
-    follow: false
+    index: true,
+    follow: true
   },
   icons: {
     icon: "/firstmed-logo.png",
@@ -39,10 +39,28 @@ export const metadata = {
   }
 };
 
+const jsonLd = {
+  "@context": "https://schema.org",
+  "@type": "Pharmacy",
+  "name": "FirstMED",
+  "url": "https://firstmed.local",
+  "logo": "https://firstmed.local/firstmed-logo.png",
+  "description": "Online Pharmacy & Self-Care Store",
+  "sameAs": [
+    "https://twitter.com/firstmed",
+    "https://instagram.com/firstmed",
+    "https://linkedin.com/company/firstmed"
+  ]
+};
+
 export default function RootLayout({ children }) {
   return (
     <html lang="en">
-      <body className={`${geistSans.variable} ${geistMono.variable}`}>
+      <body className="antialiased">
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+        />
         <Toaster 
           position="top-right" 
           toastOptions={{ 

@@ -42,7 +42,7 @@ export function Modal({ open, onClose, title, children, maxWidth = "max-w-md" })
           >
             {/* Header */}
             <div className="flex items-center justify-between border-b border-sky-100 p-5">
-              <h2 className="text-xl font-black text-slate-900">{title}</h2>
+              <h2 className="text-xl font-black text-slate-900 dark:text-slate-100">{title}</h2>
               <button
                 onClick={onClose}
                 className="rounded-full bg-sky-50 p-2 text-brand-blue transition hover:bg-sky-100 active:scale-95"

@@ -4,7 +4,7 @@ import { useState } from "react";
 import { AlertTriangle, ArrowUpRight, Package, RefreshCw, Search } from "lucide-react";
 import { toast } from "sonner";
 
-const inventory = [
+const initialInventory = [
   { id: 1, name: "Paracetamol 500mg Tablets", sku: "HRC-001", category: "Health Resource Center", stock: 45, threshold: 20, price: 89,  rxRequired: false },
   { id: 2, name: "Cough Relief Syrup",         sku: "HRC-002", category: "Health Resource Center", stock: 8,  threshold: 15, price: 145, rxRequired: true  },
   { id: 3, name: "Vitamin C Zinc Tablets",      sku: "VN-001",  category: "Vitamins & Nutrition",   stock: 0,  threshold: 10, price: 199, rxRequired: false },
@@ -22,7 +22,13 @@ function getStockStatus(stock, threshold) {
 }
 
 export default function InventoryPage() {
+  const [inventory, setInventory] = useState(initialInventory);
   const [search, setSearch] = useState("");
+
+  function restockItem(id) {
+    setInventory(prev => prev.map(item => item.id === id ? { ...item, stock: item.stock + 20 } : item));
+    toast.success("Stock replenished successfully!");
+  }
   const [filter, setFilter] = useState("All");
 
   const filtered = inventory.filter((item) => {
@@ -43,7 +49,7 @@ export default function InventoryPage() {
           <p className="text-xs font-black uppercase tracking-widest text-brand-blue">Vendor portal</p>
           <h1 className="mt-1 text-4xl font-black">Inventory</h1>
         </div>
-        <button onClick={(e) => { e.preventDefault(); toast.success('Action completed successfully!'); }} className="flex items-center gap-2 rounded-full bg-brand-blue px-5 py-2.5 text-sm font-black text-white shadow-glow">
+        <button onClick={(e) => { e.preventDefault(); toast.info('Syncing with warehouse databases...'); }} className="flex items-center gap-2 rounded-full bg-brand-blue px-5 py-2.5 text-sm font-black text-white shadow-glow">
           <RefreshCw size={14} /> Sync stock
         </button>
       </div>
@@ -75,7 +81,7 @@ export default function InventoryPage() {
             <button
               key={f}
               onClick={() => setFilter(f)}
-              className={`rounded-full px-4 py-2 text-xs font-black transition ${filter === f ? "bg-brand-blue text-white shadow-glow" : "bg-white text-slate-600 shadow-card hover:bg-sky-50"}`}
+              className={`rounded-full px-4 py-2 text-xs font-black transition ${filter === f ? "bg-brand-blue text-white shadow-glow" : "bg-white text-slate-600 dark:text-slate-400 shadow-card hover:bg-sky-50"}`}
             >
               {f}
             </button>
@@ -105,7 +111,7 @@ export default function InventoryPage() {
                           <Package size={15} className="text-brand-blue" />
                         </div>
                         <div>
-                          <p className="font-black text-slate-800">{item.name}</p>
+                          <p className="font-black text-slate-800 dark:text-slate-200">{item.name}</p>
                           {item.rxRequired && <span className="text-[10px] font-black text-amber-600">Rx required</span>}
                         </div>
                       </div>
@@ -113,7 +119,7 @@ export default function InventoryPage() {
                     <td className="px-4 py-3 font-mono text-xs font-bold text-slate-500">{item.sku}</td>
                     <td className="px-4 py-3 text-xs font-semibold text-slate-500">{item.category}</td>
                     <td className="px-4 py-3">
-                      <span className={`text-base font-black ${item.stock === 0 ? "text-rose-600" : item.stock <= item.threshold ? "text-amber-600" : "text-slate-800"}`}>
+                      <span className={`text-base font-black ${item.stock === 0 ? "text-rose-600" : item.stock <= item.threshold ? "text-amber-600" : "text-slate-800 dark:text-slate-200"}`}>
                         {item.stock}
                       </span>
                     </td>
@@ -123,7 +129,7 @@ export default function InventoryPage() {
                       <span className={`rounded-full px-2.5 py-1 text-xs font-black ${color}`}>{label}</span>
                     </td>
                     <td className="px-4 py-3">
-                      <button onClick={(e) => { e.preventDefault(); toast.success('Action completed successfully!'); }} className="flex items-center gap-1 rounded-full bg-brand-blue px-3 py-1.5 text-xs font-black text-white hover:bg-[#066CAB] transition">
+                      <button onClick={() => restockItem(item.id)} className="flex items-center gap-1 rounded-full bg-brand-blue px-3 py-1.5 text-xs font-black text-white hover:bg-[#066CAB] transition">
                         <ArrowUpRight size={12} /> Restock
                       </button>
                     </td>

@@ -106,7 +106,7 @@ export default function VendorProductsPage() {
                       <div className="grid h-11 w-11 shrink-0 place-items-center rounded-xl bg-sky-100">
                         <Package size={18} className="text-brand-blue" />
                       </div>
-                      <p className="font-black text-slate-800">{product.name}</p>
+                      <p className="font-black text-slate-800 dark:text-slate-200">{product.name}</p>
                     </div>
                   </td>
                   <td className="px-4 py-3 text-xs font-semibold text-slate-500">{product.category}</td>
@@ -115,7 +115,7 @@ export default function VendorProductsPage() {
                     <span className="ml-2 text-xs text-slate-400 line-through">Rs. {product.mrp}</span>
                   </td>
                   <td className="px-4 py-3">
-                    <span className={`font-black ${product.stock === 0 ? "text-rose-600" : product.stock < 10 ? "text-amber-600" : "text-slate-800"}`}>
+                    <span className={`font-black ${product.stock === 0 ? "text-rose-600" : product.stock < 10 ? "text-amber-600" : "text-slate-800 dark:text-slate-200"}`}>
                       {product.stock}
                     </span>
                   </td>

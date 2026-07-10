@@ -73,7 +73,7 @@ export function PrescriptionForm() {
               <div className={`grid h-10 w-10 place-items-center rounded-full border-4 border-white font-black transition-colors ${s.done ? "bg-brand-blue text-white" : s.active ? "bg-brand-yellow text-brand-blue ring-2 ring-brand-blue" : "bg-sky-100 text-slate-400"}`}>
                 {s.done ? <CheckCircle2 size={18} /> : s.step}
               </div>
-              <span className={`text-xs font-black ${s.active ? "text-brand-dark" : "text-slate-400"}`}>{s.label}</span>
+              <span className={`text-xs font-black ${s.active ? "text-brand-dark dark:text-white" : "text-slate-400"}`}>{s.label}</span>
             </div>
           ))}
         </div>
@@ -110,7 +110,7 @@ export function PrescriptionForm() {
                   <div className="grid h-16 w-16 place-items-center rounded-2xl bg-white text-brand-blue shadow-sm mb-4">
                     <FileCheck2 size={32} />
                   </div>
-                  <p className="text-base font-black text-brand-dark">{fileName}</p>
+                  <p className="text-base font-black text-brand-dark dark:text-white">{fileName}</p>
                   <button type="button" onClick={() => setFileName("")} className="mt-3 flex items-center gap-1 rounded-full bg-rose-50 px-3 py-1.5 text-xs font-bold text-rose-500 hover:bg-rose-100 transition">
                     <X size={14} /> Remove file
                   </button>

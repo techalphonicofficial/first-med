@@ -52,7 +52,7 @@ export function BannerCarousel({ compact = false }) {
             <Link href={banner.href} className={`grid min-h-[250px] items-center gap-6 bg-gradient-to-r ${banner.tone} p-6 sm:grid-cols-[1fr_260px] md:p-8 ${compact ? "lg:min-h-[260px]" : "lg:min-h-[310px]"}`}>
               <div>
                 <span className="fm-pill">FirstMED care banner</span>
-                <h3 className="mt-4 max-w-xl text-3xl font-black leading-tight text-brand-dark sm:text-5xl">{banner.title}</h3>
+                <h3 className="mt-4 max-w-xl text-3xl font-black leading-tight text-brand-dark dark:text-white sm:text-5xl">{banner.title}</h3>
                 <p className="mt-3 max-w-lg text-sm font-semibold leading-6 text-brand-gray sm:text-base">{banner.text}</p>
                 <span className="mt-6 inline-flex rounded-full bg-brand-blue px-5 py-3 text-sm font-black text-white shadow-glow">Shop now</span>
               </div>

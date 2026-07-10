@@ -24,7 +24,7 @@ export default function AdminWarehousesPage() {
       <div className="flex flex-wrap items-center justify-between gap-4">
         <div>
           <p className="text-xs font-black uppercase tracking-[0.18em] text-brand-blue">Platform</p>
-          <h1 className="mt-1 text-3xl font-black text-slate-900">Warehouse Network</h1>
+          <h1 className="mt-1 text-3xl font-black text-slate-900 dark:text-slate-100">Warehouse Network</h1>
         </div>
         <div className="flex gap-3">
           <div className="relative hidden sm:block">
@@ -37,7 +37,7 @@ export default function AdminWarehousesPage() {
               className="w-56 rounded-full border border-sky-100 bg-white py-2.5 pl-10 pr-4 text-sm font-bold outline-brand-blue shadow-sm"
             />
           </div>
-          <button onClick={(e) => { e.preventDefault(); toast.success('Action completed successfully!'); }} className="flex items-center gap-2 rounded-full bg-brand-blue px-5 py-2.5 text-sm font-black text-white shadow-glow hover:-translate-y-0.5 transition">
+          <button onClick={(e) => { e.preventDefault(); toast.info('Opening new warehouse configuration form...'); }} className="flex items-center gap-2 rounded-full bg-brand-blue px-5 py-2.5 text-sm font-black text-white shadow-glow hover:-translate-y-0.5 transition">
             <Plus size={16} /> Add Hub
           </button>
         </div>
@@ -54,12 +54,12 @@ export default function AdminWarehousesPage() {
                     <Warehouse size={24} />
                   </div>
                   <div>
-                    <h3 className="text-xl font-black text-slate-900">{wh.name}</h3>
+                    <h3 className="text-xl font-black text-slate-900 dark:text-slate-100">{wh.name}</h3>
                     <p className="text-sm font-bold text-slate-500 flex items-center gap-1 mt-1">
                       <MapPin size={14} /> {wh.location} • {wh.id}
                     </p>
                     <div className="flex gap-2 mt-3">
-                      <span className="inline-flex items-center rounded-full bg-slate-100 px-2.5 py-1 text-[10px] font-black uppercase tracking-widest text-slate-600">
+                      <span className="inline-flex items-center rounded-full bg-slate-100 px-2.5 py-1 text-[10px] font-black uppercase tracking-widest text-slate-600 dark:text-slate-400">
                         {wh.type}
                       </span>
                       <span className={`inline-flex items-center rounded-full px-2.5 py-1 text-[10px] font-black uppercase tracking-widest ${wh.status === 'Active' ? 'bg-emerald-100 text-emerald-700' : 'bg-amber-100 text-amber-700'}`}>
@@ -76,7 +76,7 @@ export default function AdminWarehousesPage() {
                       <div className="h-2 w-16 rounded-full bg-slate-100 overflow-hidden">
                         <div className={`h-full rounded-full ${parseInt(wh.capacity) > 85 ? 'bg-rose-500' : 'bg-brand-blue'}`} style={{ width: wh.capacity }} />
                       </div>
-                      <span className="text-lg font-black text-slate-700">{wh.capacity}</span>
+                      <span className="text-lg font-black text-slate-700 dark:text-slate-300">{wh.capacity}</span>
                     </div>
                   </div>
                   <div>
@@ -99,7 +99,7 @@ export default function AdminWarehousesPage() {
             <p className="text-sm font-semibold text-slate-500 leading-6 mb-4">
               Manage how orders are distributed among active warehouse hubs based on pincode and stock availability.
             </p>
-            <button onClick={(e) => { e.preventDefault(); toast.success('Action completed successfully!'); }} className="w-full flex items-center justify-center gap-2 rounded-xl bg-sky-50 py-2.5 text-sm font-black text-brand-blue hover:bg-sky-100 transition">
+            <button onClick={(e) => { e.preventDefault(); toast.info('Opening allocation routing rules...'); }} className="w-full flex items-center justify-center gap-2 rounded-xl bg-sky-50 py-2.5 text-sm font-black text-brand-blue hover:bg-sky-100 transition">
               Configure Routing <ArrowRight size={15} />
             </button>
           </div>

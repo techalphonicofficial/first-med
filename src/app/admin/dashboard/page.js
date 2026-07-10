@@ -24,7 +24,7 @@ export default function AdminDashboardPage() {
             </p>
           </div>
           <div className="flex flex-col gap-3 justify-center">
-            <Link href="/admin/prescriptions" className="inline-flex items-center justify-center gap-2 rounded-full bg-brand-yellow px-5 py-2.5 text-sm font-black text-slate-900 shadow-glow transition hover:-translate-y-0.5">
+            <Link href="/admin/prescriptions" className="inline-flex items-center justify-center gap-2 rounded-full bg-brand-yellow px-5 py-2.5 text-sm font-black text-slate-900 dark:text-slate-100 shadow-glow transition hover:-translate-y-0.5">
               Review Prescriptions (56) <ArrowRight size={15} />
             </Link>
             <Link href="/admin/vendors" className="inline-flex items-center justify-center gap-2 rounded-full bg-white/10 px-5 py-2.5 text-sm font-black text-white backdrop-blur transition hover:bg-white/20">
@@ -44,7 +44,7 @@ export default function AdminDashboardPage() {
                 <metric.icon size={16} className={metric.color} />
               </span>
             </div>
-            <p className="mt-3 text-3xl font-black text-slate-900">{metric.value}</p>
+            <p className="mt-3 text-3xl font-black text-slate-900 dark:text-slate-100">{metric.value}</p>
             <p className="mt-1 text-xs font-semibold text-slate-400">{metric.sub}</p>
           </div>
         ))}
@@ -87,7 +87,7 @@ export default function AdminDashboardPage() {
             ].map(({ href, label, icon: Icon }) => (
               <Link key={href} href={href} className="flex flex-col items-center justify-center gap-3 rounded-xl border border-sky-100 bg-sky-50/50 p-6 text-center transition hover:bg-sky-50 hover:border-brand-blue hover:shadow-card">
                 <Icon size={24} className="text-brand-blue" />
-                <span className="text-sm font-black text-slate-700">{label}</span>
+                <span className="text-sm font-black text-slate-700 dark:text-slate-300">{label}</span>
               </Link>
             ))}
           </div>

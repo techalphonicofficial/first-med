@@ -11,7 +11,7 @@ export default function NotFound() {
         </h1>
       </div>
       
-      <h2 className="mb-4 text-3xl font-black text-brand-dark md:text-4xl">Page not found</h2>
+      <h2 className="mb-4 text-3xl font-black text-brand-dark dark:text-white md:text-4xl">Page not found</h2>
       <p className="mb-10 text-lg font-semibold text-slate-500">
         The page you are looking for might have been removed, had its name changed, or is temporarily unavailable.
       </p>

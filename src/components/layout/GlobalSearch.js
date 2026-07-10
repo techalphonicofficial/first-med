@@ -58,7 +58,7 @@ export function GlobalSearch({ open, onClose }) {
                 value={query}
                 onChange={(e) => setQuery(e.target.value)}
                 placeholder="Search medicines, health products, categories..."
-                className="flex-1 bg-transparent text-lg font-semibold text-slate-800 placeholder:text-slate-400 focus:outline-none"
+                className="flex-1 bg-transparent text-lg font-semibold text-slate-800 dark:text-slate-200 placeholder:text-slate-400 focus:outline-none"
               />
               <button
                 onClick={onClose}
@@ -71,7 +71,7 @@ export function GlobalSearch({ open, onClose }) {
             <div className="max-h-[60vh] overflow-y-auto p-4">
               {query.trim().length === 0 ? (
                 <div className="py-8 text-center text-slate-500">
-                  <p className="font-semibold text-brand-dark">Popular searches</p>
+                  <p className="font-semibold text-brand-dark dark:text-white">Popular searches</p>
                   <div className="mt-4 flex flex-wrap justify-center gap-2">
                     {["Paracetamol", "Vitamin C", "Hair Care", "Protinex"].map((tag) => (
                       <button
@@ -98,7 +98,7 @@ export function GlobalSearch({ open, onClose }) {
                         <Image src={product.image} alt={product.name} width={40} height={40} className="object-contain" />
                       </div>
                       <div className="flex-1">
-                        <p className="font-black text-brand-dark">{product.name}</p>
+                        <p className="font-black text-brand-dark dark:text-white">{product.name}</p>
                         <p className="text-xs font-semibold text-slate-500">{product.category}</p>
                       </div>
                       <div className="flex items-center gap-3 pr-2">
@@ -117,7 +117,7 @@ export function GlobalSearch({ open, onClose }) {
                 </div>
               ) : (
                 <div className="py-12 text-center">
-                  <p className="text-lg font-black text-slate-700">No results found</p>
+                  <p className="text-lg font-black text-slate-700 dark:text-slate-300">No results found</p>
                   <p className="mt-2 text-sm text-slate-500">Try checking for spelling mistakes.</p>
                 </div>
               )}

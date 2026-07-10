@@ -109,7 +109,7 @@ export default function VendorOrdersPage() {
                     <p className="mt-0.5 text-sm font-bold text-slate-500">{order.customer} · {order.slot}</p>
                     <div className="mt-2 flex flex-wrap gap-1.5">
                       {order.items.map((item) => (
-                        <span key={item} className="rounded-full bg-sky-50 px-2.5 py-1 text-xs font-semibold text-slate-600">{item}</span>
+                        <span key={item} className="rounded-full bg-sky-50 px-2.5 py-1 text-xs font-semibold text-slate-600 dark:text-slate-400">{item}</span>
                       ))}
                     </div>
                   </div>

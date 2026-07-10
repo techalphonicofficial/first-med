@@ -21,7 +21,7 @@ export function ToastViewport() {
             <div className="flex items-start gap-3">
               <div className={`mt-1 size-2 rounded-full ${toast.type === "error" ? "bg-rose-500" : toast.type === "success" ? "bg-emerald-500" : "bg-brand-blue"}`} />
               <div className="min-w-0 flex-1">
-                <p className="font-black text-brand-dark">{toast.title}</p>
+                <p className="font-black text-brand-dark dark:text-white">{toast.title}</p>
                 {toast.text ? <p className="mt-1 text-sm font-semibold leading-5 text-brand-gray">{toast.text}</p> : null}
               </div>
               <button onClick={() => dismissToast(toast.id)} className="rounded-full bg-sky-50 p-1.5 text-brand-blue" aria-label="Dismiss notification">

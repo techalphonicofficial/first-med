@@ -70,7 +70,7 @@ export function CartFlyLayer() {
               <span className="absolute inset-0 bg-contain bg-center bg-no-repeat" style={{ backgroundImage: `url(${flight.image})` }} />
             </span>
             <span className="min-w-0 flex-1">
-              <span className="block truncate text-xs font-black text-brand-dark">{flight.name}</span>
+              <span className="block truncate text-xs font-black text-brand-dark dark:text-white">{flight.name}</span>
               <span className="block text-[10px] font-black uppercase tracking-[0.12em] text-brand-blue">Added to cart</span>
             </span>
           </motion.div>

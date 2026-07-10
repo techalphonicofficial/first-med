@@ -41,7 +41,7 @@ export default function SearchPage() {
             className="w-full bg-transparent py-4 pl-4 pr-12 text-lg font-bold outline-none"
           />
           {query && (
-            <button onClick={() => setQuery("")} className="absolute right-5 text-slate-400 hover:text-slate-600 transition">
+            <button onClick={() => setQuery("")} className="absolute right-5 text-slate-400 hover:text-slate-600 dark:text-slate-400 transition">
               <X size={20} />
             </button>
           )}
@@ -58,7 +58,7 @@ export default function SearchPage() {
               </h2>
               <div className="grid gap-2">
                 {recentSearches.map(term => (
-                  <button key={term} onClick={() => setQuery(term)} className="flex w-full items-center justify-between rounded-xl p-3 text-left font-bold text-slate-700 hover:bg-sky-50 transition">
+                  <button key={term} onClick={() => setQuery(term)} className="flex w-full items-center justify-between rounded-xl p-3 text-left font-bold text-slate-700 dark:text-slate-300 hover:bg-sky-50 transition">
                     {term}
                     <ArrowRight size={14} className="text-slate-300" />
                   </button>
@@ -73,7 +73,7 @@ export default function SearchPage() {
               </h2>
               <div className="flex flex-wrap gap-2">
                 {trendingSearches.map(term => (
-                  <button key={term} onClick={() => setQuery(term)} className="rounded-full border border-sky-100 bg-white px-4 py-2 text-sm font-bold text-slate-600 shadow-sm hover:border-brand-blue hover:text-brand-blue transition">
+                  <button key={term} onClick={() => setQuery(term)} className="rounded-full border border-sky-100 bg-white px-4 py-2 text-sm font-bold text-slate-600 dark:text-slate-400 shadow-sm hover:border-brand-blue hover:text-brand-blue transition">
                     {term}
                   </button>
                 ))}
@@ -96,7 +96,7 @@ export default function SearchPage() {
                         <span className="font-black text-brand-blue">{product.name.charAt(0)}</span>
                       </div>
                       <div className="flex-1">
-                        <p className="font-black text-slate-800">{product.name}</p>
+                        <p className="font-black text-slate-800 dark:text-slate-200">{product.name}</p>
                         <p className="text-xs font-bold text-slate-500">{product.category}</p>
                       </div>
                       <span className="font-black">Rs. {product.price}</span>
@@ -115,7 +115,7 @@ export default function SearchPage() {
                 <div className="mx-auto mb-4 grid h-16 w-16 place-items-center rounded-full bg-slate-50 text-slate-300">
                   <SearchIcon size={24} />
                 </div>
-                <p className="text-lg font-black text-slate-700">No results found for "{query}"</p>
+                <p className="text-lg font-black text-slate-700 dark:text-slate-300">No results found for "{query}"</p>
                 <p className="mt-2 text-sm font-semibold text-slate-500">Check the spelling or try a more general term.</p>
               </div>
             )}

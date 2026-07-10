@@ -43,8 +43,8 @@ export function QuickViewModal({ product, open, onClose }) {
                 <Badge>{discount}% off</Badge>
               </div>
               <h2 className="mt-4 text-3xl font-black">{product.name}</h2>
-              <p className="mt-3 text-sm font-semibold leading-6 text-slate-600">{product.usage}</p>
-              <div className="mt-5 grid gap-3 rounded-2xl bg-sky-50 p-4 text-sm font-bold text-slate-600">
+              <p className="mt-3 text-sm font-semibold leading-6 text-slate-600 dark:text-slate-400">{product.usage}</p>
+              <div className="mt-5 grid gap-3 rounded-2xl bg-sky-50 p-4 text-sm font-bold text-slate-600 dark:text-slate-400">
                 <div className="flex justify-between"><span>Pack</span><span>{product.packSize}</span></div>
                 <div className="flex justify-between"><span>Delivery</span><span>{product.delivery}</span></div>
                 <div className="flex justify-between"><span>Manufacturer</span><span>{product.manufacturer}</span></div>

@@ -4,7 +4,16 @@ import { Crown, Check, ArrowRight, ShieldCheck, Clock, HeartHandshake } from "lu
 import Link from "next/link";
 import { toast } from "sonner";
 
+import { useState } from "react";
+
 export default function MembershipPage() {
+  const [isMember, setIsMember] = useState(false);
+  
+  function joinMembership() {
+    setIsMember(true);
+    toast.success("Welcome to FirstMED Plus! Your benefits are now active.");
+  }
+
   return (
     <div className="mx-auto max-w-[104rem] px-4 py-8 pb-28 sm:px-6 lg:px-8 xl:px-10">
       
@@ -31,9 +40,15 @@ export default function MembershipPage() {
               <span className="text-4xl font-black text-brand-yellow">Rs. 999</span>
               <span className="text-sm font-bold text-sky-200 mb-1">/ year</span>
             </div>
-            <button onClick={(e) => { e.preventDefault(); toast.success('Action completed successfully!'); }} className="w-full rounded-full bg-brand-yellow px-6 py-4 text-base font-black text-brand-navy shadow-glow hover:bg-[#F9EE3F] transition hover:-translate-y-0.5">
-              Become a Member Now
-            </button>
+            {isMember ? (
+              <button disabled className="w-full rounded-full bg-emerald-500 px-6 py-4 text-base font-black text-white shadow-glow transition">
+                ✓ You are a Plus Member
+              </button>
+            ) : (
+              <button onClick={joinMembership} className="w-full rounded-full bg-brand-yellow px-6 py-4 text-base font-black text-brand-navy shadow-glow hover:bg-[#F9EE3F] transition hover:-translate-y-0.5">
+                Become a Member Now
+              </button>
+            )}
             <p className="text-center text-xs font-semibold text-sky-200 mt-4">Cancel anytime. Terms & conditions apply.</p>
           </div>
         </div>
@@ -42,7 +57,7 @@ export default function MembershipPage() {
       {/* Benefits Grid */}
       <div className="mb-16">
         <div className="text-center mb-10">
-          <h2 className="text-3xl font-black text-slate-900">Why choose FirstMED Plus?</h2>
+          <h2 className="text-3xl font-black text-slate-900 dark:text-slate-100">Why choose FirstMED Plus?</h2>
           <p className="text-slate-500 font-semibold mt-2">Exclusive benefits designed to save you time and money.</p>
         </div>
 
@@ -59,7 +74,7 @@ export default function MembershipPage() {
               <div className="grid h-16 w-16 place-items-center rounded-2xl bg-sky-50 text-brand-blue transition group-hover:bg-brand-blue group-hover:text-white">
                 <benefit.icon size={32} />
               </div>
-              <h3 className="mt-6 text-xl font-black text-slate-900">{benefit.title}</h3>
+              <h3 className="mt-6 text-xl font-black text-slate-900 dark:text-slate-100">{benefit.title}</h3>
               <p className="mt-2 text-sm font-semibold leading-relaxed text-slate-500">{benefit.desc}</p>
             </div>
           ))}
@@ -69,14 +84,14 @@ export default function MembershipPage() {
       {/* Comparison Table */}
       <div className="mx-auto max-w-4xl soft-card overflow-hidden rounded-[2rem] bg-white shadow-premium">
         <div className="bg-slate-50 px-8 py-6 border-b border-sky-50 text-center">
-          <h2 className="text-2xl font-black text-slate-900">See the difference</h2>
+          <h2 className="text-2xl font-black text-slate-900 dark:text-slate-100">See the difference</h2>
         </div>
         <div className="p-8">
           <table className="w-full text-left">
             <thead>
               <tr className="border-b-2 border-slate-100">
                 <th className="pb-4 font-black text-slate-400">Features</th>
-                <th className="pb-4 font-black text-slate-900 text-center">Standard User</th>
+                <th className="pb-4 font-black text-slate-900 dark:text-slate-100 text-center">Standard User</th>
                 <th className="pb-4 font-black text-brand-blue text-center flex items-center justify-center gap-1"><Crown size={18}/> Plus Member</th>
               </tr>
             </thead>
@@ -89,7 +104,7 @@ export default function MembershipPage() {
                 ["Doctor Consultation", "Paid", "1 Free / Month"]
               ].map((row, i) => (
                 <tr key={i} className="border-b border-sky-50 last:border-0">
-                  <td className="py-5 font-bold text-slate-600">{row[0]}</td>
+                  <td className="py-5 font-bold text-slate-600 dark:text-slate-400">{row[0]}</td>
                   <td className="py-5 text-center font-semibold text-slate-400">{row[1]}</td>
                   <td className="py-5 text-center font-black text-emerald-600 bg-sky-50/30 rounded-lg">{row[2]}</td>
                 </tr>

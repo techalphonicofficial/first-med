@@ -47,7 +47,7 @@ export default function BlogPage() {
           <h1 className="mt-6 text-4xl font-black leading-tight md:text-5xl lg:text-6xl">
             Health notes & pharmacy insights.
           </h1>
-          <p className="mt-4 text-lg font-semibold leading-8 text-slate-600">
+          <p className="mt-4 text-lg font-semibold leading-8 text-slate-600 dark:text-slate-400">
             Editorial space for product education, pharmacy safety, seasonal care and wellness explainers.
           </p>
           <div className="mt-8">
@@ -64,7 +64,7 @@ export default function BlogPage() {
       {/* Categories */}
       <div className="mt-12 no-scrollbar flex gap-2 overflow-auto pb-4">
         {categories.map((cat, i) => (
-          <button key={cat} className={`shrink-0 rounded-full px-5 py-2.5 text-sm font-black transition ${i === 0 ? "bg-brand-dark text-white" : "bg-sky-50 text-slate-600 hover:bg-sky-100"}`}>
+          <button key={cat} className={`shrink-0 rounded-full px-5 py-2.5 text-sm font-black transition ${i === 0 ? "bg-brand-dark text-white" : "bg-sky-50 text-slate-600 dark:text-slate-400 hover:bg-sky-100"}`}>
             {cat}
           </button>
         ))}
@@ -82,7 +82,7 @@ export default function BlogPage() {
                 fill 
                 className={`object-contain p-8 transition duration-500 group-hover:scale-105 ${article.id === 2 ? "brightness-0 invert opacity-50" : ""}`} 
               />
-              <span className="absolute left-4 top-4 rounded-full bg-white/90 px-3 py-1.5 text-xs font-black text-brand-dark backdrop-blur-md">
+              <span className="absolute left-4 top-4 rounded-full bg-white/90 px-3 py-1.5 text-xs font-black text-brand-dark dark:text-white backdrop-blur-md">
                 {article.category}
               </span>
             </div>

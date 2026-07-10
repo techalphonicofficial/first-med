@@ -43,7 +43,7 @@ export default function CustomerNotificationsPage() {
                 </div>
                 <div className="min-w-0 flex-1">
                   <div className="flex flex-wrap items-start justify-between gap-2">
-                    <h2 className="font-black text-slate-900">{title}</h2>
+                    <h2 className="font-black text-slate-900 dark:text-slate-100">{title}</h2>
                     <span className="text-xs font-bold text-slate-400">{time}</span>
                   </div>
                   <p className="mt-1 text-sm font-semibold leading-6 text-slate-500">{text}</p>
@@ -61,7 +61,7 @@ export default function CustomerNotificationsPage() {
           </div>
           <div className="mt-5 grid gap-3">
             {preferences.map((item, index) => (
-              <label key={item} className="flex items-center justify-between rounded-2xl bg-sky-50 px-4 py-3 text-sm font-black text-slate-700">
+              <label key={item} className="flex items-center justify-between rounded-2xl bg-sky-50 px-4 py-3 text-sm font-black text-slate-700 dark:text-slate-300">
                 {item}
                 <input type="checkbox" defaultChecked={index < 3} className="h-4 w-4 accent-brand-blue" />
               </label>

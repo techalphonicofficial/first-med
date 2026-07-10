@@ -3,14 +3,14 @@
 import { ChevronRight, Heart, Home, LockKeyhole, MapPin, Share2, ShieldCheck, ShoppingBag, Star, Truck } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useAppStore } from "@/store/useAppStore";
 import { ProductShelf } from "./ProductShelf";
 import { Button } from "@/components/ui/Button";
 import { Badge } from "@/components/ui/Badge";
 import { toast } from "sonner";
 
-const TABS = ["Overview", "Usage & Warnings", "Specs", "Reviews", "FAQs"];
+const TABS = ["Description", "Overview", "Usage & Warnings", "Specs", "Reviews", "FAQs"];
 
 // Star rating breakdown (static demo data)
 const ratingBreakdown = [
@@ -25,10 +25,42 @@ export function ProductDetailClient({ product, similar }) {
   const [blocked, setBlocked] = useState(false);
   const [activeImage, setActiveImage] = useState(product.image);
   const [pincode, setPincode] = useState("");
-  const [activeTab, setActiveTab] = useState("Overview");
+  const [activeTab, setActiveTab] = useState("Description");
   const [wishlisted, setWishlisted] = useState(false);
   const addToCart = useAppStore((state) => state.addToCart);
   const prescription = useAppStore((state) => state.prescription);
+
+  const handleTabClick = (tab) => {
+    setActiveTab(tab);
+    const el = document.getElementById(`section-${tab}`);
+    if (el) {
+      const y = el.getBoundingClientRect().top + window.scrollY - 180;
+      window.scrollTo({ top: y, behavior: "smooth" });
+    }
+  };
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      (entries) => {
+        // Find the entry that is currently intersecting
+        const visibleEntry = entries.find((entry) => entry.isIntersecting);
+        if (visibleEntry) {
+          const id = visibleEntry.target.id.replace("section-", "");
+          setActiveTab(id);
+        }
+      },
+      {
+        rootMargin: "-200px 0px -60% 0px", // Trigger when the section crosses near the top of the viewport
+      }
+    );
+
+    TABS.forEach((tab) => {
+      const el = document.getElementById(`section-${tab}`);
+      if (el) observer.observe(el);
+    });
+
+    return () => observer.disconnect();
+  }, []);
 
   const [zoomPos, setZoomPos] = useState({ x: 50, y: 50 });
   const [isZooming, setIsZooming] = useState(false);
@@ -114,7 +146,7 @@ export function ProductDetailClient({ product, similar }) {
               <button
                 key={image}
                 onClick={() => setActiveImage(image)}
-                className={`relative h-16 w-16 shrink-0 overflow-hidden rounded-xl border-2 bg-white transition hover:-translate-y-0.5 ${activeImage === image ? "border-brand-blue shadow-glow" : "border-sky-100 shadow-sm"}`}
+                className={`relative h-16 w-16 shrink-0 overflow-hidden rounded-xl border-2 bg-white transition hover:-translate-y-0.5 dark:bg-slate-900 ${activeImage === image ? "border-brand-blue shadow-glow" : "border-sky-100 shadow-sm dark:border-slate-800"}`}
                 aria-label={`Show image ${i + 1}`}
               >
                 <Image src={image} alt="" fill sizes="64px" className="object-contain p-2" />
@@ -124,7 +156,7 @@ export function ProductDetailClient({ product, similar }) {
 
           <div className="flex-1">
             <div
-              className="soft-card relative aspect-square overflow-hidden rounded-2xl bg-sky-50 cursor-crosshair group"
+              className="soft-card relative aspect-square overflow-hidden rounded-2xl bg-sky-50 cursor-crosshair group dark:bg-slate-900/50"
               onMouseMove={handleMouseMove}
               onMouseEnter={() => {
                 if (window.innerWidth >= 1024) setIsZooming(true);
@@ -156,7 +188,7 @@ export function ProductDetailClient({ product, similar }) {
                 <button
                   key={image}
                   onClick={() => setActiveImage(image)}
-                  className={`relative h-14 w-14 shrink-0 overflow-hidden rounded-xl border-2 bg-white ${activeImage === image ? "border-brand-blue" : "border-sky-100"}`}
+                  className={`relative h-14 w-14 shrink-0 overflow-hidden rounded-xl border-2 bg-white dark:bg-slate-900 ${activeImage === image ? "border-brand-blue" : "border-sky-100 dark:border-slate-800"}`}
                 >
                   <Image src={image} alt="" fill sizes="56px" className="object-contain p-1.5" />
                 </button>
@@ -171,13 +203,15 @@ export function ProductDetailClient({ product, similar }) {
           <h1 className="mt-2 text-3xl font-black leading-tight lg:text-4xl">{product.name}</h1>
 
           {/* Rating row */}
-          <div className="mt-3 flex flex-wrap items-center gap-3 text-sm font-bold text-slate-600">
-            <span className="flex items-center gap-1.5 rounded-full bg-amber-50 px-3 py-1 text-amber-600">
+          <div className="mt-3 flex flex-wrap items-center gap-3 text-sm font-bold text-slate-600 dark:text-slate-400">
+            <span className="flex items-center gap-1.5 rounded-full bg-amber-50 px-3 py-1 text-amber-600 dark:bg-amber-950/40">
               <Star size={14} fill="currentColor" /> {product.rating}
               <span className="text-amber-400 font-semibold">(24 reviews)</span>
             </span>
-            <span className="rounded-full bg-sky-50 px-3 py-1 text-brand-blue">{product.brand}</span>
-            <span className="flex items-center gap-1 rounded-full bg-emerald-50 px-3 py-1 text-emerald-600">
+            <span className="rounded-full bg-sky-50 px-3 py-1 text-brand-blue dark:bg-sky-950/40">
+              {product.brand}
+            </span>
+            <span className="flex items-center gap-1 rounded-full bg-emerald-50 px-3 py-1 text-emerald-600 dark:bg-emerald-950/40">
               <Truck size={13} /> {product.delivery}
             </span>
           </div>
@@ -192,7 +226,7 @@ export function ProductDetailClient({ product, similar }) {
             <Badge>Authentic product</Badge>
           </div>
 
-          <p className="mt-5 max-w-2xl text-sm leading-7 text-slate-600">{product.description}</p>
+
 
           {/* Pack + Manufacturer info */}
           <div className="mt-5 grid gap-3 sm:grid-cols-2">
@@ -279,12 +313,12 @@ export function ProductDetailClient({ product, similar }) {
       {/* Tabbed info section */}
       <div className="mt-14">
         {/* Tab bar */}
-        <div className="no-scrollbar sticky top-20 z-20 mb-6 flex gap-1 overflow-auto rounded-2xl bg-white p-1.5 shadow-card">
+        <div className="no-scrollbar sticky top-[80px] z-20 mb-6 flex gap-1 overflow-auto rounded-2xl bg-white p-1.5 shadow-premium dark:bg-slate-900 dark:border dark:border-slate-800">
           {TABS.map((tab) => (
             <button
               key={tab}
-              onClick={() => setActiveTab(tab)}
-              className={`shrink-0 rounded-xl px-5 py-2.5 text-sm font-black transition duration-200 ${activeTab === tab ? "bg-brand-blue text-white shadow-glow" : "text-slate-500 hover:bg-sky-50 hover:text-slate-700"}`}
+              onClick={() => handleTabClick(tab)}
+              className={`shrink-0 rounded-xl px-5 py-2.5 text-sm font-black transition duration-200 ${activeTab === tab ? "bg-brand-blue text-white shadow-glow" : "text-slate-500 hover:bg-sky-50 hover:text-slate-700 dark:hover:bg-slate-800 dark:text-slate-400 dark:hover:text-slate-200"}`}
             >
               {tab}
             </button>
@@ -292,148 +326,145 @@ export function ProductDetailClient({ product, similar }) {
         </div>
 
         {/* Tab content */}
-        <div className="animate-fade-in">
-          {activeTab === "Overview" && (
-            <div className="grid gap-5 lg:grid-cols-3">
-              <div className="soft-card rounded-[1.5rem] p-5">
-                <h2 className="text-xl font-black">Pharmacy checks</h2>
-                <div className="mt-4 grid gap-3 text-sm font-bold text-slate-600">
-                  {["Authenticity verified", "Expiry checked at dispatch", "Packed for safe delivery"].map((item) => (
-                    <div key={item} className="rounded-2xl bg-emerald-50 p-3 text-emerald-700">
-                      <ShieldCheck className="mr-2 inline" size={16} /> {item}
-                    </div>
-                  ))}
-                </div>
-              </div>
-              <div className="soft-card rounded-[1.5rem] p-5">
-                <h2 className="text-xl font-black">Product specs</h2>
-                <div className="mt-4 grid gap-3 text-sm font-bold text-slate-600">
-                  {product.specs.map((spec) => (
-                    <div key={spec} className="rounded-2xl bg-sky-50 p-3">{spec}</div>
-                  ))}
-                </div>
-              </div>
-              <div className="soft-card rounded-[1.5rem] p-5">
-                <h2 className="text-xl font-black">Quick info</h2>
-                <div className="mt-4 grid gap-2 text-sm">
-                  {[["Brand", product.brand], ["Pack", product.packSize], ["Delivery", product.delivery], ["Category", product.category]].map(([k, v]) => (
-                    <div key={k} className="flex justify-between rounded-xl bg-sky-50 px-3 py-2 font-bold">
-                      <span className="text-slate-400">{k}</span>
-                      <span className="text-slate-700">{v}</span>
-                    </div>
-                  ))}
-                </div>
+        <div className="flex flex-col gap-8 animate-fade-in">
+
+          <div id="section-Description" className="soft-card rounded-[1.5rem] p-5 dark:bg-slate-900/50 dark:border-slate-800">
+            <h2 className="text-xl font-black mb-4 dark:text-white">Description</h2>
+            <p className="mt-5 max-w-2xl text-sm leading-7 text-slate-600 dark:text-slate-300">{product.description}</p>
+          </div>
+
+          <div id="section-Overview" className="grid gap-5 lg:grid-cols-3">
+            <div className="soft-card rounded-[1.5rem] p-5 dark:bg-slate-900/50 dark:border-slate-800">
+              <h2 className="text-xl font-black dark:text-white">Pharmacy checks</h2>
+              <div className="mt-4 grid gap-3 text-sm font-bold text-slate-600 dark:text-slate-300">
+                {["Authenticity verified", "Expiry checked at dispatch", "Packed for safe delivery"].map((item) => (
+                  <div key={item} className="rounded-2xl bg-emerald-50 p-3 text-emerald-700 dark:bg-emerald-950/40 dark:text-emerald-400">
+                    <ShieldCheck className="mr-2 inline" size={16} /> {item}
+                  </div>
+                ))}
               </div>
             </div>
-          )}
+            <div className="soft-card rounded-[1.5rem] p-5 dark:bg-slate-900/50 dark:border-slate-800">
+              <h2 className="text-xl font-black dark:text-white">Product specs</h2>
+              <div className="mt-4 grid gap-3 text-sm font-bold text-slate-600 dark:text-slate-300">
+                {product.specs.map((spec) => (
+                  <div key={spec} className="rounded-2xl bg-sky-50 p-3 dark:bg-slate-800/50">{spec}</div>
+                ))}
+              </div>
+            </div>
+            <div className="soft-card rounded-[1.5rem] p-5 dark:bg-slate-900/50 dark:border-slate-800">
+              <h2 className="text-xl font-black dark:text-white">Quick info</h2>
+              <div className="mt-4 grid gap-2 text-sm">
+                {[["Brand", product.brand], ["Pack", product.packSize], ["Delivery", product.delivery], ["Category", product.category]].map(([k, v]) => (
+                  <div key={k} className="flex justify-between rounded-xl bg-sky-50 px-3 py-2 font-bold dark:bg-slate-800/50">
+                    <span className="text-slate-400">{k}</span>
+                    <span className="text-slate-700 dark:text-slate-200">{v}</span>
+                  </div>
+                ))}
+              </div>
+            </div>
+          </div>
 
-          {activeTab === "Usage & Warnings" && (
-            <div className="grid gap-4 md:grid-cols-2">
-              {[["Usage", product.usage], ["Warnings", product.warning], ["Dosage note", product.dosageNote], ["Storage", "Store in a cool, dry place away from direct sunlight."]].map(([title, text]) => (
-                <div key={title} className="soft-card rounded-2xl p-5 text-sm">
-                  <p className="font-black text-brand-dark">{title}</p>
-                  <p className="mt-2 font-semibold leading-6 text-slate-600">{text}</p>
+          <div id="section-Usage & Warnings" className="grid gap-4 md:grid-cols-2">
+            {[["Usage", product.usage], ["Warnings", product.warning], ["Dosage note", product.dosageNote], ["Storage", "Store in a cool, dry place away from direct sunlight."]].map(([title, text]) => (
+              <div key={title} className="soft-card rounded-2xl p-5 text-sm dark:bg-slate-900/50 dark:border-slate-800">
+                <p className="font-black text-brand-dark dark:text-brand-soft">{title}</p>
+                <p className="mt-2 font-semibold leading-6 text-slate-600 dark:text-slate-300">{text}</p>
+              </div>
+            ))}
+          </div>
+
+          <div id="section-Specs" className="soft-card rounded-[1.5rem] p-5 text-sm dark:bg-slate-900/50 dark:border-slate-800">
+            <h2 className="mb-4 text-xl font-black dark:text-white">Full specifications</h2>
+            <div className="grid gap-2">
+              {[
+                ["Product name", product.name],
+                ["Brand", product.brand],
+                ["Manufacturer", product.manufacturer],
+                ["Pack size", product.packSize],
+                ["Category", product.category],
+                ["Rx required", product.rxRequired ? "Yes" : "No"],
+                ...product.specs.map((spec, i) => [`Spec ${i + 1}`, spec])
+              ].map(([k, v]) => (
+                <div key={k} className="flex justify-between rounded-xl bg-sky-50/60 px-4 py-3 font-semibold dark:bg-slate-800/50">
+                  <span className="font-black text-slate-600 dark:text-slate-300">{k}</span>
+                  <span className="text-slate-500 dark:text-slate-400">{v}</span>
                 </div>
               ))}
             </div>
-          )}
+          </div>
 
-          {activeTab === "Specs" && (
-            <div className="soft-card rounded-[1.5rem] p-5 text-sm">
-              <h2 className="mb-4 text-xl font-black">Full specifications</h2>
-              <div className="grid gap-2">
-                {[
-                  ["Product name", product.name],
-                  ["Brand", product.brand],
-                  ["Manufacturer", product.manufacturer],
-                  ["Pack size", product.packSize],
-                  ["Category", product.category],
-                  ["Rx required", product.rxRequired ? "Yes" : "No"],
-                  ...product.specs.map((spec, i) => [`Spec ${i + 1}`, spec])
-                ].map(([k, v]) => (
-                  <div key={k} className="flex justify-between rounded-xl bg-sky-50/60 px-4 py-3 font-semibold">
-                    <span className="font-black text-slate-600">{k}</span>
-                    <span className="text-slate-500">{v}</span>
-                  </div>
-                ))}
-              </div>
-            </div>
-          )}
-
-          {activeTab === "Reviews" && (
-            <div className="grid gap-5 lg:grid-cols-[280px_1fr]">
-              {/* Rating summary */}
-              <div className="soft-card rounded-[1.5rem] p-5">
-                <div className="text-center">
-                  <p className="text-5xl font-black text-slate-900">{product.rating}</p>
-                  <div className="mt-2 flex justify-center gap-1">
-                    {[1, 2, 3, 4, 5].map((s) => (
-                      <Star key={s} size={18} fill={s <= Math.round(parseFloat(product.rating)) ? "#F59E0B" : "none"} className="text-amber-400" />
-                    ))}
-                  </div>
-                  <p className="mt-1 text-sm font-semibold text-slate-400">24 verified reviews</p>
-                </div>
-                <div className="mt-5 grid gap-2">
-                  {ratingBreakdown.map(({ stars, pct }) => (
-                    <div key={stars} className="flex items-center gap-2 text-xs font-bold text-slate-500">
-                      <span className="w-4 shrink-0">{stars}★</span>
-                      <div className="rating-bar flex-1">
-                        <div className="rating-bar-fill" style={{ width: `${pct}%` }} />
-                      </div>
-                      <span className="w-8 text-right">{pct}%</span>
-                    </div>
+          <div id="section-Reviews" className="grid gap-5 lg:grid-cols-[280px_1fr]">
+            {/* Rating summary */}
+            <div className="soft-card rounded-[1.5rem] p-5 dark:bg-slate-900/50 dark:border-slate-800">
+              <div className="text-center">
+                <p className="text-5xl font-black text-slate-900 dark:text-white">{product.rating}</p>
+                <div className="mt-2 flex justify-center gap-1">
+                  {[1, 2, 3, 4, 5].map((s) => (
+                    <Star key={s} size={18} fill={s <= Math.round(parseFloat(product.rating)) ? "#F59E0B" : "none"} className="text-amber-400" />
                   ))}
                 </div>
+                <p className="mt-1 text-sm font-semibold text-slate-400">24 verified reviews</p>
               </div>
-
-              {/* Review cards */}
-              <div className="grid gap-4">
-                {[
-                  { name: "Priya S.", text: "Fast delivery, product was exactly as described. Packaging was secure and professional.", stars: 5 },
-                  { name: "Arjun M.", text: "Good quality product. The OTC checkout made it very easy to purchase without any hassle.", stars: 4 },
-                  { name: "Sunita R.", text: "Quick delivery in 90 minutes. Will definitely reorder.", stars: 5 },
-                ].map(({ name, text, stars }) => (
-                  <div key={name} className="soft-card rounded-2xl p-5 text-sm">
-                    <div className="flex items-center justify-between">
-                      <div className="flex items-center gap-2">
-                        <div className="grid h-9 w-9 place-items-center rounded-full bg-brand-blue text-xs font-black text-white">
-                          {name.charAt(0)}
-                        </div>
-                        <span className="font-black text-slate-800">{name}</span>
-                      </div>
-                      <div className="flex gap-0.5">
-                        {[1, 2, 3, 4, 5].map((s) => (
-                          <Star key={s} size={13} fill={s <= stars ? "#F59E0B" : "none"} className="text-amber-400" />
-                        ))}
-                      </div>
+              <div className="mt-5 grid gap-2">
+                {ratingBreakdown.map(({ stars, pct }) => (
+                  <div key={stars} className="flex items-center gap-2 text-xs font-bold text-slate-500 dark:text-slate-400">
+                    <span className="w-4 shrink-0">{stars}★</span>
+                    <div className="rating-bar flex-1 bg-slate-200 dark:bg-slate-700">
+                      <div className="rating-bar-fill" style={{ width: `${pct}%` }} />
                     </div>
-                    <p className="mt-3 font-semibold leading-6 text-slate-600">{text}</p>
+                    <span className="w-8 text-right">{pct}%</span>
                   </div>
                 ))}
               </div>
             </div>
-          )}
 
-          {activeTab === "FAQs" && (
-            <div className="soft-card rounded-[1.5rem] p-5">
-              <h2 className="mb-4 text-xl font-black">Frequently asked questions</h2>
-              <div className="grid gap-3 text-sm">
-                {[
-                  ["Can I buy this now?", product.rxRequired ? "Only after prescription approval." : "Yes, this item can be added directly if it is in stock."],
-                  ["Is delivery available today?", `The estimated delivery for this product is ${product.delivery}.`],
-                  ["How do I upload a prescription?", "Go to the Prescription page, fill in doctor details and upload a file. Once approved, Rx items unlock for checkout."],
-                  ["Is this product authentic?", "All FirstMED products are sourced from verified manufacturers and are authenticity-checked at dispatch."]
-                ].map(([question, answer]) => (
-                  <details key={question} className="group rounded-2xl border border-sky-100 bg-sky-50/50 p-4">
-                    <summary className="cursor-pointer font-black text-slate-800 group-open:text-brand-blue">
-                      {question}
-                    </summary>
-                    <p className="mt-3 font-semibold leading-6 text-slate-600">{answer}</p>
-                  </details>
-                ))}
-              </div>
+            {/* Review cards */}
+            <div className="grid gap-4">
+              {[
+                { name: "Priya S.", text: "Fast delivery, product was exactly as described. Packaging was secure and professional.", stars: 5 },
+                { name: "Arjun M.", text: "Good quality product. The OTC checkout made it very easy to purchase without any hassle.", stars: 4 },
+                { name: "Sunita R.", text: "Quick delivery in 90 minutes. Will definitely reorder.", stars: 5 },
+              ].map(({ name, text, stars }) => (
+                <div key={name} className="soft-card rounded-2xl p-5 text-sm dark:bg-slate-900/50 dark:border-slate-800">
+                  <div className="flex items-center justify-between">
+                    <div className="flex items-center gap-2">
+                      <div className="grid h-9 w-9 place-items-center rounded-full bg-brand-blue text-xs font-black text-white">
+                        {name.charAt(0)}
+                      </div>
+                      <span className="font-black text-slate-800 dark:text-slate-200">{name}</span>
+                    </div>
+                    <div className="flex gap-0.5">
+                      {[1, 2, 3, 4, 5].map((s) => (
+                        <Star key={s} size={13} fill={s <= stars ? "#F59E0B" : "none"} className="text-amber-400" />
+                      ))}
+                    </div>
+                  </div>
+                  <p className="mt-3 font-semibold leading-6 text-slate-600 dark:text-slate-300">{text}</p>
+                </div>
+              ))}
             </div>
-          )}
+          </div>
+
+          <div id="section-FAQs" className="soft-card rounded-[1.5rem] p-5 dark:bg-slate-900/50 dark:border-slate-800">
+            <h2 className="mb-4 text-xl font-black dark:text-white">Frequently asked questions</h2>
+            <div className="grid gap-3 text-sm">
+              {[
+                ["Can I buy this now?", product.rxRequired ? "Only after prescription approval." : "Yes, this item can be added directly if it is in stock."],
+                ["Is delivery available today?", `The estimated delivery for this product is ${product.delivery}.`],
+                ["How do I upload a prescription?", "Go to the Prescription page, fill in doctor details and upload a file. Once approved, Rx items unlock for checkout."],
+                ["Is this product authentic?", "All FirstMED products are sourced from verified manufacturers and are authenticity-checked at dispatch."]
+              ].map(([question, answer]) => (
+                <details key={question} className="group rounded-2xl border border-sky-100 bg-sky-50/50 p-4 dark:border-slate-700/50 dark:bg-slate-800/50">
+                  <summary className="cursor-pointer font-black text-slate-800 group-open:text-brand-blue dark:text-slate-200">
+                    {question}
+                  </summary>
+                  <p className="mt-3 font-semibold leading-6 text-slate-600 dark:text-slate-400">{answer}</p>
+                </details>
+              ))}
+            </div>
+          </div>
+
         </div>
       </div>
 

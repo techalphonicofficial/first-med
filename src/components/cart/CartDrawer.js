@@ -64,7 +64,7 @@ export function CartDrawer() {
                         <Image src={item.image} alt={item.imageAlt || item.name} fill sizes="72px" className="object-contain p-2" />
                       </div>
                       <div className="min-w-0 self-start pt-1">
-                        <Link onClick={close} href={`/products/${item.slug}/`} className="line-clamp-2 text-sm font-black leading-tight text-slate-800 hover:text-brand-blue">
+                        <Link onClick={close} href={`/products/${item.slug}/`} className="line-clamp-2 text-sm font-black leading-tight text-slate-800 dark:text-slate-200 hover:text-brand-blue">
                           {item.name}
                         </Link>
                         <div className="mt-1.5 flex items-center gap-2">

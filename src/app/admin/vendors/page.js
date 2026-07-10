@@ -25,7 +25,7 @@ export default function AdminVendorsPage() {
       <div className="flex flex-wrap items-center justify-between gap-4">
         <div>
           <p className="text-xs font-black uppercase tracking-[0.18em] text-brand-blue">Platform</p>
-          <h1 className="mt-1 text-3xl font-black text-slate-900">Vendor Verification</h1>
+          <h1 className="mt-1 text-3xl font-black text-slate-900 dark:text-slate-100">Vendor Verification</h1>
         </div>
         <form onSubmit={(e) => { e.preventDefault(); toast.success("Search submitted!"); }} className="relative">
           <Search className="absolute left-3 top-1/2 -translate-y-1/2 text-brand-blue" size={16} />
@@ -84,7 +84,7 @@ export default function AdminVendorsPage() {
                     </div>
                   </td>
                   <td className="px-5 py-4">
-                    <p className="font-bold text-slate-700">{vendor.owner}</p>
+                    <p className="font-bold text-slate-700 dark:text-slate-300">{vendor.owner}</p>
                     <p className="text-xs font-semibold text-slate-500">{vendor.phone}</p>
                   </td>
                   <td className="px-5 py-4">

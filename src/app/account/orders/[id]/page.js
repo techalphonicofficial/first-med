@@ -71,7 +71,7 @@ export default function OrderDetailPage({ params }) {
                   </div>
                   <div className="flex flex-1 flex-col justify-between">
                     <div>
-                      <p className="font-black text-brand-dark leading-tight">{item.name}</p>
+                      <p className="font-black text-brand-dark dark:text-white leading-tight">{item.name}</p>
                       <p className="text-sm font-bold text-slate-500">Qty: {item.qty}</p>
                     </div>
                     <p className="font-black">Rs. {item.total}</p>
@@ -99,7 +99,7 @@ export default function OrderDetailPage({ params }) {
             <h3 className="mb-4 text-base font-black flex items-center gap-2">
               <MapPin size={16} className="text-brand-blue" /> Delivery Address
             </h3>
-            <p className="text-sm font-bold text-slate-800">Akash Sharma</p>
+            <p className="text-sm font-bold text-slate-800 dark:text-slate-200">Akash Sharma</p>
             <p className="mt-1 text-sm font-semibold leading-6 text-slate-500">
               Block C, Green Park, Sector 21<br/>
               New Delhi, 110016<br/>
@@ -111,17 +111,17 @@ export default function OrderDetailPage({ params }) {
           <div className="soft-card rounded-[2rem] p-6 print:break-inside-avoid">
             <h3 className="mb-4 text-base font-black">Payment Summary</h3>
             <div className="grid gap-3 text-sm">
-              <div className="flex justify-between font-semibold text-slate-600">
+              <div className="flex justify-between font-semibold text-slate-600 dark:text-slate-400">
                 <span>Subtotal</span><span>Rs. {subtotal}</span>
               </div>
-              <div className="flex justify-between font-semibold text-slate-600">
+              <div className="flex justify-between font-semibold text-slate-600 dark:text-slate-400">
                 <span>Delivery Fee</span><span>Rs. {deliveryFee}</span>
               </div>
               <div className="flex justify-between font-semibold text-emerald-600">
                 <span>Discount</span><span>- Rs. {discount}</span>
               </div>
               <div className="my-2 border-t border-sky-100" />
-              <div className="flex justify-between text-base font-black text-brand-dark">
+              <div className="flex justify-between text-base font-black text-brand-dark dark:text-white">
                 <span>Total Paid</span><span>Rs. {total}</span>
               </div>
             </div>

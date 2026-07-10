@@ -39,9 +39,9 @@ export default function DeliveryHistoryPage() {
                   </td>
                   <td className="px-5 py-4">
                     <div className="flex items-center gap-2">
-                      <span className="font-bold text-slate-700">{item.pickup}</span>
+                      <span className="font-bold text-slate-700 dark:text-slate-300">{item.pickup}</span>
                       <Truck size={12} className="text-slate-400" />
-                      <span className="font-bold text-slate-700">{item.drop}</span>
+                      <span className="font-bold text-slate-700 dark:text-slate-300">{item.drop}</span>
                     </div>
                   </td>
                   <td className="px-5 py-4">
@@ -53,7 +53,7 @@ export default function DeliveryHistoryPage() {
                     </span>
                   </td>
                   <td className="px-5 py-4 text-right">
-                    <p className="font-black text-slate-900">{item.earnings}</p>
+                    <p className="font-black text-slate-900 dark:text-slate-100">{item.earnings}</p>
                   </td>
                 </tr>
               ))}

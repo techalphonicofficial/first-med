@@ -54,7 +54,7 @@ export default function AdminProductsPage() {
       <div className="flex flex-wrap items-center justify-between gap-4">
         <div>
           <p className="text-xs font-black uppercase tracking-[0.18em] text-brand-blue">Platform</p>
-          <h1 className="mt-1 text-3xl font-black text-slate-900">Global Product Catalog</h1>
+          <h1 className="mt-1 text-3xl font-black text-slate-900 dark:text-slate-100">Global Product Catalog</h1>
         </div>
         <div className="flex gap-3">
           <form onSubmit={(e) => { e.preventDefault(); toast.success("Search submitted!"); }} className="relative">
@@ -67,7 +67,7 @@ export default function AdminProductsPage() {
               className="w-64 rounded-full border border-sky-100 bg-white py-2.5 pl-10 pr-4 text-sm font-bold outline-brand-blue shadow-sm"
             />
           </form>
-          <button onClick={(e) => { e.preventDefault(); toast.success('Action completed successfully!'); }} className="flex items-center gap-2 rounded-full bg-white px-4 py-2.5 text-sm font-black text-brand-blue border border-sky-100 shadow-sm hover:bg-sky-50 transition">
+          <button onClick={(e) => { e.preventDefault(); toast.info('Opening advanced filters...'); }} className="flex items-center gap-2 rounded-full bg-white px-4 py-2.5 text-sm font-black text-brand-blue border border-sky-100 shadow-sm hover:bg-sky-50 transition">
             <Filter size={16} /> Filter
           </button>
         </div>
@@ -99,9 +99,9 @@ export default function AdminProductsPage() {
                       </div>
                     </div>
                   </td>
-                  <td className="px-5 py-4 font-bold text-slate-700">{product.category}</td>
+                  <td className="px-5 py-4 font-bold text-slate-700 dark:text-slate-300">{product.category}</td>
                   <td className="px-5 py-4">
-                    <p className="font-black text-slate-900">{product.price}</p>
+                    <p className="font-black text-slate-900 dark:text-slate-100">{product.price}</p>
                     <span className={`text-[10px] font-black uppercase tracking-wider ${
                       product.stock === 'Out of Stock' ? 'text-rose-600' : 
                       product.stock === 'Low' ? 'text-amber-600' : 'text-emerald-600'
@@ -123,7 +123,7 @@ export default function AdminProductsPage() {
                         Approve
                       </button>
                     ) : (
-                      <button onClick={() => openEdit(product)} className="rounded-full bg-slate-100 px-4 py-1.5 text-xs font-black text-slate-600 hover:bg-slate-200 transition">
+                      <button onClick={() => openEdit(product)} className="rounded-full bg-slate-100 px-4 py-1.5 text-xs font-black text-slate-600 dark:text-slate-400 hover:bg-slate-200 transition">
                         Edit
                       </button>
                     )}

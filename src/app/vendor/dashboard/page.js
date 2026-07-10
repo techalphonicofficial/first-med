@@ -4,6 +4,8 @@ import Link from "next/link";
 import { AlertTriangle, ArrowRight, BarChart2, Box, CheckCircle2, Clock3, Package, ShoppingBag, Star, TrendingUp, Truck, Users, Zap } from "lucide-react";
 import { toast } from "sonner";
 
+import { useState } from "react";
+
 const stats = [
   { label: "Today's revenue",  value: "Rs. 12,480", sub: "+18% vs yesterday", icon: TrendingUp,  color: "text-emerald-600", bg: "bg-emerald-50"  },
   { label: "Pending orders",   value: "12",          sub: "3 need acceptance",  icon: Clock3,      color: "text-amber-600",  bg: "bg-amber-50"   },
@@ -11,7 +13,7 @@ const stats = [
   { label: "Avg. rating",      value: "4.7 ★",       sub: "Based on 124 orders",icon: Star,       color: "text-yellow-600", bg: "bg-yellow-50"  },
 ];
 
-const recentOrders = [
+const initialOrders = [
   { id: "FM-3041", customer: "Priya S.",  items: 3, total: 430, status: "Pending",   slot: "Today, 6 PM"    },
   { id: "FM-3040", customer: "Arjun M.", items: 1, total: 189, status: "Processing", slot: "Express"        },
   { id: "FM-3039", customer: "Sunita R.",items: 2, total: 560, status: "Ready",      slot: "Today, 8 PM"    },
@@ -37,6 +39,13 @@ const navLinks = [
 ];
 
 export default function VendorDashboardPage() {
+  const [orders, setOrders] = useState(initialOrders);
+
+  function advanceOrder(id, newStatus) {
+    setOrders(prev => prev.map(o => o.id === id ? { ...o, status: newStatus } : o));
+    toast.success(`Order ${id} marked as ${newStatus}`);
+  }
+
   return (
     <div className="mx-auto max-w-[104rem] px-4 py-8 pb-28 sm:px-6 lg:px-8 xl:px-10">
       {/* Page header */}
@@ -120,7 +129,7 @@ export default function VendorDashboardPage() {
                   </tr>
                 </thead>
                 <tbody>
-                  {recentOrders.map((order) => {
+                  {orders.map((order) => {
                     const sc = statusConfig[order.status];
                     return (
                       <tr key={order.id} className="border-b border-sky-50 last:border-0">
@@ -144,10 +153,10 @@ export default function VendorDashboardPage() {
                         </td>
                         <td className="py-3">
                           {order.status === "Pending" && (
-                            <button onClick={(e) => { e.preventDefault(); toast.success('Action completed successfully!'); }} className="rounded-full bg-brand-blue px-3 py-1 text-xs font-black text-white hover:bg-[#066CAB]">Accept</button>
+                            <button onClick={() => advanceOrder(order.id, "Processing")} className="rounded-full bg-brand-blue px-3 py-1 text-xs font-black text-white hover:bg-[#066CAB]">Accept</button>
                           )}
                           {order.status === "Processing" && (
-                            <button onClick={(e) => { e.preventDefault(); toast.success('Action completed successfully!'); }} className="rounded-full bg-purple-100 px-3 py-1 text-xs font-black text-purple-700">Mark ready</button>
+                            <button onClick={() => advanceOrder(order.id, "Ready")} className="rounded-full bg-purple-100 px-3 py-1 text-xs font-black text-purple-700">Mark ready</button>
                           )}
                           {(order.status === "Ready" || order.status === "Completed") && (
                             <span className="text-xs font-semibold text-slate-400">—</span>
@@ -168,7 +177,7 @@ export default function VendorDashboardPage() {
             <h2 className="mb-4 text-base font-black">Quick access</h2>
             <div className="grid gap-2">
               {navLinks.map(({ label, href, icon: Icon }) => (
-                <Link key={label} href={href} className="flex items-center gap-3 rounded-xl px-3 py-2.5 text-sm font-bold text-slate-600 transition hover:bg-sky-50 hover:text-brand-blue">
+                <Link key={label} href={href} className="flex items-center gap-3 rounded-xl px-3 py-2.5 text-sm font-bold text-slate-600 dark:text-slate-400 transition hover:bg-sky-50 hover:text-brand-blue">
                   <Icon size={16} className="text-brand-blue" /> {label}
                 </Link>
               ))}
@@ -184,7 +193,7 @@ export default function VendorDashboardPage() {
               ].map(({ label, value, color }) => (
                 <div key={label}>
                   <div className="mb-1 flex justify-between text-xs font-bold text-slate-500">
-                    <span>{label}</span><span className="font-black text-slate-700">{value}%</span>
+                    <span>{label}</span><span className="font-black text-slate-700 dark:text-slate-300">{value}%</span>
                   </div>
                   <div className="h-2 rounded-full bg-sky-100">
                     <div className={`h-2 rounded-full ${color}`} style={{ width: `${value}%` }} />
@@ -201,7 +210,7 @@ export default function VendorDashboardPage() {
               { icon: Users, label: "New customers",      value: "7"         },
             ].map(({ icon: Icon, label, value }) => (
               <div key={label} className="flex items-center justify-between border-b border-sky-50 py-2.5 last:border-0">
-                <div className="flex items-center gap-2 text-sm font-semibold text-slate-600">
+                <div className="flex items-center gap-2 text-sm font-semibold text-slate-600 dark:text-slate-400">
                   <Icon size={14} className="text-brand-blue" /> {label}
                 </div>
                 <span className="text-sm font-black">{value}</span>

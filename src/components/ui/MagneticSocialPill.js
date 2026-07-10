@@ -1,10 +1,9 @@
 "use client";
 
 import { motion, useMotionValue, useSpring } from "framer-motion";
-import Link from "next/link";
 import { useRef } from "react";
 
-export function Button({ href, className = "", children, ...props }) {
+export function MagneticSocialPill({ href, label, hoverColorClass }) {
   const ref = useRef(null);
   
   const x = useMotionValue(0);
@@ -20,8 +19,8 @@ export function Button({ href, className = "", children, ...props }) {
     const centerX = left + width / 2;
     const centerY = top + height / 2;
     
-    x.set((e.clientX - centerX) * 0.15);
-    y.set((e.clientY - centerY) * 0.15);
+    x.set((e.clientX - centerX) * 0.25);
+    y.set((e.clientY - centerY) * 0.25);
   };
 
   const handleMouseLeave = () => {
@@ -29,34 +28,21 @@ export function Button({ href, className = "", children, ...props }) {
     y.set(0);
   };
 
-  const classes = `blue-button px-5 py-2.5 inline-block ${className}`;
-
-  if (href) {
-    return (
-      <motion.div
-        ref={ref}
-        onMouseMove={handleMouseMove}
-        onMouseLeave={handleMouseLeave}
-        style={{ x: mouseXSpring, y: mouseYSpring }}
-        className="inline-block"
-      >
-        <Link href={href} className={classes} {...props}>
-          {children}
-        </Link>
-      </motion.div>
-    );
-  }
-
   return (
-    <motion.button
+    <motion.a
       ref={ref}
+      href={href}
+      target="_blank"
+      rel="noopener noreferrer"
+      aria-label={label}
       onMouseMove={handleMouseMove}
       onMouseLeave={handleMouseLeave}
       style={{ x: mouseXSpring, y: mouseYSpring }}
-      className={classes}
-      {...props}
+      whileHover={{ scale: 1.05 }}
+      className={`group relative flex items-center justify-center rounded-full bg-white/5 backdrop-blur-md border border-white/10 px-5 py-2.5 text-xs font-black text-slate-300 shadow-card transition-colors duration-300 ${hoverColorClass}`}
     >
-      {children}
-    </motion.button>
+      <span className="relative z-10">{label}</span>
+      <div className="absolute inset-0 rounded-full bg-white/0 transition-colors duration-300 group-hover:bg-white/10" />
+    </motion.a>
   );
 }

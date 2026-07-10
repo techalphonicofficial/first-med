@@ -33,7 +33,7 @@ export default function DeliveryDashboardPage() {
       {!online && (
         <div className="mb-6 rounded-2xl bg-slate-50 p-6 text-center shadow-inner">
           <Car className="mx-auto mb-3 text-slate-300" size={32} />
-          <h2 className="text-lg font-black text-slate-600">You are offline</h2>
+          <h2 className="text-lg font-black text-slate-600 dark:text-slate-400">You are offline</h2>
           <p className="mt-1 text-sm font-semibold text-slate-400">Toggle your status to online to start receiving delivery requests.</p>
         </div>
       )}
@@ -70,7 +70,7 @@ export default function DeliveryDashboardPage() {
             <p className="text-sm font-black text-emerald-600"><Truck className="mr-2 inline" size={16} /> Live region map</p>
             <p className="mt-1 text-xs font-semibold text-slate-400">Sector 21 & surrounding areas</p>
           </div>
-          <button onClick={(e) => { e.preventDefault(); toast.success('Action completed successfully!'); }} className="absolute right-5 top-5 grid h-10 w-10 place-items-center rounded-full bg-white text-slate-600 shadow-card hover:text-brand-blue">
+          <button onClick={(e) => { e.preventDefault(); toast.info('Opening map settings...'); }} className="absolute right-5 top-5 grid h-10 w-10 place-items-center rounded-full bg-white text-slate-600 dark:text-slate-400 shadow-card hover:text-brand-blue">
             <Settings size={18} />
           </button>
         </div>
@@ -94,20 +94,20 @@ export default function DeliveryDashboardPage() {
                 <div className="mb-4 relative">
                   <div className="absolute -left-6 top-1 grid h-4 w-4 place-items-center rounded-full bg-sky-100 ring-4 ring-white"><div className="h-1.5 w-1.5 rounded-full bg-brand-blue" /></div>
                   <p className="text-xs font-bold text-slate-400">Pickup</p>
-                  <p className="font-black text-slate-800">{del.pickup}</p>
+                  <p className="font-black text-slate-800 dark:text-slate-200">{del.pickup}</p>
                 </div>
                 <div className="relative">
                   <div className="absolute -left-6 top-1 grid h-4 w-4 place-items-center rounded-full bg-emerald-100 ring-4 ring-white"><div className="h-1.5 w-1.5 rounded-full bg-emerald-500" /></div>
                   <p className="text-xs font-bold text-slate-400">Drop ({del.dist})</p>
-                  <p className="font-black text-slate-800">{del.drop}</p>
+                  <p className="font-black text-slate-800 dark:text-slate-200">{del.drop}</p>
                 </div>
               </div>
 
               <div className="mt-5 grid grid-cols-2 gap-2">
-                <button onClick={(e) => { e.preventDefault(); toast.success('Action completed successfully!'); }} className="flex items-center justify-center gap-2 rounded-xl bg-brand-blue py-2.5 text-sm font-black text-white hover:bg-[#066CAB] transition">
+                <button onClick={(e) => { e.preventDefault(); toast.info('Starting navigation...'); }} className="flex items-center justify-center gap-2 rounded-xl bg-brand-blue py-2.5 text-sm font-black text-white hover:bg-[#066CAB] transition">
                   <Navigation size={15} /> Navigate
                 </button>
-                <button onClick={(e) => { e.preventDefault(); toast.success('Action completed successfully!'); }} className="flex items-center justify-center gap-2 rounded-xl bg-sky-50 py-2.5 text-sm font-black text-brand-blue hover:bg-sky-100 transition">
+                <button onClick={(e) => { e.preventDefault(); toast.info('Opening order details...'); }} className="flex items-center justify-center gap-2 rounded-xl bg-sky-50 py-2.5 text-sm font-black text-brand-blue hover:bg-sky-100 transition">
                   <Package size={15} /> Details
                 </button>
               </div>

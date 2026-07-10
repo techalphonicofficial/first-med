@@ -11,7 +11,7 @@ export default function DeliveryEarningsPage() {
           <p className="text-xs font-black uppercase tracking-widest text-emerald-600">Fast delivery partner</p>
           <h1 className="mt-1 text-4xl font-black">Earnings & Payouts</h1>
         </div>
-        <button onClick={(e) => { e.preventDefault(); toast.success('Action completed successfully!'); }} className="flex items-center gap-2 rounded-full bg-white px-5 py-2.5 text-sm font-black text-emerald-600 shadow-card hover:bg-emerald-50 transition">
+        <button onClick={(e) => { e.preventDefault(); toast.info('Preparing statement for download...'); }} className="flex items-center gap-2 rounded-full bg-white px-5 py-2.5 text-sm font-black text-emerald-600 shadow-card hover:bg-emerald-50 transition">
           <Download size={15} /> Download Statement
         </button>
       </div>
@@ -31,7 +31,7 @@ export default function DeliveryEarningsPage() {
             <IndianRupee size={24} />
             <h2 className="text-sm font-black uppercase tracking-widest">Total Earned (This Week)</h2>
           </div>
-          <p className="text-4xl font-black text-slate-900 mb-2">Rs. 3,240</p>
+          <p className="text-4xl font-black text-slate-900 dark:text-slate-100 mb-2">Rs. 3,240</p>
           <p className="text-xs font-semibold text-emerald-600 flex items-center gap-1">
             <TrendingUp size={12} /> +15% vs last week
           </p>
@@ -49,10 +49,10 @@ export default function DeliveryEarningsPage() {
           ].map((log) => (
             <div key={log.date} className="flex items-center justify-between border-b border-emerald-50 pb-4 last:border-0 last:pb-0">
               <div>
-                <p className={`font-black ${log.active ? 'text-emerald-600' : 'text-slate-800'}`}>{log.day}</p>
+                <p className={`font-black ${log.active ? 'text-emerald-600' : 'text-slate-800 dark:text-slate-200'}`}>{log.day}</p>
                 <p className="text-xs font-semibold text-slate-400">{log.date} • {log.trips} completed trips</p>
               </div>
-              <p className="text-lg font-black text-slate-900">{log.amount}</p>
+              <p className="text-lg font-black text-slate-900 dark:text-slate-100">{log.amount}</p>
             </div>
           ))}
         </div>

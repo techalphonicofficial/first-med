@@ -13,7 +13,7 @@ export default function Error({ error, reset }) {
       <div className="mb-6 grid h-20 w-20 place-items-center rounded-full bg-rose-50 text-rose-500">
         <AlertTriangle size={32} />
       </div>
-      <h2 className="mb-4 text-3xl font-black text-brand-dark">Something went wrong!</h2>
+      <h2 className="mb-4 text-3xl font-black text-brand-dark dark:text-white">Something went wrong!</h2>
       <p className="mb-8 text-sm font-semibold text-slate-500">
         We encountered an unexpected error while loading this page.
       </p>

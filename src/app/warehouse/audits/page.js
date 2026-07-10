@@ -15,13 +15,13 @@ export default function WarehouseAuditsPage() {
       <div className="flex flex-wrap items-center justify-between gap-4">
         <div>
           <p className="text-xs font-black uppercase tracking-[0.18em] text-brand-blue">Warehouse Operations</p>
-          <h1 className="mt-1 text-3xl font-black text-slate-900">Stock Audits & Damage Logs</h1>
+          <h1 className="mt-1 text-3xl font-black text-slate-900 dark:text-slate-100">Stock Audits & Damage Logs</h1>
         </div>
         <div className="flex gap-3">
-          <button onClick={(e) => { e.preventDefault(); toast.success('Action completed successfully!'); }} className="flex items-center gap-2 rounded-full bg-white border border-rose-100 text-rose-600 px-5 py-2.5 text-sm font-black shadow-sm hover:bg-rose-50 transition">
+          <button onClick={(e) => { e.preventDefault(); toast.info('Opening damage report form...'); }} className="flex items-center gap-2 rounded-full bg-white border border-rose-100 text-rose-600 px-5 py-2.5 text-sm font-black shadow-sm hover:bg-rose-50 transition">
             <AlertTriangle size={16} /> Log Damage
           </button>
-          <button onClick={(e) => { e.preventDefault(); toast.success('Action completed successfully!'); }} className="flex items-center gap-2 rounded-full bg-brand-blue px-5 py-2.5 text-sm font-black text-white shadow-glow hover:-translate-y-0.5 transition">
+          <button onClick={(e) => { e.preventDefault(); toast.info('Initializing cycle count scanner...'); }} className="flex items-center gap-2 rounded-full bg-brand-blue px-5 py-2.5 text-sm font-black text-white shadow-glow hover:-translate-y-0.5 transition">
             <ClipboardCheck size={16} /> Start Cycle Count
           </button>
         </div>
@@ -46,7 +46,7 @@ export default function WarehouseAuditsPage() {
                     <p className="font-black text-brand-blue">{audit.id}</p>
                     <p className="text-xs font-semibold text-slate-400">{audit.date} • By {audit.operator}</p>
                   </td>
-                  <td className="px-5 py-4 font-bold text-slate-700">{audit.type}</td>
+                  <td className="px-5 py-4 font-bold text-slate-700 dark:text-slate-300">{audit.type}</td>
                   <td className="px-5 py-4">
                     <span className={`font-black ${audit.variance.startsWith('-') ? 'text-rose-600' : audit.variance.startsWith('+') ? 'text-emerald-600' : 'text-slate-500'}`}>
                       {audit.variance}
@@ -60,7 +60,7 @@ export default function WarehouseAuditsPage() {
                     </span>
                   </td>
                   <td className="px-5 py-4 text-right">
-                    <button onClick={(e) => { e.preventDefault(); toast.success('Action completed successfully!'); }} className="inline-flex items-center gap-1 rounded-full bg-slate-100 px-3 py-1.5 text-xs font-black text-slate-600 hover:bg-slate-200 transition">
+                    <button onClick={(e) => { e.preventDefault(); toast.info('Generating audit report PDF...'); }} className="inline-flex items-center gap-1 rounded-full bg-slate-100 px-3 py-1.5 text-xs font-black text-slate-600 dark:text-slate-400 hover:bg-slate-200 transition">
                       <FileText size={14} /> Report
                     </button>
                   </td>

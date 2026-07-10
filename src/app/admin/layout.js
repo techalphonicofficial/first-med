@@ -23,7 +23,7 @@ export default function AdminLayout({ children }) {
         <aside className="soft-card h-fit rounded-2xl p-4 sticky top-24">
           <div className="px-2 pb-4">
             <p className="text-xs font-black uppercase tracking-[0.18em] text-brand-blue">Platform</p>
-            <h2 className="mt-2 text-lg font-black text-slate-900">Admin Control</h2>
+            <h2 className="mt-2 text-lg font-black text-slate-900 dark:text-slate-100">Admin Control</h2>
           </div>
           <div className="grid gap-1.5">
             {adminLinks.map(({ href, label, icon: Icon }) => {
@@ -33,7 +33,7 @@ export default function AdminLayout({ children }) {
                   key={href}
                   href={href}
                   className={`flex items-center gap-3 rounded-xl px-3 py-2.5 text-sm font-black transition ${
-                    selected ? "bg-brand-blue text-white shadow-glow" : "text-slate-600 hover:bg-sky-50 hover:text-brand-blue"
+                    selected ? "bg-brand-blue text-white shadow-glow" : "text-slate-600 dark:text-slate-400 hover:bg-sky-50 hover:text-brand-blue"
                   }`}
                 >
                   <Icon size={16} className={selected ? "text-white" : "text-brand-blue"} />
@@ -49,7 +49,7 @@ export default function AdminLayout({ children }) {
           <div className="grid gap-1.5">
             <Link
               href="#"
-              className="flex items-center gap-3 rounded-xl px-3 py-2.5 text-sm font-black text-slate-600 hover:bg-slate-50 transition"
+              className="flex items-center gap-3 rounded-xl px-3 py-2.5 text-sm font-black text-slate-600 dark:text-slate-400 hover:bg-slate-50 transition"
             >
               <Settings size={16} className="text-slate-400" />
               <span className="truncate">Settings</span>

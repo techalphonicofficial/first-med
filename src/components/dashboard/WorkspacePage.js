@@ -24,7 +24,7 @@ const statusClasses = {
   "Near expiry": "bg-rose-100 text-rose-700",
   "In transit": "bg-amber-100 text-amber-700",
   "Pending count": "bg-amber-100 text-amber-700",
-  Paused: "bg-slate-100 text-slate-600",
+  Paused: "bg-slate-100 text-slate-600 dark:text-slate-400",
   Valid: "bg-emerald-100 text-emerald-700",
   Completed: "bg-emerald-100 text-emerald-700",
   Available: "bg-emerald-100 text-emerald-700",
@@ -114,7 +114,7 @@ export function WorkspacePage({ moduleKey, slug = [] }) {
         <aside className="soft-card h-fit rounded-2xl p-4">
           <div className="px-2 pb-4">
             <p className="text-xs font-black uppercase tracking-[0.18em] text-brand-blue">{module.eyebrow}</p>
-            <h2 className="mt-2 text-lg font-black text-slate-900">{module.title}</h2>
+            <h2 className="mt-2 text-lg font-black text-slate-900 dark:text-slate-100">{module.title}</h2>
           </div>
           <div className="grid gap-1.5">
             {module.nav.map(({ slug: itemSlug, label, icon: Icon }) => {
@@ -125,7 +125,7 @@ export function WorkspacePage({ moduleKey, slug = [] }) {
                   key={`${moduleKey}-${itemSlug || "home"}`}
                   href={href}
                   className={`flex items-center gap-3 rounded-xl px-3 py-2.5 text-sm font-black transition ${
-                    selected ? "bg-brand-blue text-white shadow-glow" : "text-slate-600 hover:bg-sky-50 hover:text-brand-blue"
+                    selected ? "bg-brand-blue text-white shadow-glow" : "text-slate-600 dark:text-slate-400 hover:bg-sky-50 hover:text-brand-blue"
                   }`}
                 >
                   <Icon size={16} className={selected ? "text-white" : "text-brand-blue"} />
@@ -172,7 +172,7 @@ export function WorkspacePage({ moduleKey, slug = [] }) {
                     <Clock3 size={16} />
                   </span>
                 </div>
-                <p className="mt-3 text-3xl font-black text-slate-900">{metric.value}</p>
+                <p className="mt-3 text-3xl font-black text-slate-900 dark:text-slate-100">{metric.value}</p>
                 <p className="mt-1 text-xs font-semibold text-slate-400">{metric.note}</p>
               </div>
             ))}
@@ -182,7 +182,7 @@ export function WorkspacePage({ moduleKey, slug = [] }) {
             <div className="soft-card overflow-hidden rounded-2xl">
               <div className="flex flex-wrap items-center justify-between gap-3 border-b border-sky-100 bg-sky-50/50 px-5 py-4">
                 <div>
-                  <h2 className="text-xl font-black text-slate-900">{active.label} queue</h2>
+                  <h2 className="text-xl font-black text-slate-900 dark:text-slate-100">{active.label} queue</h2>
                   <p className="mt-1 text-xs font-bold text-slate-500">Static frontend data prepared for API wiring later.</p>
                 </div>
                 <div className="relative">
@@ -200,7 +200,7 @@ export function WorkspacePage({ moduleKey, slug = [] }) {
                       key={state}
                       onClick={() => setSelectedState(state)}
                       className={`shrink-0 rounded-full px-4 py-2 text-xs font-black transition ${
-                        selectedState === state ? "bg-brand-blue text-white shadow-glow" : "bg-white text-slate-600 shadow-card hover:bg-sky-50 hover:text-brand-blue"
+                        selectedState === state ? "bg-brand-blue text-white shadow-glow" : "bg-white text-slate-600 dark:text-slate-400 shadow-card hover:bg-sky-50 hover:text-brand-blue"
                       }`}
                     >
                       {state}
@@ -212,7 +212,7 @@ export function WorkspacePage({ moduleKey, slug = [] }) {
                 <div className="grid gap-5 p-5 lg:grid-cols-[1fr_280px]">
                   <form className="grid gap-4">
                     <div className="grid gap-4 sm:grid-cols-2">
-                      <label className="grid gap-2 text-sm font-black text-slate-700">
+                      <label className="grid gap-2 text-sm font-black text-slate-700 dark:text-slate-300">
                         Work item
                         <input
                           value={draft.title}
@@ -221,7 +221,7 @@ export function WorkspacePage({ moduleKey, slug = [] }) {
                           className="rounded-2xl border border-sky-100 bg-sky-50 px-4 py-3 text-sm font-bold outline-brand-blue"
                         />
                       </label>
-                      <label className="grid gap-2 text-sm font-black text-slate-700">
+                      <label className="grid gap-2 text-sm font-black text-slate-700 dark:text-slate-300">
                         Owner
                         <input
                           value={draft.owner}
@@ -232,7 +232,7 @@ export function WorkspacePage({ moduleKey, slug = [] }) {
                       </label>
                     </div>
                     <div className="grid gap-4 sm:grid-cols-3">
-                      <label className="grid gap-2 text-sm font-black text-slate-700">
+                      <label className="grid gap-2 text-sm font-black text-slate-700 dark:text-slate-300">
                         Priority
                         <select
                           value={draft.priority}
@@ -244,7 +244,7 @@ export function WorkspacePage({ moduleKey, slug = [] }) {
                           <option>High</option>
                         </select>
                       </label>
-                      <label className="grid gap-2 text-sm font-black text-slate-700 sm:col-span-2">
+                      <label className="grid gap-2 text-sm font-black text-slate-700 dark:text-slate-300 sm:col-span-2">
                         Notes
                         <input
                           placeholder="Validation, reason, or operational context"
@@ -273,7 +273,7 @@ export function WorkspacePage({ moduleKey, slug = [] }) {
                     <p className="text-sm font-black text-brand-blue">Form checklist</p>
                     <div className="mt-3 grid gap-2">
                       {tasks.map((task) => (
-                        <div key={task.label} className="flex items-center justify-between rounded-xl bg-white px-3 py-2 text-xs font-black text-slate-600 shadow-sm">
+                        <div key={task.label} className="flex items-center justify-between rounded-xl bg-white px-3 py-2 text-xs font-black text-slate-600 dark:text-slate-400 shadow-sm">
                           {task.label}
                           <span className={task.status === "Ready" ? "text-emerald-600" : task.status === "Needs check" ? "text-amber-600" : "text-slate-400"}>{task.status}</span>
                         </div>
@@ -369,7 +369,7 @@ export function WorkspacePage({ moduleKey, slug = [] }) {
                     <h3 className="text-lg font-black">Payment states</h3>
                     <div className="mt-4 grid gap-2">
                       {["Ready", "Processing", "Successful", "Failed", "Refund pending"].map((state) => (
-                        <div key={state} className={`rounded-xl px-3 py-2 text-sm font-black ${paymentStatus === state ? "bg-brand-blue text-white" : "bg-sky-50 text-slate-600"}`}>
+                        <div key={state} className={`rounded-xl px-3 py-2 text-sm font-black ${paymentStatus === state ? "bg-brand-blue text-white" : "bg-sky-50 text-slate-600 dark:text-slate-400"}`}>
                           {state}
                         </div>
                       ))}
@@ -383,7 +383,7 @@ export function WorkspacePage({ moduleKey, slug = [] }) {
                       <div key={`${item.event}-${item.time}`} className="soft-card rounded-2xl p-4">
                         <div className="flex flex-wrap items-center justify-between gap-3">
                           <div>
-                            <p className="font-black text-slate-900">{item.event}</p>
+                            <p className="font-black text-slate-900 dark:text-slate-100">{item.event}</p>
                             <p className="mt-1 text-xs font-semibold text-slate-500">{item.actor} - {item.time}</p>
                           </div>
                           <span className="rounded-full bg-brand-softBlue px-3 py-1 text-xs font-black text-brand-blue">{item.type}</span>
@@ -435,9 +435,9 @@ export function WorkspacePage({ moduleKey, slug = [] }) {
                     {(recordsQuery.isLoading ? [] : records).map((row) => (
                       <tr key={row.id} className="border-b border-sky-50 last:border-0 hover:bg-sky-50/40">
                         <td className="px-5 py-4 font-black text-brand-blue">{row.id}</td>
-                        <td className="px-5 py-4 font-bold text-slate-700">{row.title}</td>
+                        <td className="px-5 py-4 font-bold text-slate-700 dark:text-slate-300">{row.title}</td>
                         <td className="px-5 py-4">
-                          <span className={`rounded-full px-3 py-1 text-xs font-black ${statusClasses[row.status] || "bg-slate-100 text-slate-600"}`}>{row.status}</span>
+                          <span className={`rounded-full px-3 py-1 text-xs font-black ${statusClasses[row.status] || "bg-slate-100 text-slate-600 dark:text-slate-400"}`}>{row.status}</span>
                         </td>
                         <td className="px-5 py-4 text-xs font-semibold text-slate-500">{row.context}</td>
                         <td className="px-5 py-4">
@@ -471,7 +471,7 @@ export function WorkspacePage({ moduleKey, slug = [] }) {
                       <span className={`absolute -left-6 top-1 grid h-5 w-5 place-items-center rounded-full ring-4 ring-white ${
                         index === 0 ? "bg-brand-blue" : index === 1 ? "bg-amber-400" : "bg-sky-100"
                       }`} />
-                      <p className="text-sm font-black text-slate-800">{task.label}</p>
+                      <p className="text-sm font-black text-slate-800 dark:text-slate-200">{task.label}</p>
                       <p className="mt-0.5 text-xs font-semibold text-slate-400">{task.status}</p>
                     </div>
                   ))}
@@ -490,7 +490,7 @@ export function WorkspacePage({ moduleKey, slug = [] }) {
                 <h2 className="text-lg font-black">Expected states</h2>
                 <div className="mt-4 grid gap-2">
                   {["Loading skeletons", "Empty state", "Validation feedback", "Permission denied", "Audit trail"].map((state) => (
-                    <div key={state} className="flex items-center justify-between rounded-xl bg-sky-50 px-3 py-2 text-sm font-black text-slate-600">
+                    <div key={state} className="flex items-center justify-between rounded-xl bg-sky-50 px-3 py-2 text-sm font-black text-slate-600 dark:text-slate-400">
                       {state}
                       {state === "Loading skeletons" ? <Loader2 size={14} className="animate-spin text-brand-blue" /> : <span className="h-2 w-2 rounded-full bg-brand-blue" />}
                     </div>

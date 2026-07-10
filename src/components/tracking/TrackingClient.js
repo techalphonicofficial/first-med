@@ -58,7 +58,7 @@ export function TrackingClient({ id }) {
           </div>
 
           <div className="absolute bottom-6 left-6 rounded-2xl bg-white p-4 shadow-card">
-            <p className="text-sm font-black text-brand-dark">Arriving at</p>
+            <p className="text-sm font-black text-brand-dark dark:text-white">Arriving at</p>
             <p className="mt-1 text-xs font-semibold text-slate-500">Sector 21, Block C</p>
           </div>
         </div>
@@ -70,7 +70,7 @@ export function TrackingClient({ id }) {
               <div className="flex items-center gap-2 rounded-full bg-brand-softBlue px-3 py-1.5 text-xs font-black text-brand-blue">
                 <Clock size={14} /> Expected Delivery
               </div>
-              <h2 className="mt-4 text-5xl font-black text-brand-dark">{track.eta}</h2>
+              <h2 className="mt-4 text-5xl font-black text-brand-dark dark:text-white">{track.eta}</h2>
               <p className="mt-2 text-sm font-semibold text-slate-500">Partner is heading to your location.</p>
             </div>
             
@@ -96,7 +96,7 @@ export function TrackingClient({ id }) {
                       </div>
                     </div>
                     <div>
-                      <p className={`font-black ${active ? "text-brand-dark" : "text-slate-400"}`}>{step.label}</p>
+                      <p className={`font-black ${active ? "text-brand-dark dark:text-white" : "text-slate-400"}`}>{step.label}</p>
                       <p className={`text-xs font-bold ${active ? "text-slate-500" : "text-slate-300"}`}>{step.time}</p>
                     </div>
                   </div>

@@ -40,7 +40,7 @@ export default function AccountDashboardPage() {
                 <ShieldCheck size={24} />
               </div>
               <div>
-                <h2 className="text-lg font-black text-brand-dark">Prescription Status</h2>
+                <h2 className="text-lg font-black text-brand-dark dark:text-white">Prescription Status</h2>
                 <p className="text-sm font-semibold text-slate-500">
                   {prescription.status === "approved" ? "Verified and ready for Rx checkout." : "No active prescription uploaded."}
                 </p>
@@ -108,7 +108,7 @@ export default function AccountDashboardPage() {
                 { label: "Notifications", href: "/account/notifications", icon: Bell },
                 { label: "Profile Settings", href: "/account/profile", icon: User },
               ].map(({ label, href, icon: Icon }) => (
-                <Link key={label} href={href} className="flex items-center gap-3 rounded-xl p-3 text-sm font-bold text-slate-600 transition hover:bg-sky-50 hover:text-brand-blue">
+                <Link key={label} href={href} className="flex items-center gap-3 rounded-xl p-3 text-sm font-bold text-slate-600 dark:text-slate-400 transition hover:bg-sky-50 hover:text-brand-blue">
                   <Icon size={18} className="text-brand-blue" /> {label}
                 </Link>
               ))}

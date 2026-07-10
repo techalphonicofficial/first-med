@@ -55,7 +55,7 @@ export default function FamilyProfilesPage() {
             <h2 className="mt-5 text-xl font-black">{profile.name}</h2>
             <p className="mt-1 text-sm font-bold text-brand-blue">{profile.relation}</p>
             <div className="mt-5 grid gap-2">
-              <div className="flex items-center gap-2 rounded-2xl bg-sky-50 px-3 py-2 text-sm font-black text-slate-600">
+              <div className="flex items-center gap-2 rounded-2xl bg-sky-50 px-3 py-2 text-sm font-black text-slate-600 dark:text-slate-400">
                 <Cake size={15} className="text-brand-blue" /> {profile.age} years
               </div>
               <div className="flex items-center gap-2 rounded-2xl bg-emerald-50 px-3 py-2 text-sm font-black text-emerald-700">

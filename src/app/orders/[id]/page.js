@@ -15,7 +15,7 @@ export default function GuestOrderDetailPage({ params }) {
         <Link href="/orders" className="text-sm font-bold text-brand-blue hover:underline mb-4 inline-block">
           &larr; Back to Order Tracking
         </Link>
-        <h1 className="text-3xl font-black text-slate-900">Order #{orderId}</h1>
+        <h1 className="text-3xl font-black text-slate-900 dark:text-slate-100">Order #{orderId}</h1>
         <p className="text-slate-500 font-semibold mt-1">Placed on July 5, 2026</p>
       </div>
 
@@ -32,14 +32,14 @@ export default function GuestOrderDetailPage({ params }) {
                 <div className="absolute -left-6 grid h-5 w-5 place-items-center rounded-full bg-emerald-500 text-white ring-4 ring-white">
                   <CheckCircle2 size={12} />
                 </div>
-                <h3 className="font-black text-slate-900">Order Confirmed</h3>
+                <h3 className="font-black text-slate-900 dark:text-slate-100">Order Confirmed</h3>
                 <p className="text-xs font-semibold text-slate-500">July 5, 10:30 AM</p>
               </div>
               <div className="relative">
                 <div className="absolute -left-6 grid h-5 w-5 place-items-center rounded-full bg-emerald-500 text-white ring-4 ring-white">
                   <CheckCircle2 size={12} />
                 </div>
-                <h3 className="font-black text-slate-900">Packed</h3>
+                <h3 className="font-black text-slate-900 dark:text-slate-100">Packed</h3>
                 <p className="text-xs font-semibold text-slate-500">July 5, 11:15 AM</p>
               </div>
               <div className="relative">
@@ -65,14 +65,14 @@ export default function GuestOrderDetailPage({ params }) {
             <div className="divide-y divide-sky-50">
               <div className="flex justify-between py-4">
                 <div>
-                  <p className="font-black text-slate-800">Paracetamol 500mg</p>
+                  <p className="font-black text-slate-800 dark:text-slate-200">Paracetamol 500mg</p>
                   <p className="text-sm font-semibold text-slate-500">Qty: 2</p>
                 </div>
                 <p className="font-black text-brand-blue">Rs. 90</p>
               </div>
               <div className="flex justify-between py-4">
                 <div>
-                  <p className="font-black text-slate-800">Vitamin C Zinc Supplements</p>
+                  <p className="font-black text-slate-800 dark:text-slate-200">Vitamin C Zinc Supplements</p>
                   <p className="text-sm font-semibold text-slate-500">Qty: 1</p>
                 </div>
                 <p className="font-black text-brand-blue">Rs. 120</p>
@@ -85,12 +85,12 @@ export default function GuestOrderDetailPage({ params }) {
         <div className="space-y-6">
           <div className="soft-card rounded-2xl p-6 bg-slate-50">
             <h3 className="text-sm font-black uppercase tracking-widest text-slate-500 mb-4">Payment Summary</h3>
-            <div className="space-y-2 text-sm font-semibold text-slate-600 border-b border-slate-200 pb-4 mb-4">
+            <div className="space-y-2 text-sm font-semibold text-slate-600 dark:text-slate-400 border-b border-slate-200 pb-4 mb-4">
               <div className="flex justify-between"><span>Subtotal</span><span>Rs. 210</span></div>
               <div className="flex justify-between"><span>Delivery</span><span>Rs. 40</span></div>
               <div className="flex justify-between text-emerald-600"><span>Discount</span><span>-Rs. 20</span></div>
             </div>
-            <div className="flex justify-between font-black text-slate-900 text-lg">
+            <div className="flex justify-between font-black text-slate-900 dark:text-slate-100 text-lg">
               <span>Total</span>
               <span>Rs. 230</span>
             </div>
@@ -101,7 +101,7 @@ export default function GuestOrderDetailPage({ params }) {
 
           <div className="soft-card rounded-2xl p-6 bg-white border border-sky-100">
             <h3 className="text-sm font-black uppercase tracking-widest text-slate-500 mb-3">Delivery Address</h3>
-            <p className="text-sm font-bold text-slate-800 mb-1 flex items-start gap-2">
+            <p className="text-sm font-bold text-slate-800 dark:text-slate-200 mb-1 flex items-start gap-2">
               <MapPin size={16} className="text-brand-blue shrink-0 mt-0.5" />
               <span>Block C, Sector 21<br/>Noida, UP 201301</span>
             </p>

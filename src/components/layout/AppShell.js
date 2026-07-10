@@ -3,7 +3,7 @@
 import Link from "next/link";
 import Image from "next/image";
 import { usePathname } from "next/navigation";
-import { Menu, Search, ShoppingCart, UserRound, X } from "lucide-react";
+import { Menu, Search, ShoppingCart, UserRound, X, ShieldCheck, Lock, CheckCircle } from "lucide-react";
 import { useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
 import { useAppStore } from "@/store/useAppStore";
@@ -14,6 +14,10 @@ import { ToastViewport } from "@/components/ui/ToastViewport";
 import { ProtectedNotice } from "@/components/layout/ProtectedNotice";
 import { BottomNav } from "@/components/layout/BottomNav";
 import { GlobalSearch } from "@/components/layout/GlobalSearch";
+import { GooeyNav } from "@/components/ui/GooeyNav";
+import { MagneticSocialPill } from "@/components/ui/MagneticSocialPill";
+import { AnimatedFooterLink } from "@/components/motion/AnimatedFooterLink";
+import { ThemeToggle } from "@/components/ui/ThemeToggle";
 
 const nav = [
   ["Products", "/products"],
@@ -58,7 +62,7 @@ export function AppShell({ children }) {
       <GlobalSearch open={searchOpen} onClose={() => setSearchOpen(false)} />
 
       {/* Sticky Header */}
-      <header className="sticky top-0 z-50 border-b border-sky-100/80 bg-white/80 backdrop-blur-xl print:hidden">
+      <header className="sticky top-0 z-50 border-b border-sky-100/80 bg-white/80 backdrop-blur-xl transition-colors dark:border-slate-800 dark:bg-slate-950/80 print:hidden">
         <nav className="mx-auto flex h-16 max-w-[104rem] items-center justify-between px-4 sm:px-6 lg:px-8 xl:px-10 2xl:px-12" aria-label="Main navigation">
           {/* Logo */}
           <Link href="/" className="flex shrink-0 items-center gap-2 font-black text-brand-blue">
@@ -89,6 +93,9 @@ export function AppShell({ children }) {
 
           {/* Actions */}
           <div className="flex items-center gap-2">
+            <div className="hidden md:block mr-2">
+              <ThemeToggle />
+            </div>
             <button
               onClick={() => setSearchOpen(true)}
               id="nav-search-btn"
@@ -129,25 +136,10 @@ export function AppShell({ children }) {
             </button>
           </div>
         </nav>
-        {/* Horizontal Mega Menu */}
-        {!isInternalModule && (
-          <div className="hidden border-t border-sky-100/50 bg-slate-50/80 backdrop-blur-md lg:block">
-            <div className="mx-auto max-w-[104rem] px-4 sm:px-6 lg:px-8 xl:px-10 2xl:px-12">
-              <div className="flex items-center gap-3 overflow-x-auto py-3 no-scrollbar">
-                {megaMenuCategories.map((item, idx) => (
-                  <Link
-                    key={idx}
-                    href={item.href}
-                    className="group flex shrink-0 items-center gap-2 rounded-full border border-sky-100 bg-white px-4 py-2 text-[13px] font-black text-slate-600 shadow-sm transition duration-200 hover:-translate-y-0.5 hover:border-brand-blue hover:bg-sky-50 hover:text-brand-blue hover:shadow-card"
-                  >
-                    <span className="flex h-4 w-4 items-center justify-center text-slate-400 transition-colors group-hover:text-brand-blue">
-                      {item.icon}
-                    </span>
-                    {item.name}
-                  </Link>
-                ))}
-              </div>
-            </div>
+        {/* Horizontal Mega Menu (Gooey Nav) */}
+        {!isInternalModule && !pathname.startsWith("/products") && (
+          <div className="hidden border-t border-sky-100/50 bg-slate-50/80 backdrop-blur-md transition-colors dark:border-slate-800 dark:bg-slate-900/80 lg:block relative z-40">
+             <GooeyNav items={megaMenuCategories} />
           </div>
         )}
       </header>
@@ -173,18 +165,21 @@ export function AppShell({ children }) {
               animate={{ x: 0 }}
               exit={{ x: "100%" }}
               transition={{ type: "spring", damping: 28, stiffness: 260 }}
-              className="absolute right-0 top-0 flex h-full w-[min(320px,100vw)] flex-col bg-white shadow-premium"
+              className="absolute right-0 top-0 flex h-full w-[min(320px,100vw)] flex-col bg-white shadow-premium dark:bg-slate-950 transition-colors"
             >
               {/* Drawer header */}
-              <div className="flex items-center justify-between border-b border-sky-100 p-5">
-                <Image src="/firstmed-logo.png" alt="FirstMED" width={100} height={28} className="h-7 w-auto" />
-                <button
-                  onClick={() => setDrawerOpen(false)}
-                  className="rounded-full bg-sky-50 p-2 text-brand-blue"
-                  aria-label="Close menu"
-                >
-                  <X size={18} />
-                </button>
+              <div className="flex items-center justify-between border-b border-sky-100 dark:border-slate-800 p-5 transition-colors">
+                <Image src="/firstmed-logo.png" alt="FirstMED" width={100} height={28} className="h-7 w-auto dark:brightness-0 dark:invert transition-all" />
+                <div className="flex items-center gap-4">
+                  <ThemeToggle />
+                  <button
+                    onClick={() => setDrawerOpen(false)}
+                    className="rounded-full bg-sky-50 p-2 text-brand-blue dark:bg-slate-900 dark:text-sky-400"
+                    aria-label="Close menu"
+                  >
+                    <X size={18} />
+                  </button>
+                </div>
               </div>
 
               {/* Nav links */}
@@ -198,7 +193,7 @@ export function AppShell({ children }) {
                         key={label}
                         href={href}
                         onClick={() => setDrawerOpen(false)}
-                        className={`rounded-2xl px-4 py-3 text-sm font-black transition ${active ? "bg-brand-blue text-white" : "bg-sky-50 text-slate-700 hover:bg-sky-100"}`}
+                        className={`rounded-2xl px-4 py-3 text-sm font-black transition ${active ? "bg-brand-blue text-white shadow-glow" : "bg-sky-50 text-slate-700 hover:bg-sky-100 dark:bg-slate-900/50 dark:text-slate-300 dark:hover:bg-slate-800"}`}
                       >
                         {label}
                       </Link>
@@ -210,7 +205,7 @@ export function AppShell({ children }) {
                 <div className="mt-6 grid grid-cols-2 gap-2">
                   <button
                     onClick={() => { setDrawerOpen(false); setSearchOpen(true); }}
-                    className="rounded-2xl bg-white px-4 py-3 text-center text-sm font-bold text-slate-600 shadow-card hover:text-brand-blue"
+                    className="rounded-2xl bg-white px-4 py-3 text-center text-sm font-bold text-slate-600 shadow-card hover:text-brand-blue dark:bg-slate-900/50 dark:text-slate-300 dark:hover:text-sky-400"
                   >
                     Search
                   </button>
@@ -219,7 +214,7 @@ export function AppShell({ children }) {
                       key={label}
                       href={href}
                       onClick={() => setDrawerOpen(false)}
-                      className="rounded-2xl bg-white px-4 py-3 text-center text-sm font-bold text-slate-600 shadow-card hover:text-brand-blue"
+                      className="rounded-2xl bg-white px-4 py-3 text-center text-sm font-bold text-slate-600 shadow-card hover:text-brand-blue dark:bg-slate-900/50 dark:text-slate-300 dark:hover:text-sky-400"
                     >
                       {label}
                     </Link>
@@ -233,7 +228,7 @@ export function AppShell({ children }) {
                         key={label}
                         href={href}
                         onClick={() => setDrawerOpen(false)}
-                        className="rounded-2xl bg-sky-50 px-4 py-3 text-sm font-black text-slate-700 hover:bg-sky-100 hover:text-brand-blue"
+                        className="rounded-2xl bg-sky-50 px-4 py-3 text-sm font-black text-slate-700 hover:bg-sky-100 hover:text-brand-blue dark:bg-slate-900/50 dark:text-slate-400 dark:hover:bg-slate-800 dark:hover:text-sky-400"
                       >
                         {label}
                       </Link>
@@ -243,8 +238,8 @@ export function AppShell({ children }) {
               </div>
 
               {/* Drawer footer */}
-              <div className="border-t border-sky-100 p-5">
-                <p className="text-xs font-bold text-slate-400">© {new Date().getFullYear()} FirstMED. All rights reserved.</p>
+              <div className="border-t border-sky-100 dark:border-slate-800 p-5 transition-colors">
+                <p className="text-xs font-bold text-slate-400 dark:text-slate-500">© {new Date().getFullYear()} FirstMED. All rights reserved.</p>
               </div>
             </motion.aside>
           </motion.div>
@@ -261,51 +256,57 @@ export function AppShell({ children }) {
 
 function Footer() {
   return (
-    <footer className="bg-gradient-to-br from-[#effcff] via-[#e5f7ff] to-[#f9fff5] pb-20 md:pb-0">
-      <div className="mx-auto max-w-[104rem] px-4 py-14 sm:px-6 lg:px-8 xl:px-10 2xl:px-12">
-        <div className="grid gap-10 md:grid-cols-[1.4fr_2fr]">
+    <footer className="relative bg-sky-50 pb-20 md:pb-0 overflow-hidden text-slate-600 dark:bg-slate-950 dark:text-slate-300 transition-colors">
+      {/* Subtle glowing radial gradients */}
+      <div className="absolute bottom-0 left-1/2 -translate-x-1/2 w-full max-w-[104rem] h-[500px] bg-[radial-gradient(ellipse_at_bottom,_var(--tw-gradient-stops))] from-brand-blue/10 via-sky-50/0 to-transparent dark:from-sky-900/20 dark:via-slate-950/0 pointer-events-none" />
 
+      {/* SVG Wave Divider */}
+      <div className="absolute top-0 left-0 w-full overflow-hidden leading-none rotate-180">
+        <svg data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 120" preserveAspectRatio="none" className="relative block w-full h-[60px] md:h-[100px] text-white dark:text-[#020617] transition-colors">
+          <path d="M321.39,56.44c58-10.79,114.16-30.13,172-41.86,82.39-16.72,168.19-17.73,250.45-.39C823.78,31,906.67,72,985.66,92.83c70.05,18.48,146.53,26.09,214.34,3V0H0V27.35A600.21,600.21,0,0,0,321.39,56.44Z" className="fill-current"></path>
+        </svg>
+      </div>
+
+      <div className="relative z-10 mx-auto max-w-[104rem] px-4 pt-24 pb-14 sm:px-6 lg:px-8 xl:px-10 2xl:px-12 mt-10 md:mt-16">
+        
+        {/* Overlapping Subscribe CTA */}
+        <div className="mb-16 md:-mt-32 w-full rounded-3xl bg-white/90 dark:bg-white/5 backdrop-blur-2xl border border-sky-100 dark:border-white/10 p-8 shadow-premium dark:shadow-[0_0_40px_rgba(0,0,0,0.3)] md:p-12 lg:flex lg:items-center lg:justify-between lg:gap-10 transition-colors">
+          <div className="max-w-xl">
+            <h2 className="text-2xl font-black text-brand-dark dark:text-white sm:text-3xl">Get 10% off your first prescription & weekly health tips.</h2>
+            <p className="mt-2 text-slate-500 dark:text-slate-400">Join 50,000+ members getting smarter about their wellness routines.</p>
+          </div>
+          <div className="mt-6 flex w-full max-w-md items-center gap-2 rounded-2xl bg-sky-50 dark:bg-slate-900/50 p-2 border border-sky-100 dark:border-white/5 lg:mt-0 transition-colors">
+            <input type="email" placeholder="Enter your email" className="w-full bg-transparent px-4 py-2 text-slate-800 dark:text-white placeholder-slate-400 dark:placeholder-slate-500 outline-none" />
+            <button className="shrink-0 rounded-xl bg-brand-blue px-6 py-3 text-sm font-black text-white transition-all hover:bg-sky-400 shadow-[0_0_15px_rgba(14,165,233,0.4)]">Subscribe</button>
+          </div>
+        </div>
+
+        <div className="grid gap-12 lg:grid-cols-[1.2fr_2fr]">
           {/* Brand side */}
           <div>
-            <Image src="/firstmed-logo.png" alt="FirstMED" width={122} height={36} className="h-9 w-auto" />
-            <p className="mt-4 max-w-sm text-sm leading-6 text-slate-600">
+            <Image src="/firstmed-logo.png" alt="FirstMED" width={122} height={36} className="h-9 w-auto dark:brightness-0 dark:invert transition-all" />
+            <p className="mt-5 max-w-sm text-sm leading-6 text-slate-500 dark:text-slate-400">
               Product-first pharmacy commerce with gated prescription safety, fast delivery workflows, and calm account tools.
             </p>
-            <div className="mt-5 rounded-2xl bg-brand-blue p-4 text-sm font-bold text-white shadow-soft">
-              Prescription verified before restricted medicine checkout. Secure, clear, and built for repeat care.
-            </div>
 
-            {/* Social links */}
-            <div className="mt-5 flex gap-3">
-              {[
-                ["Twitter / X", "https://twitter.com"],
-                ["Instagram", "https://instagram.com"],
-                ["LinkedIn", "https://linkedin.com"]
-              ].map(([label, href]) => (
-                <a
-                  key={label}
-                  href={href}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="rounded-full bg-white px-4 py-2 text-xs font-black text-brand-blue shadow-card hover:-translate-y-0.5 hover:shadow-premium transition duration-200"
-                  aria-label={label}
-                >
-                  {label}
-                </a>
-              ))}
+            {/* Glowing Social Links */}
+            <div className="mt-8 flex gap-3">
+              <MagneticSocialPill href="https://twitter.com" label="Twitter / X" hoverColorClass="hover:text-sky-500 dark:hover:text-sky-400 hover:border-sky-500/50 dark:hover:border-sky-400/50" />
+              <MagneticSocialPill href="https://instagram.com" label="Instagram" hoverColorClass="hover:text-pink-500 dark:hover:text-pink-400 hover:border-pink-500/50 dark:hover:border-pink-400/50" />
+              <MagneticSocialPill href="https://linkedin.com" label="LinkedIn" hoverColorClass="hover:text-brand-blue dark:hover:text-blue-500 hover:border-brand-blue/50 dark:hover:border-blue-500/50" />
             </div>
           </div>
 
-          {/* Links grid */}
-          <div className="grid gap-4 sm:grid-cols-4">
+          {/* Links grid in Floating Glass */}
+          <div className="grid grid-cols-2 gap-x-6 gap-y-10 sm:grid-cols-4 rounded-3xl bg-white/90 dark:bg-white/5 backdrop-blur-xl border border-sky-100 dark:border-white/10 p-8 shadow-premium dark:shadow-2xl transition-colors">
             {footerLinks.map(([title, items]) => (
-              <div key={title} className="rounded-2xl bg-white/75 p-5 shadow-card">
-                <h3 className="text-sm font-black">{title}</h3>
-                <div className="mt-3 grid gap-2 text-sm text-slate-500">
+              <div key={title}>
+                <h3 className="text-sm font-black text-slate-800 dark:text-white">{title}</h3>
+                <div className="mt-5 grid gap-3">
                   {items.map(([item, href]) => (
-                    <Link key={item} href={href} className="font-semibold transition hover:text-brand-blue">
+                    <AnimatedFooterLink key={item} href={href}>
                       {item}
-                    </Link>
+                    </AnimatedFooterLink>
                   ))}
                 </div>
               </div>
@@ -313,15 +314,31 @@ function Footer() {
           </div>
         </div>
 
-        {/* Bottom bar */}
-        <div className="mt-10 flex flex-wrap items-center justify-between gap-4 border-t border-sky-100 pt-6 text-xs font-semibold text-slate-400">
-          <p>© {new Date().getFullYear()} FirstMED Technologies Pvt. Ltd. All rights reserved.</p>
-          <div className="flex gap-4">
-            <Link href="/privacy-policy" className="hover:text-brand-blue">Privacy</Link>
-            <Link href="/terms-and-conditions" className="hover:text-brand-blue">Terms</Link>
-            <Link href="/refund-policy" className="hover:text-brand-blue">Refund policy</Link>
+        {/* Trust Badges & Bottom bar */}
+        <div className="mt-16 flex flex-col md:flex-row items-center justify-between gap-6 border-t border-sky-200 dark:border-white/10 pt-8 transition-colors">
+          <div className="flex flex-wrap justify-center gap-4">
+            {[
+              { icon: ShieldCheck, label: "Verified Pharmacy" },
+              { icon: Lock, label: "256-bit Secure" },
+              { icon: CheckCircle, label: "FDA Approved" }
+            ].map(({ icon: Icon, label }) => (
+              <div key={label} className="flex items-center gap-2 rounded-full border border-sky-200 bg-sky-50 dark:border-sky-500/30 dark:bg-sky-500/10 px-3 py-1.5 text-xs font-bold text-brand-blue dark:text-sky-400 shadow-[0_0_10px_rgba(8,120,190,0.1)] dark:shadow-[0_0_10px_rgba(14,165,233,0.1)] transition-colors">
+                <Icon size={14} />
+                <span>{label}</span>
+              </div>
+            ))}
+          </div>
+
+          <div className="text-center md:text-right text-xs font-semibold text-slate-500">
+            <div className="mb-2 flex justify-center md:justify-end gap-5 text-slate-500 dark:text-slate-400">
+              <Link href="/privacy-policy" className="transition hover:text-brand-blue dark:hover:text-white">Privacy</Link>
+              <Link href="/terms-and-conditions" className="transition hover:text-brand-blue dark:hover:text-white">Terms</Link>
+              <Link href="/refund-policy" className="transition hover:text-brand-blue dark:hover:text-white">Refund policy</Link>
+            </div>
+            <p>© {new Date().getFullYear()} FirstMED Technologies Pvt. Ltd. All rights reserved.</p>
           </div>
         </div>
+
       </div>
     </footer>
   );

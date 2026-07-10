@@ -47,10 +47,10 @@ export default function CustomerInvoicesPage() {
                 {invoices.map((invoice) => (
                   <tr key={invoice.id} className="border-b border-sky-50 last:border-0 hover:bg-sky-50/40">
                     <td className="px-5 py-4 font-black text-brand-blue">{invoice.id}</td>
-                    <td className="px-5 py-4 font-bold text-slate-700">{invoice.order}</td>
+                    <td className="px-5 py-4 font-bold text-slate-700 dark:text-slate-300">{invoice.order}</td>
                     <td className="px-5 py-4 text-xs font-semibold text-slate-500">{invoice.date}</td>
-                    <td className="px-5 py-4 font-bold text-slate-600">{invoice.tax}</td>
-                    <td className="px-5 py-4 font-black text-slate-900">{invoice.total}</td>
+                    <td className="px-5 py-4 font-bold text-slate-600 dark:text-slate-400">{invoice.tax}</td>
+                    <td className="px-5 py-4 font-black text-slate-900 dark:text-slate-100">{invoice.total}</td>
                     <td className="px-5 py-4">
                       <span className="rounded-full bg-emerald-100 px-3 py-1 text-xs font-black text-emerald-700">{invoice.status}</span>
                     </td>

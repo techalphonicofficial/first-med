@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useMemo, useState } from "react";
+import { useRouter, useSearchParams, usePathname } from "next/navigation";
 import { ChevronDown, Grid2X2, List, Search, SlidersHorizontal, X } from "lucide-react";
 import { categories, products } from "@/data/catalog";
 import { ProductShelf } from "@/components/products/ProductShelf";
@@ -9,9 +10,35 @@ import { ProductGridSkeleton } from "@/components/ui/Skeleton";
 import { Badge } from "@/components/ui/Badge";
 
 export function CatalogClient({ initialCategory = "All", initialQuery = "", initialType = "All" }) {
+  const router = useRouter();
+  const searchParams = useSearchParams();
+  const pathname = usePathname();
+
   const [category, setCategory] = useState(initialCategory);
   const [query, setQuery] = useState(initialQuery);
   const [sort, setSort] = useState("Popular");
+
+  // Sync category from URL to local state (when GooeyNav mega menu is clicked)
+  useEffect(() => {
+    const urlCategory = searchParams.get("category");
+    if (urlCategory) {
+      setCategory(urlCategory);
+    } else {
+      setCategory("All");
+    }
+  }, [searchParams]);
+
+  // Helper to sync local state to URL (when sidebar is clicked)
+  const handleCategoryChange = (newCat) => {
+    setCategory(newCat);
+    const params = new URLSearchParams(searchParams.toString());
+    if (newCat !== "All") {
+      params.set("category", newCat);
+    } else {
+      params.delete("category");
+    }
+    router.replace(`${pathname}?${params.toString()}`, { scroll: false });
+  };
   const [view, setView] = useState("Grid");
   const [type, setType] = useState(initialType);
   const [maxPrice, setMaxPrice] = useState(1200);
@@ -43,7 +70,7 @@ export function CatalogClient({ initialCategory = "All", initialQuery = "", init
   const hasActiveFilters = query || category !== "All" || type !== "All" || inStockOnly || maxPrice < 1200;
 
   function clearAll() {
-    setQuery(""); setCategory("All"); setType("All"); setMaxPrice(1200); setInStockOnly(false);
+    setQuery(""); handleCategoryChange("All"); setType("All"); setMaxPrice(1200); setInStockOnly(false);
   }
 
   /* Shared filter panel UI */
@@ -56,8 +83,8 @@ export function CatalogClient({ initialCategory = "All", initialQuery = "", init
           {["All", ...categories].map((item) => (
             <button
               key={item}
-              onClick={() => { setCategory(item); setMobileFilters(false); }}
-              className={`flex items-center justify-between rounded-xl px-3 py-2.5 text-sm font-bold text-left transition ${category === item ? "bg-brand-blue text-white" : "hover:bg-sky-50 text-slate-600"}`}
+              onClick={() => { handleCategoryChange(item); setMobileFilters(false); }}
+              className={`flex items-center justify-between rounded-xl px-3 py-2.5 text-sm font-bold text-left transition ${category === item ? "bg-brand-blue text-white" : "hover:bg-sky-50 text-slate-600 dark:text-slate-400"}`}
             >
               {item}
               {category === item && <span className="h-1.5 w-1.5 rounded-full bg-white" />}
@@ -117,7 +144,7 @@ export function CatalogClient({ initialCategory = "All", initialQuery = "", init
       </div>
 
       {/* In stock */}
-      <label className="flex cursor-pointer items-center gap-3 rounded-2xl border border-sky-100 bg-white px-4 py-3 text-sm font-black text-slate-600 transition hover:border-brand-blue">
+      <label className="flex cursor-pointer items-center gap-3 rounded-2xl border border-sky-100 bg-white px-4 py-3 text-sm font-black text-slate-600 dark:text-slate-400 transition hover:border-brand-blue">
         <input
           type="checkbox"
           checked={inStockOnly}
@@ -171,7 +198,7 @@ export function CatalogClient({ initialCategory = "All", initialQuery = "", init
               placeholder="Search products, brands, categories…"
             />
             {query && (
-              <button onClick={() => setQuery("")} className="absolute right-4 top-1/2 -translate-y-1/2 text-slate-400 hover:text-slate-600">
+              <button onClick={() => setQuery("")} className="absolute right-4 top-1/2 -translate-y-1/2 text-slate-400 hover:text-slate-600 dark:text-slate-400">
                 <X size={16} />
               </button>
             )}
@@ -194,7 +221,7 @@ export function CatalogClient({ initialCategory = "All", initialQuery = "", init
               </button>
             )}
             {category !== "All" && (
-              <button onClick={() => setCategory("All")} className="flex items-center gap-1 rounded-full bg-brand-blue/10 px-3 py-1.5 text-xs font-black text-brand-blue">
+              <button onClick={() => handleCategoryChange("All")} className="flex items-center gap-1 rounded-full bg-brand-blue/10 px-3 py-1.5 text-xs font-black text-brand-blue">
                 {category} <X size={12} />
               </button>
             )}

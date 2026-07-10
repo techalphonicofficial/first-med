@@ -35,7 +35,7 @@ export function CareKitBuilder() {
         <div className="flex flex-wrap items-start justify-between gap-5">
           <div>
             <span className="fm-pill"><Zap size={13} /> Interactive kit builder</span>
-            <h2 className="mt-4 text-3xl font-black text-brand-dark sm:text-5xl">Build a care kit by need.</h2>
+            <h2 className="mt-4 text-3xl font-black text-brand-dark dark:text-white sm:text-5xl">Build a care kit by need.</h2>
             {activeKit && (
               <p className="mt-2 text-sm font-semibold text-slate-500">{activeKit.emoji} {activeKit.desc}</p>
             )}
@@ -72,7 +72,7 @@ export function CareKitBuilder() {
               <p className="mt-2 line-clamp-2 text-xs font-semibold leading-5 text-slate-500">{product.usage}</p>
 
               <div className="mt-3 flex items-end justify-between">
-                <span className="text-sm font-black text-slate-900">Rs. {product.price}</span>
+                <span className="text-sm font-black text-slate-900 dark:text-slate-100">Rs. {product.price}</span>
                 <span className="text-xs font-bold text-slate-400 line-through">Rs. {product.mrp}</span>
               </div>
 

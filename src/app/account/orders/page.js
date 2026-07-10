@@ -36,15 +36,15 @@ export default function OrdersPage() {
                 <div className="flex flex-wrap items-center gap-6">
                   <div>
                     <p className="text-xs font-bold text-slate-400">Order placed</p>
-                    <p className="font-black text-slate-700">{order.date}</p>
+                    <p className="font-black text-slate-700 dark:text-slate-300">{order.date}</p>
                   </div>
                   <div>
                     <p className="text-xs font-bold text-slate-400">Total</p>
-                    <p className="font-black text-slate-700">Rs. {order.total}</p>
+                    <p className="font-black text-slate-700 dark:text-slate-300">Rs. {order.total}</p>
                   </div>
                   <div>
                     <p className="text-xs font-bold text-slate-400">Order #</p>
-                    <p className="font-black text-slate-700">{order.id}</p>
+                    <p className="font-black text-slate-700 dark:text-slate-300">{order.id}</p>
                   </div>
                 </div>
                 <Link href={`/account/orders/${order.id}`} className="text-sm font-black text-brand-blue hover:underline">

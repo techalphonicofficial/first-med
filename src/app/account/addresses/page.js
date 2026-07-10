@@ -83,7 +83,7 @@ export default function AddressesPage() {
                 )}
               </div>
               
-              <div className="h-20 text-sm font-semibold leading-6 text-slate-600">
+              <div className="h-20 text-sm font-semibold leading-6 text-slate-600 dark:text-slate-400">
                 <p>{address.text}</p>
                 <p>{address.city}, {address.pin}</p>
               </div>

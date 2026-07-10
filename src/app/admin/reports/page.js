@@ -15,7 +15,7 @@ export default function AdminReportsPage() {
       <div className="flex flex-wrap items-center justify-between gap-4">
         <div>
           <p className="text-xs font-black uppercase tracking-[0.18em] text-brand-blue">Platform</p>
-          <h1 className="mt-1 text-3xl font-black text-slate-900">Financial & Operational Reports</h1>
+          <h1 className="mt-1 text-3xl font-black text-slate-900 dark:text-slate-100">Financial & Operational Reports</h1>
         </div>
         <select className="rounded-full border border-sky-100 bg-white px-4 py-2 text-sm font-bold outline-brand-blue shadow-sm">
           <option>This Month</option>
@@ -31,7 +31,7 @@ export default function AdminReportsPage() {
         {financialMetrics.map((metric) => (
           <div key={metric.label} className="soft-card rounded-2xl p-5 transition hover:-translate-y-1 hover:shadow-premium">
             <p className="text-sm font-black text-slate-500">{metric.label}</p>
-            <p className="mt-2 text-2xl font-black text-slate-900">{metric.value}</p>
+            <p className="mt-2 text-2xl font-black text-slate-900 dark:text-slate-100">{metric.value}</p>
             <p className={`mt-1 flex items-center gap-1 text-xs font-bold ${metric.trend === 'up' ? 'text-emerald-600' : 'text-rose-600'}`}>
               <TrendingUp size={12} className={metric.trend === 'down' ? 'rotate-180' : ''} /> {metric.change} vs last period
             </p>
@@ -45,7 +45,7 @@ export default function AdminReportsPage() {
           <h2 className="text-lg font-black mb-5 flex items-center gap-2"><Activity size={18} className="text-brand-blue" /> Operational Health</h2>
           <div className="space-y-5">
             <div>
-              <div className="flex justify-between text-sm font-bold text-slate-600 mb-1">
+              <div className="flex justify-between text-sm font-bold text-slate-600 dark:text-slate-400 mb-1">
                 <span>Order Fulfillment Rate</span>
                 <span>94%</span>
               </div>
@@ -54,7 +54,7 @@ export default function AdminReportsPage() {
               </div>
             </div>
             <div>
-              <div className="flex justify-between text-sm font-bold text-slate-600 mb-1">
+              <div className="flex justify-between text-sm font-bold text-slate-600 dark:text-slate-400 mb-1">
                 <span>On-time Delivery</span>
                 <span>88%</span>
               </div>
@@ -63,7 +63,7 @@ export default function AdminReportsPage() {
               </div>
             </div>
             <div>
-              <div className="flex justify-between text-sm font-bold text-slate-600 mb-1">
+              <div className="flex justify-between text-sm font-bold text-slate-600 dark:text-slate-400 mb-1">
                 <span>Prescription Approval SLA</span>
                 <span>76%</span>
               </div>
@@ -87,7 +87,7 @@ export default function AdminReportsPage() {
                 <div className="flex items-center gap-3">
                   <div className="grid h-8 w-8 place-items-center rounded-full bg-sky-50 text-xs font-black text-brand-blue">{i + 1}</div>
                   <div>
-                    <p className="text-sm font-black text-slate-800">{vendor.name}</p>
+                    <p className="text-sm font-black text-slate-800 dark:text-slate-200">{vendor.name}</p>
                     <p className="text-xs font-semibold text-slate-500">{vendor.orders}</p>
                   </div>
                 </div>

@@ -60,10 +60,10 @@ export default function ContactPage() {
                 { q: "Vendor onboarding", a: "Pharmacies can prepare license files, service area, hours and inventory details before profile review." },
               ].map(({ q, a }) => (
                 <details key={q} className="group rounded-xl bg-slate-50 p-4 open:bg-sky-50">
-                  <summary className="cursor-pointer font-black text-slate-800 group-open:text-brand-blue">
+                  <summary className="cursor-pointer font-black text-slate-800 dark:text-slate-200 group-open:text-brand-blue">
                     {q}
                   </summary>
-                  <p className="mt-3 text-sm font-semibold leading-6 text-slate-600">{a}</p>
+                  <p className="mt-3 text-sm font-semibold leading-6 text-slate-600 dark:text-slate-400">{a}</p>
                 </details>
               ))}
             </div>

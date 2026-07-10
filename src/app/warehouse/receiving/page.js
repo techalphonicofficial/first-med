@@ -14,7 +14,7 @@ export default function WarehouseReceivingPage() {
       <div className="flex flex-wrap items-center justify-between gap-4">
         <div>
           <p className="text-xs font-black uppercase tracking-[0.18em] text-brand-blue">Warehouse Operations</p>
-          <h1 className="mt-1 text-3xl font-black text-slate-900">Inbound Receiving</h1>
+          <h1 className="mt-1 text-3xl font-black text-slate-900 dark:text-slate-100">Inbound Receiving</h1>
         </div>
       </div>
 
@@ -28,8 +28,8 @@ export default function WarehouseReceivingPage() {
                     <Download size={24} />
                   </div>
                   <div>
-                    <h3 className="text-lg font-black text-slate-900">{rcv.id}</h3>
-                    <p className="text-sm font-bold text-slate-600">{rcv.vendor}</p>
+                    <h3 className="text-lg font-black text-slate-900 dark:text-slate-100">{rcv.id}</h3>
+                    <p className="text-sm font-bold text-slate-600 dark:text-slate-400">{rcv.vendor}</p>
                     <p className="mt-1 text-xs font-semibold text-slate-400">ETA: {rcv.eta}</p>
                   </div>
                 </div>
@@ -42,10 +42,10 @@ export default function WarehouseReceivingPage() {
               <div className="mt-5 grid grid-cols-2 gap-3">
                 {rcv.status === 'Ready to Scan' ? (
                   <>
-                    <button onClick={(e) => { e.preventDefault(); toast.success('Action completed successfully!'); }} className="flex items-center justify-center gap-2 rounded-xl bg-brand-blue py-2.5 text-sm font-black text-white hover:bg-[#066CAB] transition shadow-glow">
+                    <button onClick={(e) => { e.preventDefault(); toast.info('Initializing barcode scanner...'); }} className="flex items-center justify-center gap-2 rounded-xl bg-brand-blue py-2.5 text-sm font-black text-white hover:bg-[#066CAB] transition shadow-glow">
                       <ScanLine size={16} /> Begin Scanning
                     </button>
-                    <button onClick={(e) => { e.preventDefault(); toast.success('Action completed successfully!'); }} className="flex items-center justify-center gap-2 rounded-xl bg-sky-50 text-brand-blue py-2.5 text-sm font-black hover:bg-sky-100 transition">
+                    <button onClick={(e) => { e.preventDefault(); toast.info('Opening inbound manifest...'); }} className="flex items-center justify-center gap-2 rounded-xl bg-sky-50 text-brand-blue py-2.5 text-sm font-black hover:bg-sky-100 transition">
                       View Manifest
                     </button>
                   </>
@@ -64,7 +64,7 @@ export default function WarehouseReceivingPage() {
             <CheckSquare size={20} className="text-brand-blue" />
             <h2 className="text-lg font-black">Receiving Protocol</h2>
           </div>
-          <ul className="text-sm font-semibold text-slate-600 space-y-3 list-disc pl-4">
+          <ul className="text-sm font-semibold text-slate-600 dark:text-slate-400 space-y-3 list-disc pl-4">
             <li>Verify physical seal on delivery vehicle.</li>
             <li>Scan each box barcode against the manifest.</li>
             <li>Log any damages immediately in the Audit tab.</li>

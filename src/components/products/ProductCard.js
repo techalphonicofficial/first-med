@@ -64,7 +64,7 @@ export function ProductCard({ product, view = "Grid" }) {
             if (isSaved) toast.success("Removed from wishlist");
             else toast.success("Added to wishlist");
           }}
-          className={`absolute z-10 grid h-9 w-9 place-items-center rounded-full shadow-card transition duration-200 hover:scale-110 ${isSaved ? "bg-rose-500 text-white" : "bg-white text-slate-500 hover:text-rose-500"} ${isList ? "right-4 top-4" : "right-4 top-4"}`}
+          className={`absolute z-10 grid h-9 w-9 place-items-center rounded-full shadow-card transition duration-200 hover:scale-110 ${isSaved ? "bg-rose-500 text-white" : "bg-white dark:bg-slate-800 text-slate-500 dark:text-slate-400 hover:text-rose-500 dark:hover:text-rose-400"} ${isList ? "right-4 top-4" : "right-4 top-4"}`}
           aria-label={isSaved ? "Remove from wishlist" : "Add to wishlist"}
         >
           <Heart size={16} fill={isSaved ? "currentColor" : "none"} />
@@ -72,7 +72,7 @@ export function ProductCard({ product, view = "Grid" }) {
 
         <Link href={`/products/${product.slug}`} className={isList ? "flex flex-1 flex-col sm:flex-row gap-4 sm:gap-6 w-full" : "block"}>
           {/* Image container */}
-          <div className={`relative overflow-hidden rounded-xl bg-gradient-to-br from-sky-50 to-emerald-50 ${isList ? "aspect-square w-full sm:w-40 shrink-0" : "aspect-[1.05]"}`}>
+          <div className={`relative overflow-hidden rounded-xl bg-gradient-to-br from-sky-50 to-emerald-50 dark:from-sky-950/40 dark:to-emerald-950/40 ${isList ? "aspect-square w-full sm:w-40 shrink-0" : "aspect-[1.05]"}`}>
             <div className="product-image-track absolute inset-0 flex">
               {loopImages.map((image, index) => (
                 <div key={`${product.id}-${image}-${index}`} className="relative h-full shrink-0" style={{ width: itemWidth }}>
@@ -93,7 +93,7 @@ export function ProductCard({ product, view = "Grid" }) {
               </span>
             )}
             {!product.inStock && (
-              <span className="absolute inset-x-3 bottom-3 rounded-xl bg-white/92 px-3 py-2 text-center text-xs font-black text-rose-600 shadow-card">
+              <span className="absolute inset-x-3 bottom-3 rounded-xl bg-white/92 dark:bg-slate-900/92 px-3 py-2 text-center text-xs font-black text-rose-600 dark:text-rose-400 shadow-card">
                 Currently unavailable
               </span>
             )}
@@ -102,20 +102,20 @@ export function ProductCard({ product, view = "Grid" }) {
           {/* Product info */}
           <div className={`px-1 pt-3 ${isList ? "flex flex-1 flex-col justify-center sm:pt-0" : ""}`}>
             <div className={isList ? "pr-12" : ""}>
-              <p className={`text-sm font-black text-slate-900 ${isList ? "text-lg line-clamp-1" : "line-clamp-2 min-h-10 leading-5"}`}>{product.name}</p>
-              <p className="mt-1 text-xs font-semibold text-slate-500">{product.brand}</p>
+              <p className={`text-sm font-black text-slate-900 dark:text-slate-100 ${isList ? "text-lg line-clamp-1" : "line-clamp-2 min-h-10 leading-5"}`}>{product.name}</p>
+              <p className="mt-1 text-xs font-semibold text-slate-500 dark:text-slate-400">{product.brand}</p>
               <div className="mt-2 flex items-center gap-1.5">
                 <span className="flex items-center gap-1 text-xs font-black text-amber-500">
                   <Star size={12} fill="currentColor" /> {product.rating}
                 </span>
-                <span className="text-slate-300">·</span>
-                <Badge className="px-2 py-0.5 text-[10px]">{product.packSize}</Badge>
+                <span className="text-slate-300 dark:text-slate-600 dark:text-slate-400">·</span>
+                <Badge className="px-2 py-0.5 text-[10px] dark:bg-slate-800 dark:text-slate-300 dark:border-slate-700">{product.packSize}</Badge>
               </div>
             </div>
             
             <div className={`mt-2 flex items-end gap-2 ${isList ? "mt-4" : ""}`}>
-              <span className={`${isList ? "text-xl" : "text-sm"} font-black text-slate-950`}>Rs. {product.price}</span>
-              <span className="text-xs font-bold text-slate-500 line-through mb-0.5">Rs. {product.mrp}</span>
+              <span className={`${isList ? "text-xl" : "text-sm"} font-black text-slate-950 dark:text-white`}>Rs. {product.price}</span>
+              <span className="text-xs font-bold text-slate-500 dark:text-slate-400 line-through mb-0.5">Rs. {product.mrp}</span>
             </div>
           </div>
         </Link>

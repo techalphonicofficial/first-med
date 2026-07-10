@@ -8,7 +8,7 @@ export function DemoPanel({ title, eyebrow = "Workspace", items = [], actions = 
         <div>
           <p className="text-xs font-black uppercase tracking-[0.18em] text-brand-blue">{eyebrow}</p>
           <h1 className="mt-2 max-w-3xl text-4xl font-black">{title}</h1>
-          <p className="mt-3 max-w-2xl text-sm font-semibold leading-6 text-slate-600">
+          <p className="mt-3 max-w-2xl text-sm font-semibold leading-6 text-slate-600 dark:text-slate-400">
             A production-ready workspace layout with clear status, primary actions, and the next best thing to do.
           </p>
         </div>

@@ -67,15 +67,15 @@ export default function AboutPage() {
       <div className="mt-28 grid gap-8 md:grid-cols-2">
         <div className="rounded-[2rem] bg-brand-softBlue p-10">
           <ShieldCheck size={40} className="mb-6 text-brand-blue" />
-          <h2 className="text-3xl font-black text-brand-dark">Prescription safety</h2>
-          <p className="mt-4 text-base font-semibold leading-7 text-slate-600">
+          <h2 className="text-3xl font-black text-brand-dark dark:text-white">Prescription safety</h2>
+          <p className="mt-4 text-base font-semibold leading-7 text-slate-600 dark:text-slate-400">
             Restricted products stay gated until the user has uploaded the required prescription information (patient, doctor, date, clinic details) and the status is approved by a registered pharmacist.
           </p>
         </div>
         <div className="rounded-[2rem] bg-emerald-50 p-10">
           <Truck size={40} className="mb-6 text-emerald-600" />
-          <h2 className="text-3xl font-black text-brand-dark">Fast local fulfilment</h2>
-          <p className="mt-4 text-base font-semibold leading-7 text-slate-600">
+          <h2 className="text-3xl font-black text-brand-dark dark:text-white">Fast local fulfilment</h2>
+          <p className="mt-4 text-base font-semibold leading-7 text-slate-600 dark:text-slate-400">
             The storefront is shaped around nearby pharmacy stock, clear delivery windows and repeatable reorder journeys. Your medicines are dispatched from the nearest verified partner.
           </p>
         </div>

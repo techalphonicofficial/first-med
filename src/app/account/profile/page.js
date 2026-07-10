@@ -94,7 +94,7 @@ export default function ProfilePage() {
           <div className="soft-card rounded-[2rem] p-6">
             <h2 className="mb-4 text-lg font-black">Password</h2>
             <p className="mb-4 text-sm font-semibold text-slate-500">Update your account password securely.</p>
-            <Link href="/login" className="inline-block rounded-full bg-slate-100 px-5 py-2.5 text-sm font-black text-slate-600 hover:bg-slate-200 transition">Change password</Link>
+            <Link href="/login" className="inline-block rounded-full bg-slate-100 px-5 py-2.5 text-sm font-black text-slate-600 dark:text-slate-400 hover:bg-slate-200 transition">Change password</Link>
           </div>
 
           <div className="rounded-[2rem] border-2 border-rose-100 bg-rose-50/50 p-6">
