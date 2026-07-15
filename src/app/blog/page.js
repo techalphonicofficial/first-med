@@ -11,12 +11,12 @@ export default function BlogPage() {
   return (
     <div className="mx-auto max-w-[104rem] px-4 py-8 pb-28 sm:px-6 lg:px-8 xl:px-10">
       {/* Featured Banner */}
-      <div className="relative overflow-hidden rounded-[2.5rem] bg-brand-softBlue p-8 shadow-soft md:p-14 lg:p-20">
+      <div className="relative overflow-hidden rounded-[2.5rem] bg-brand-softBlue p-8 shadow-soft md:p-14 lg:p-20 dark:bg-slate-900/50 dark:border dark:border-slate-800">
         <div className="relative z-10 max-w-2xl">
           <span className="inline-flex items-center gap-1.5 rounded-full bg-brand-blue px-3 py-1 text-xs font-black text-white">
             <ShieldCheck size={14} /> Medically Reviewed
           </span>
-          <h1 className="mt-6 text-4xl font-black leading-tight md:text-5xl lg:text-6xl">
+          <h1 className="mt-6 text-4xl font-black leading-tight md:text-5xl lg:text-6xl text-slate-900 dark:text-white">
             Health notes & pharmacy insights.
           </h1>
           <p className="mt-4 text-lg font-semibold leading-8 text-slate-600 dark:text-white">
@@ -36,7 +36,7 @@ export default function BlogPage() {
       {/* Categories */}
       <div className="mt-12 no-scrollbar flex gap-2 overflow-auto pb-4">
         {categories.map((cat, i) => (
-          <button key={cat} className={`shrink-0 rounded-full px-5 py-2.5 text-sm font-black transition ${i === 0 ? "bg-brand-dark text-white" : "bg-sky-50 text-slate-600 dark:text-white hover:bg-sky-100"}`}>
+          <button key={cat} className={`shrink-0 rounded-full px-5 py-2.5 text-sm font-black transition ${i === 0 ? "bg-brand-dark text-white" : "bg-sky-50 text-slate-600 hover:bg-sky-100 dark:bg-slate-800 dark:text-slate-300 dark:hover:bg-slate-700 dark:hover:text-white"}`}>
             {cat}
           </button>
         ))}
@@ -45,7 +45,7 @@ export default function BlogPage() {
       {/* Article Grid */}
       <div className="mt-8 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
         {blogs.map((article) => (
-          <article key={article.id} className="soft-card group flex flex-col overflow-hidden rounded-[2rem] transition hover:-translate-y-1 hover:shadow-premium">
+          <article key={article.id} className="soft-card bg-white dark:bg-slate-900/60 dark:border dark:border-slate-800 group flex flex-col overflow-hidden rounded-[2rem] transition hover:-translate-y-1 hover:shadow-premium">
             {/* Image area */}
             <div className={`relative h-56 w-full ${article.bg} p-8`}>
               <Image 
@@ -61,7 +61,7 @@ export default function BlogPage() {
             
             {/* Content area */}
             <div className="flex flex-1 flex-col p-6">
-              <h2 className="text-xl font-black leading-tight group-hover:text-brand-blue transition">
+              <h2 className="text-xl font-black leading-tight text-slate-900 dark:text-white group-hover:text-brand-blue dark:group-hover:text-sky-400 transition">
                 {article.title}
               </h2>
               <p className="mt-3 line-clamp-3 text-sm font-semibold leading-6 text-slate-500 dark:text-white">
