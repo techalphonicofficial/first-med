@@ -52,11 +52,11 @@ export function BannerCarousel({ compact = false }) {
             <Link href={banner.href} className={`grid min-h-[250px] items-center gap-6 bg-gradient-to-r ${banner.tone} p-6 sm:grid-cols-[1fr_260px] md:p-8 ${compact ? "lg:min-h-[260px]" : "lg:min-h-[310px]"}`}>
               <div>
                 <span className="fm-pill">FirstMED care banner</span>
-                <h3 className="mt-4 max-w-xl text-3xl font-black leading-tight text-brand-dark dark:text-white sm:text-5xl">{banner.title}</h3>
-                <p className="mt-3 max-w-lg text-sm font-semibold leading-6 text-brand-gray sm:text-base">{banner.text}</p>
+                <h3 className="mt-4 max-w-xl text-3xl font-black leading-tight text-brand-dark dark:text-slate-950 sm:text-5xl">{banner.title}</h3>
+                <p className="mt-3 max-w-lg text-sm font-semibold leading-6 text-brand-gray dark:text-slate-700 sm:text-base">{banner.text}</p>
                 <span className="mt-6 inline-flex rounded-full bg-brand-blue px-5 py-3 text-sm font-black text-white shadow-glow">Shop now</span>
               </div>
-              <div className="relative mx-auto aspect-square w-full max-w-[230px] rounded-[2rem] bg-white/70 shadow-card">
+              <div className="relative mx-auto aspect-square w-full max-w-[230px] rounded-[2rem] bg-white dark:bg-slate-900 dark:border-slate-800/70 shadow-card">
                 <Image src={banner.image} alt="" fill sizes="230px" className="object-contain p-8" />
               </div>
             </Link>
@@ -64,7 +64,7 @@ export function BannerCarousel({ compact = false }) {
         ))}
       </Swiper>
       <div className="absolute right-5 top-5 z-10 hidden gap-2 sm:flex">
-        <button className="banner-prev grid size-11 place-items-center rounded-full bg-white text-brand-blue shadow-card" aria-label="Previous banner"><ArrowLeft size={18} /></button>
+        <button className="banner-prev grid size-11 place-items-center rounded-full bg-white dark:bg-slate-900 dark:border-slate-800 text-brand-blue shadow-card" aria-label="Previous banner"><ArrowLeft size={18} /></button>
         <button className="banner-next grid size-11 place-items-center rounded-full bg-brand-blue text-white shadow-glow" aria-label="Next banner"><ArrowRight size={18} /></button>
       </div>
     </div>

@@ -28,7 +28,7 @@ export default function WarehouseDispatchPage() {
       <div className="flex flex-wrap items-center justify-between gap-4">
         <div>
           <p className="text-xs font-black uppercase tracking-[0.18em] text-brand-blue">Warehouse Operations</p>
-          <h1 className="mt-1 text-3xl font-black text-slate-900 dark:text-slate-100">Outbound Dispatch</h1>
+          <h1 className="mt-1 text-3xl font-black text-slate-900 dark:text-white">Outbound Dispatch</h1>
         </div>
       </div>
 
@@ -40,8 +40,8 @@ export default function WarehouseDispatchPage() {
                 <Send size={24} />
               </div>
               <div>
-                <h3 className="text-lg font-black text-slate-900 dark:text-slate-100">{dsp.orderRef}</h3>
-                <p className="text-sm font-bold text-slate-600 dark:text-slate-400 flex items-center gap-1 mt-1">
+                <h3 className="text-lg font-black text-slate-900 dark:text-white">{dsp.orderRef}</h3>
+                <p className="text-sm font-bold text-slate-600 dark:text-white flex items-center gap-1 mt-1">
                   <MapPin size={14} /> {dsp.route}
                 </p>
               </div>
@@ -49,13 +49,13 @@ export default function WarehouseDispatchPage() {
             
             <div className="flex gap-8">
               <div>
-                <p className="text-xs font-black uppercase tracking-widest text-slate-400 mb-1">Rider</p>
+                <p className="text-xs font-black uppercase tracking-widest text-slate-400 dark:text-white mb-1">Rider</p>
                 <p className="text-sm font-bold flex items-center gap-1">
                   <User size={14} className="text-brand-blue" /> {dsp.rider}
                 </p>
               </div>
               <div>
-                <p className="text-xs font-black uppercase tracking-widest text-slate-400 mb-1">Items</p>
+                <p className="text-xs font-black uppercase tracking-widest text-slate-400 dark:text-white mb-1">Items</p>
                 <p className="text-sm font-bold flex items-center gap-1">
                   <Package size={14} className="text-brand-blue" /> {dsp.items}
                 </p>

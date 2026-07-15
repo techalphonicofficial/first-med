@@ -41,7 +41,7 @@ export default function SearchPage() {
             className="w-full bg-transparent py-4 pl-4 pr-12 text-lg font-bold outline-none"
           />
           {query && (
-            <button onClick={() => setQuery("")} className="absolute right-5 text-slate-400 hover:text-slate-600 dark:text-slate-400 transition">
+            <button onClick={() => setQuery("")} className="absolute right-5 text-slate-400 hover:text-slate-600 dark:text-white transition">
               <X size={20} />
             </button>
           )}
@@ -53,12 +53,12 @@ export default function SearchPage() {
           <div className="grid gap-10 sm:grid-cols-2">
             {/* Recent Searches */}
             <div>
-              <h2 className="mb-4 flex items-center gap-2 text-sm font-black text-slate-400 uppercase tracking-widest">
+              <h2 className="mb-4 flex items-center gap-2 text-sm font-black text-slate-400 dark:text-white uppercase tracking-widest">
                 <Clock size={16} /> Recent searches
               </h2>
               <div className="grid gap-2">
                 {recentSearches.map(term => (
-                  <button key={term} onClick={() => setQuery(term)} className="flex w-full items-center justify-between rounded-xl p-3 text-left font-bold text-slate-700 dark:text-slate-300 hover:bg-sky-50 transition">
+                  <button key={term} onClick={() => setQuery(term)} className="flex w-full items-center justify-between rounded-xl p-3 text-left font-bold text-slate-700 dark:text-white hover:bg-sky-50 dark:bg-slate-900 transition">
                     {term}
                     <ArrowRight size={14} className="text-slate-300" />
                   </button>
@@ -68,12 +68,12 @@ export default function SearchPage() {
 
             {/* Trending */}
             <div>
-              <h2 className="mb-4 flex items-center gap-2 text-sm font-black text-slate-400 uppercase tracking-widest">
+              <h2 className="mb-4 flex items-center gap-2 text-sm font-black text-slate-400 dark:text-white uppercase tracking-widest">
                 <Flame size={16} className="text-amber-500" /> Trending now
               </h2>
               <div className="flex flex-wrap gap-2">
                 {trendingSearches.map(term => (
-                  <button key={term} onClick={() => setQuery(term)} className="rounded-full border border-sky-100 bg-white px-4 py-2 text-sm font-bold text-slate-600 dark:text-slate-400 shadow-sm hover:border-brand-blue hover:text-brand-blue transition">
+                  <button key={term} onClick={() => setQuery(term)} className="rounded-full border border-sky-100 bg-white dark:bg-slate-900 dark:border-slate-800 px-4 py-2 text-sm font-bold text-slate-600 dark:text-white shadow-sm hover:border-brand-blue hover:text-brand-blue transition">
                     {term}
                   </button>
                 ))}
@@ -85,38 +85,38 @@ export default function SearchPage() {
             {/* Instant Results */}
             {results.length > 0 ? (
               <div>
-                <div className="bg-sky-50 px-6 py-3 text-xs font-black uppercase tracking-widest text-slate-400">
+                <div className="bg-sky-50 dark:bg-slate-900 px-6 py-3 text-xs font-black uppercase tracking-widest text-slate-400 dark:text-white">
                   Products
                 </div>
                 <div className="grid">
                   {results.map((product) => (
-                    <Link key={product.id} href={`/products/${product.slug}`} className="flex items-center gap-4 border-b border-sky-50 p-4 transition hover:bg-sky-50/50 last:border-0">
-                      <div className="grid h-12 w-12 shrink-0 place-items-center rounded-xl bg-white shadow-sm border border-sky-50">
+                    <Link key={product.id} href={`/products/${product.slug}`} className="flex items-center gap-4 border-b border-sky-50 p-4 transition hover:bg-sky-50 dark:bg-slate-900/50 last:border-0">
+                      <div className="grid h-12 w-12 shrink-0 place-items-center rounded-xl bg-white dark:bg-slate-900 dark:border-slate-800 shadow-sm border border-sky-50">
                         {/* generic icon fallback if no img */}
                         <span className="font-black text-brand-blue">{product.name.charAt(0)}</span>
                       </div>
                       <div className="flex-1">
-                        <p className="font-black text-slate-800 dark:text-slate-200">{product.name}</p>
-                        <p className="text-xs font-bold text-slate-500">{product.category}</p>
+                        <p className="font-black text-slate-800 dark:text-white">{product.name}</p>
+                        <p className="text-xs font-bold text-slate-500 dark:text-white">{product.category}</p>
                       </div>
                       <span className="font-black">Rs. {product.price}</span>
                     </Link>
                   ))}
                 </div>
                 
-                <div className="bg-white p-4">
-                  <Link href={`/products?q=${encodeURIComponent(query)}`} className="flex w-full items-center justify-center gap-2 rounded-xl bg-sky-50 py-3 text-sm font-black text-brand-blue hover:bg-sky-100 transition">
+                <div className="bg-white dark:bg-slate-900 dark:border-slate-800 p-4">
+                  <Link href={`/products?q=${encodeURIComponent(query)}`} className="flex w-full items-center justify-center gap-2 rounded-xl bg-sky-50 dark:bg-slate-900 py-3 text-sm font-black text-brand-blue hover:bg-sky-100 transition">
                     View all results <ArrowRight size={16} />
                   </Link>
                 </div>
               </div>
             ) : (
               <div className="p-12 text-center">
-                <div className="mx-auto mb-4 grid h-16 w-16 place-items-center rounded-full bg-slate-50 text-slate-300">
+                <div className="mx-auto mb-4 grid h-16 w-16 place-items-center rounded-full bg-slate-50 dark:bg-slate-950 dark:border-slate-800 text-slate-300">
                   <SearchIcon size={24} />
                 </div>
-                <p className="text-lg font-black text-slate-700 dark:text-slate-300">No results found for "{query}"</p>
-                <p className="mt-2 text-sm font-semibold text-slate-500">Check the spelling or try a more general term.</p>
+                <p className="text-lg font-black text-slate-700 dark:text-white">No results found for "{query}"</p>
+                <p className="mt-2 text-sm font-semibold text-slate-500 dark:text-white">Check the spelling or try a more general term.</p>
               </div>
             )}
           </div>

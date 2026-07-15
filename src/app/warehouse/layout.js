@@ -22,7 +22,7 @@ export default function WarehouseLayout({ children }) {
         <aside className="soft-card h-fit rounded-2xl p-4 sticky top-24">
           <div className="px-2 pb-4">
             <p className="text-xs font-black uppercase tracking-[0.18em] text-brand-blue">Warehouse</p>
-            <h2 className="mt-2 text-lg font-black text-slate-900 dark:text-slate-100">Operator Portal</h2>
+            <h2 className="mt-2 text-lg font-black text-slate-900 dark:text-white">Operator Portal</h2>
           </div>
           <div className="grid gap-1.5">
             {warehouseLinks.map(({ href, label, icon: Icon }) => {
@@ -32,7 +32,7 @@ export default function WarehouseLayout({ children }) {
                   key={href}
                   href={href}
                   className={`flex items-center gap-3 rounded-xl px-3 py-2.5 text-sm font-black transition ${
-                    selected ? "bg-brand-blue text-white shadow-glow" : "text-slate-600 dark:text-slate-400 hover:bg-sky-50 hover:text-brand-blue"
+                    selected ? "bg-brand-blue text-white shadow-glow" : "text-slate-600 dark:text-white hover:bg-sky-50 hover:text-brand-blue"
                   }`}
                 >
                   <Icon size={16} className={selected ? "text-white" : "text-brand-blue"} />
@@ -43,8 +43,8 @@ export default function WarehouseLayout({ children }) {
           </div>
           
           <div className="mt-8 px-2 pb-2 border-t border-sky-50 pt-4">
-            <p className="text-[10px] font-black uppercase tracking-[0.18em] text-slate-400">Current Hub</p>
-            <p className="mt-1 text-sm font-bold text-slate-700 dark:text-slate-300">North Hub • Delhi NCR</p>
+            <p className="text-[10px] font-black uppercase tracking-[0.18em] text-slate-400 dark:text-white">Current Hub</p>
+            <p className="mt-1 text-sm font-bold text-slate-700 dark:text-white">North Hub • Delhi NCR</p>
           </div>
           
           <div className="mt-4 grid gap-1.5">

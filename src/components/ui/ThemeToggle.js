@@ -35,7 +35,7 @@ export function ThemeToggle() {
             key={value}
             onClick={() => setTheme(value)}
             className={`relative flex h-7 w-9 items-center justify-center rounded-full transition-colors z-10 ${
-              isActive ? "text-brand-blue dark:text-white" : "text-slate-500 hover:text-slate-700 dark:text-slate-400 dark:hover:text-slate-200"
+              isActive ? "text-brand-blue dark:text-white" : "text-slate-500 hover:text-slate-700 dark:text-white dark:hover:text-slate-200"
             }`}
             aria-label={`Switch to ${value} theme`}
           >

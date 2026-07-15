@@ -30,9 +30,9 @@ export function QuickViewModal({ product, open, onClose }) {
             initial={{ y: 28, opacity: 0, scale: 0.96 }}
             animate={{ y: 0, opacity: 1, scale: 1 }}
             exit={{ y: 28, opacity: 0, scale: 0.96 }}
-            className="relative grid max-h-[calc(100dvh-32px)] w-[min(1080px,calc(100vw-32px))] overflow-auto rounded-[2rem] bg-white p-4 shadow-premium md:grid-cols-[0.95fr_1.15fr] md:p-7 lg:max-h-[calc(100dvh-48px)]"
+            className="relative grid max-h-[calc(100dvh-32px)] w-[min(1080px,calc(100vw-32px))] overflow-auto rounded-[2rem] bg-white dark:bg-slate-900 dark:border-slate-800 p-4 shadow-premium md:grid-cols-[0.95fr_1.15fr] md:p-7 lg:max-h-[calc(100dvh-48px)]"
           >
-            <button onClick={onClose} className="absolute right-4 top-4 z-10 rounded-full bg-white p-3 text-brand-blue shadow-card" aria-label="Close quick view"><X size={18} /></button>
+            <button onClick={onClose} className="absolute right-4 top-4 z-10 rounded-full bg-white dark:bg-slate-900 dark:border-slate-800 p-3 text-brand-blue shadow-card" aria-label="Close quick view"><X size={18} /></button>
             <div className="relative aspect-square overflow-hidden rounded-[1.5rem] bg-brand-softBlue">
               <Image src={product.image} alt={product.imageAlt || product.name} fill sizes="360px" className="object-contain p-10" />
             </div>
@@ -43,23 +43,21 @@ export function QuickViewModal({ product, open, onClose }) {
                 <Badge>{discount}% off</Badge>
               </div>
               <h2 className="mt-4 text-3xl font-black">{product.name}</h2>
-              <p className="mt-3 text-sm font-semibold leading-6 text-slate-600 dark:text-slate-400">{product.usage}</p>
-              <div className="mt-5 grid gap-3 rounded-2xl bg-sky-50 p-4 text-sm font-bold text-slate-600 dark:text-slate-400">
+              <p className="mt-3 text-sm font-semibold leading-6 text-slate-600 dark:text-white">{product.usage}</p>
+              <div className="mt-5 grid gap-3 rounded-2xl bg-sky-50 dark:bg-slate-900 p-4 text-sm font-bold text-slate-600 dark:text-white">
                 <div className="flex justify-between"><span>Pack</span><span>{product.packSize}</span></div>
                 <div className="flex justify-between"><span>Delivery</span><span>{product.delivery}</span></div>
                 <div className="flex justify-between"><span>Manufacturer</span><span>{product.manufacturer}</span></div>
               </div>
               <div className="mt-5 flex items-end gap-2">
                 <span className="text-3xl font-black">Rs. {product.price}</span>
-                <span className="text-sm font-bold text-slate-400 line-through">Rs. {product.mrp}</span>
+                <span className="text-sm font-bold text-slate-400 dark:text-white line-through">Rs. {product.mrp}</span>
               </div>
               <div className="mt-6 grid gap-3 sm:grid-cols-2">
-                <Button
-                  onClick={() => {
-                    const result = addToCart(product);
-                    if (!result.blocked) onClose();
-                  }}
-                >
+                <Button onClick={() => {
+                  const result = addToCart(product);
+                  if (!result.blocked) onClose();
+                }} disabled={!product.inStock} className="flex-1 disabled:bg-slate-200 disabled:text-slate-500 dark:disabled:bg-slate-800 dark:disabled:text-white disabled:cursor-not-allowed">
                   <ShoppingBag size={17} /> Add to cart
                 </Button>
                 <Button href={`/products/${product.slug}/`} className="min-w-0 bg-brand-blue text-white hover:bg-[#066CAB]" onClick={onClose}>Details</Button>

@@ -83,7 +83,7 @@ export default function AddressesPage() {
                 )}
               </div>
               
-              <div className="h-20 text-sm font-semibold leading-6 text-slate-600 dark:text-slate-400">
+              <div className="h-20 text-sm font-semibold leading-6 text-slate-600 dark:text-white">
                 <p>{address.text}</p>
                 <p>{address.city}, {address.pin}</p>
               </div>
@@ -92,11 +92,11 @@ export default function AddressesPage() {
                 {!address.isDefault ? (
                   <button onClick={() => makeDefault(address.id)} className="text-sm font-black text-brand-blue hover:underline">Set as default</button>
                 ) : (
-                  <span className="text-sm font-bold text-slate-400">Primary address</span>
+                  <span className="text-sm font-bold text-slate-400 dark:text-white">Primary address</span>
                 )}
                 
                 <div className="flex gap-2">
-                  <button onClick={() => openEdit(address)} className="grid h-8 w-8 place-items-center rounded-xl bg-sky-50 text-brand-blue hover:bg-sky-100 transition">
+                  <button onClick={() => openEdit(address)} className="grid h-8 w-8 place-items-center rounded-xl bg-sky-50 dark:bg-slate-900 text-brand-blue hover:bg-sky-100 transition">
                     <Edit2 size={14} />
                   </button>
                   <button onClick={() => deleteAddress(address.id)} className="grid h-8 w-8 place-items-center rounded-xl bg-rose-50 text-rose-500 hover:bg-rose-100 transition">
@@ -121,31 +121,31 @@ export default function AddressesPage() {
               initial={{ scale: 0.95, y: 10 }}
               animate={{ scale: 1, y: 0 }}
               exit={{ scale: 0.95, y: 10 }}
-              className="w-full max-w-md overflow-hidden rounded-3xl bg-white shadow-premium"
+              className="w-full max-w-md overflow-hidden rounded-3xl bg-white dark:bg-slate-900 dark:border-slate-800 shadow-premium"
             >
               <div className="flex items-center justify-between border-b border-sky-100 p-5">
                 <h2 className="text-xl font-black">{editingAddress ? "Edit Address" : "Add New Address"}</h2>
-                <button onClick={() => setModalOpen(false)} className="rounded-full bg-sky-50 p-2 text-brand-blue hover:bg-sky-100">
+                <button onClick={() => setModalOpen(false)} className="rounded-full bg-sky-50 dark:bg-slate-900 p-2 text-brand-blue hover:bg-sky-100">
                   <X size={18} />
                 </button>
               </div>
               <form onSubmit={saveAddress} className="grid gap-4 p-6">
                 <label className="grid gap-2 text-sm font-black min-w-0">
                   Label (e.g. Home, Work)
-                  <input name="label" defaultValue={editingAddress?.label || ""} required className="w-full min-w-0 rounded-2xl border border-sky-100 bg-sky-50 px-4 py-3 font-semibold outline-brand-blue" />
+                  <input name="label" defaultValue={editingAddress?.label || ""} required className="w-full min-w-0 rounded-2xl border dark:border-slate-800 border dark:border-slate-800-sky-100 bg-sky-50 dark:bg-slate-900 px-4 py-3 font-semibold outline-brand-blue" />
                 </label>
                 <label className="grid gap-2 text-sm font-black min-w-0">
                   Address Line
-                  <textarea name="text" defaultValue={editingAddress?.text || ""} required rows={3} className="w-full min-w-0 rounded-2xl border border-sky-100 bg-sky-50 px-4 py-3 font-semibold outline-brand-blue resize-none" />
+                  <textarea name="text" defaultValue={editingAddress?.text || ""} required rows={3} className="w-full min-w-0 rounded-2xl border dark:border-slate-800 border dark:border-slate-800-sky-100 bg-sky-50 dark:bg-slate-900 px-4 py-3 font-semibold outline-brand-blue resize-none" />
                 </label>
                 <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
                   <label className="grid gap-2 text-sm font-black min-w-0">
                     City
-                    <input name="city" defaultValue={editingAddress?.city || ""} required className="w-full min-w-0 rounded-2xl border border-sky-100 bg-sky-50 px-4 py-3 font-semibold outline-brand-blue" />
+                    <input name="city" defaultValue={editingAddress?.city || ""} required className="w-full min-w-0 rounded-2xl border dark:border-slate-800 border dark:border-slate-800-sky-100 bg-sky-50 dark:bg-slate-900 px-4 py-3 font-semibold outline-brand-blue" />
                   </label>
                   <label className="grid gap-2 text-sm font-black min-w-0">
                     Pincode
-                    <input name="pin" defaultValue={editingAddress?.pin || ""} required maxLength={6} minLength={6} className="w-full min-w-0 rounded-2xl border border-sky-100 bg-sky-50 px-4 py-3 font-semibold outline-brand-blue" />
+                    <input name="pin" defaultValue={editingAddress?.pin || ""} required maxLength={6} minLength={6} className="w-full min-w-0 rounded-2xl border dark:border-slate-800 border dark:border-slate-800-sky-100 bg-sky-50 dark:bg-slate-900 px-4 py-3 font-semibold outline-brand-blue" />
                   </label>
                 </div>
                 <button type="submit" className="mt-4 w-full rounded-full bg-brand-blue py-3.5 font-black text-white shadow-glow hover:bg-[#066CAB] transition">

@@ -69,7 +69,7 @@ export default function VendorProductsPage() {
         <div>
           <p className="text-xs font-black uppercase tracking-widest text-brand-blue">Vendor portal</p>
           <h1 className="mt-1 text-4xl font-black">Products</h1>
-          <p className="mt-1 text-sm font-semibold text-slate-500">{products.length} total products</p>
+          <p className="mt-1 text-sm font-semibold text-slate-500 dark:text-white">{products.length} total products</p>
         </div>
         <button onClick={openAdd} className="flex items-center gap-2 rounded-full bg-brand-blue px-5 py-2.5 text-sm font-black text-white shadow-glow hover:-translate-y-0.5 transition">
           <Plus size={16} /> Add new product
@@ -83,7 +83,7 @@ export default function VendorProductsPage() {
           value={search}
           onChange={(e) => setSearch(e.target.value)}
           placeholder="Search products or categories…"
-          className="w-full rounded-full border border-sky-100 bg-white py-2.5 pl-10 pr-4 text-sm font-bold outline-brand-blue"
+          className="w-full rounded-full border border-sky-100 bg-white dark:bg-slate-900 dark:border-slate-800 py-2.5 pl-10 pr-4 text-sm font-bold outline-brand-blue"
         />
       </div>
 
@@ -91,31 +91,31 @@ export default function VendorProductsPage() {
       <div className="soft-card overflow-hidden rounded-2xl">
         <div className="overflow-x-auto">
           <table className="w-full text-sm">
-            <thead className="border-b border-sky-100 bg-sky-50/60">
+            <thead className="border-b border-sky-100 bg-sky-50 dark:bg-slate-900/60">
               <tr>
                 {["Product", "Category", "Price / MRP", "Stock", "Type", "Visibility", "Actions"].map((h) => (
-                  <th key={h} className="px-4 py-3 text-left text-xs font-black uppercase tracking-widest text-slate-400">{h}</th>
+                  <th key={h} className="px-4 py-3 text-left text-xs font-black uppercase tracking-widest text-slate-400 dark:text-white">{h}</th>
                 ))}
               </tr>
             </thead>
             <tbody>
               {filtered.map((product) => (
-                <tr key={product.id} className="border-b border-sky-50 last:border-0 transition hover:bg-sky-50/30">
+                <tr key={product.id} className="border-b border-sky-50 last:border-0 transition hover:bg-sky-50 dark:bg-slate-900/30">
                   <td className="px-4 py-3">
                     <div className="flex items-center gap-3">
                       <div className="grid h-11 w-11 shrink-0 place-items-center rounded-xl bg-sky-100">
                         <Package size={18} className="text-brand-blue" />
                       </div>
-                      <p className="font-black text-slate-800 dark:text-slate-200">{product.name}</p>
+                      <p className="font-black text-slate-800 dark:text-white">{product.name}</p>
                     </div>
                   </td>
-                  <td className="px-4 py-3 text-xs font-semibold text-slate-500">{product.category}</td>
+                  <td className="px-4 py-3 text-xs font-semibold text-slate-500 dark:text-white">{product.category}</td>
                   <td className="px-4 py-3">
                     <span className="font-black">Rs. {product.price}</span>
-                    <span className="ml-2 text-xs text-slate-400 line-through">Rs. {product.mrp}</span>
+                    <span className="ml-2 text-xs text-slate-400 dark:text-white line-through">Rs. {product.mrp}</span>
                   </td>
                   <td className="px-4 py-3">
-                    <span className={`font-black ${product.stock === 0 ? "text-rose-600" : product.stock < 10 ? "text-amber-600" : "text-slate-800 dark:text-slate-200"}`}>
+                    <span className={`font-black ${product.stock === 0 ? "text-rose-600" : product.stock < 10 ? "text-amber-600" : "text-slate-800 dark:text-white"}`}>
                       {product.stock}
                     </span>
                   </td>
@@ -129,13 +129,13 @@ export default function VendorProductsPage() {
                     <button onClick={() => toggleStock(product.id)} className="flex items-center gap-2 text-sm font-black transition hover:opacity-80">
                       {product.inStock
                         ? <><ToggleRight size={22} className="text-emerald-500" /> <span className="text-emerald-600">Live</span></>
-                        : <><ToggleLeft size={22} className="text-slate-400" />  <span className="text-slate-400">Hidden</span></>
+                        : <><ToggleLeft size={22} className="text-slate-400 dark:text-white" />  <span className="text-slate-400 dark:text-white">Hidden</span></>
                       }
                     </button>
                   </td>
                   <td className="px-4 py-3">
                     <div className="flex gap-2">
-                      <button onClick={() => openEdit(product)} className="grid h-8 w-8 place-items-center rounded-xl bg-sky-50 text-brand-blue hover:bg-sky-100 transition">
+                      <button onClick={() => openEdit(product)} className="grid h-8 w-8 place-items-center rounded-xl bg-sky-50 dark:bg-slate-900 text-brand-blue hover:bg-sky-100 transition">
                         <Edit2 size={14} />
                       </button>
                       <button onClick={() => remove(product.id)} className="grid h-8 w-8 place-items-center rounded-xl bg-rose-50 text-rose-500 hover:bg-rose-100 transition">
@@ -154,11 +154,11 @@ export default function VendorProductsPage() {
         <form onSubmit={saveProduct} className="grid gap-4">
           <label className="grid gap-2 text-sm font-black">
             Product Name
-            <input name="name" required defaultValue={editingProduct?.name || ""} placeholder="e.g. Paracetamol 500mg" className="rounded-2xl border border-sky-100 bg-sky-50 px-4 py-3 font-semibold outline-brand-blue" />
+            <input name="name" required defaultValue={editingProduct?.name || ""} placeholder="e.g. Paracetamol 500mg" className="rounded-2xl border dark:border-slate-800 border dark:border-slate-800-sky-100 bg-sky-50 dark:bg-slate-900 px-4 py-3 font-semibold outline-brand-blue" />
           </label>
           <label className="grid gap-2 text-sm font-black">
             Category
-            <select name="category" required defaultValue={editingProduct?.category || "Health Resource Center"} className="rounded-2xl border border-sky-100 bg-sky-50 px-4 py-3 font-semibold outline-brand-blue">
+            <select name="category" required defaultValue={editingProduct?.category || "Health Resource Center"} className="rounded-2xl border dark:border-slate-800 border dark:border-slate-800-sky-100 bg-sky-50 dark:bg-slate-900 px-4 py-3 font-semibold outline-brand-blue">
               <option value="Health Resource Center">Health Resource Center</option>
               <option value="Vitamins & Nutrition">Vitamins & Nutrition</option>
               <option value="Fitness & Health">Fitness & Health</option>
@@ -169,21 +169,21 @@ export default function VendorProductsPage() {
           <div className="grid grid-cols-2 gap-4">
             <label className="grid gap-2 text-sm font-black">
               Selling Price (Rs.)
-              <input type="number" name="price" required min="1" defaultValue={editingProduct?.price || ""} placeholder="89" className="rounded-2xl border border-sky-100 bg-sky-50 px-4 py-3 font-semibold outline-brand-blue" />
+              <input type="number" name="price" required min="1" defaultValue={editingProduct?.price || ""} placeholder="89" className="rounded-2xl border dark:border-slate-800 border dark:border-slate-800-sky-100 bg-sky-50 dark:bg-slate-900 px-4 py-3 font-semibold outline-brand-blue" />
             </label>
             <label className="grid gap-2 text-sm font-black">
               MRP (Rs.)
-              <input type="number" name="mrp" required min="1" defaultValue={editingProduct?.mrp || ""} placeholder="110" className="rounded-2xl border border-sky-100 bg-sky-50 px-4 py-3 font-semibold outline-brand-blue" />
+              <input type="number" name="mrp" required min="1" defaultValue={editingProduct?.mrp || ""} placeholder="110" className="rounded-2xl border dark:border-slate-800 border dark:border-slate-800-sky-100 bg-sky-50 dark:bg-slate-900 px-4 py-3 font-semibold outline-brand-blue" />
             </label>
           </div>
           <div className="grid grid-cols-2 gap-4">
             <label className="grid gap-2 text-sm font-black">
               Stock Quantity
-              <input type="number" name="stock" required min="0" defaultValue={editingProduct?.stock ?? 10} placeholder="e.g. 50" className="rounded-2xl border border-sky-100 bg-sky-50 px-4 py-3 font-semibold outline-brand-blue" />
+              <input type="number" name="stock" required min="0" defaultValue={editingProduct?.stock ?? 10} placeholder="e.g. 50" className="rounded-2xl border dark:border-slate-800 border dark:border-slate-800-sky-100 bg-sky-50 dark:bg-slate-900 px-4 py-3 font-semibold outline-brand-blue" />
             </label>
             <label className="grid gap-2 text-sm font-black">
               Prescription Required
-              <select name="rxRequired" required defaultValue={editingProduct?.rxRequired ? "true" : "false"} className="rounded-2xl border border-sky-100 bg-sky-50 px-4 py-3 font-semibold outline-brand-blue">
+              <select name="rxRequired" required defaultValue={editingProduct?.rxRequired ? "true" : "false"} className="rounded-2xl border dark:border-slate-800 border dark:border-slate-800-sky-100 bg-sky-50 dark:bg-slate-900 px-4 py-3 font-semibold outline-brand-blue">
                 <option value="false">No (OTC)</option>
                 <option value="true">Yes (Rx)</option>
               </select>

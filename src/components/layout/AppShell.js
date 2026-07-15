@@ -71,7 +71,7 @@ export function AppShell({ children }) {
 
           {/* Desktop nav links */}
           {!isInternalModule && (
-            <div className="hidden items-center gap-7 text-sm font-bold text-slate-600 md:flex">
+            <div className="hidden items-center gap-7 text-sm font-bold text-slate-600 dark:text-white md:flex">
               {nav.map(([label, href]) => {
                 const base = href.split("?")[0];
                 const active = pathname === base || (base !== "/" && pathname.startsWith(base));
@@ -99,7 +99,7 @@ export function AppShell({ children }) {
             <button
               onClick={() => setSearchOpen(true)}
               id="nav-search-btn"
-              className="hidden rounded-full bg-sky-50 p-3 text-brand-blue transition hover:bg-sky-100 sm:inline-flex"
+              className="hidden rounded-full bg-sky-50 dark:bg-slate-900 p-3 text-brand-blue transition hover:bg-sky-100 sm:inline-flex"
               aria-label="Search"
             >
               <Search size={18} />
@@ -107,7 +107,7 @@ export function AppShell({ children }) {
             <Link
               href="/account/dashboard"
               id="nav-account-btn"
-              className="hidden rounded-full bg-sky-50 p-3 text-brand-blue transition hover:bg-sky-100 sm:inline-flex"
+              className="hidden rounded-full bg-sky-50 dark:bg-slate-900 p-3 text-brand-blue transition hover:bg-sky-100 sm:inline-flex"
               aria-label="Account"
             >
               <UserRound size={18} />
@@ -128,7 +128,7 @@ export function AppShell({ children }) {
             </Link>
             <button
               id="nav-menu-btn"
-              className="rounded-full bg-sky-50 p-3 text-brand-blue transition hover:bg-sky-100 md:hidden"
+              className="rounded-full bg-sky-50 dark:bg-slate-900 p-3 text-brand-blue transition hover:bg-sky-100 md:hidden"
               onClick={() => setDrawerOpen(true)}
               aria-label="Open menu"
             >
@@ -138,7 +138,7 @@ export function AppShell({ children }) {
         </nav>
         {/* Horizontal Mega Menu (Gooey Nav) */}
         {!isInternalModule && !pathname.startsWith("/products") && (
-          <div className="hidden border-t border-sky-100/50 bg-slate-50/80 backdrop-blur-md transition-colors dark:border-slate-800 dark:bg-slate-900/80 lg:block relative z-40">
+          <div className="hidden border-t border-sky-100/50 bg-slate-50/80 backdrop-blur-md transition-colors dark:border-slate-800 dark:bg-slate-950/80 lg:block relative z-40">
              <GooeyNav items={megaMenuCategories} />
           </div>
         )}
@@ -193,7 +193,7 @@ export function AppShell({ children }) {
                         key={label}
                         href={href}
                         onClick={() => setDrawerOpen(false)}
-                        className={`rounded-2xl px-4 py-3 text-sm font-black transition ${active ? "bg-brand-blue text-white shadow-glow" : "bg-sky-50 text-slate-700 hover:bg-sky-100 dark:bg-slate-900/50 dark:text-slate-300 dark:hover:bg-slate-800"}`}
+                        className={`rounded-2xl px-4 py-3 text-sm font-black transition ${active ? "bg-brand-blue text-white shadow-glow" : "bg-sky-50 text-slate-700 hover:bg-sky-100 dark:bg-slate-900/50 dark:text-white dark:hover:bg-slate-800"}`}
                       >
                         {label}
                       </Link>
@@ -205,7 +205,7 @@ export function AppShell({ children }) {
                 <div className="mt-6 grid grid-cols-2 gap-2">
                   <button
                     onClick={() => { setDrawerOpen(false); setSearchOpen(true); }}
-                    className="rounded-2xl bg-white px-4 py-3 text-center text-sm font-bold text-slate-600 shadow-card hover:text-brand-blue dark:bg-slate-900/50 dark:text-slate-300 dark:hover:text-sky-400"
+                    className="rounded-2xl bg-white px-4 py-3 text-center text-sm font-bold text-slate-600 dark:text-white shadow-card hover:text-brand-blue dark:bg-slate-900/50 dark:text-white dark:hover:text-sky-400"
                   >
                     Search
                   </button>
@@ -214,21 +214,21 @@ export function AppShell({ children }) {
                       key={label}
                       href={href}
                       onClick={() => setDrawerOpen(false)}
-                      className="rounded-2xl bg-white px-4 py-3 text-center text-sm font-bold text-slate-600 shadow-card hover:text-brand-blue dark:bg-slate-900/50 dark:text-slate-300 dark:hover:text-sky-400"
+                      className="rounded-2xl bg-white px-4 py-3 text-center text-sm font-bold text-slate-600 dark:text-white shadow-card hover:text-brand-blue dark:bg-slate-900/50 dark:text-white dark:hover:text-sky-400"
                     >
                       {label}
                     </Link>
                   ))}
                 </div>
                 <div className="mt-6">
-                  <p className="mb-2 px-1 text-xs font-black uppercase tracking-[0.18em] text-slate-400">Workspaces</p>
+                  <p className="mb-2 px-1 text-xs font-black uppercase tracking-[0.18em] text-slate-400 dark:text-white">Workspaces</p>
                   <div className="grid gap-2">
                     {[["Vendor", "/vendor/dashboard"], ["Warehouse", "/warehouse"], ["Delivery", "/delivery/dashboard"], ["Admin", "/admin"], ["Subscription", "/subscription"]].map(([label, href]) => (
                       <Link
                         key={label}
                         href={href}
                         onClick={() => setDrawerOpen(false)}
-                        className="rounded-2xl bg-sky-50 px-4 py-3 text-sm font-black text-slate-700 hover:bg-sky-100 hover:text-brand-blue dark:bg-slate-900/50 dark:text-slate-400 dark:hover:bg-slate-800 dark:hover:text-sky-400"
+                        className="rounded-2xl bg-sky-50 px-4 py-3 text-sm font-black text-slate-700 dark:text-white hover:bg-sky-100 hover:text-brand-blue dark:bg-slate-900/50 dark:text-white dark:hover:bg-slate-800 dark:hover:text-sky-400"
                       >
                         {label}
                       </Link>
@@ -239,7 +239,7 @@ export function AppShell({ children }) {
 
               {/* Drawer footer */}
               <div className="border-t border-sky-100 dark:border-slate-800 p-5 transition-colors">
-                <p className="text-xs font-bold text-slate-400 dark:text-slate-500">© {new Date().getFullYear()} FirstMED. All rights reserved.</p>
+                <p className="text-xs font-bold text-slate-400 dark:text-white dark:text-white">© {new Date().getFullYear()} FirstMED. All rights reserved.</p>
               </div>
             </motion.aside>
           </motion.div>
@@ -256,7 +256,7 @@ export function AppShell({ children }) {
 
 function Footer() {
   return (
-    <footer className="relative bg-sky-50 pb-20 md:pb-0 overflow-hidden text-slate-600 dark:bg-slate-950 dark:text-slate-300 transition-colors">
+    <footer className="relative bg-sky-50 pb-20 md:pb-0 overflow-hidden text-slate-600 dark:text-white dark:bg-slate-950 dark:text-white transition-colors">
       {/* Subtle glowing radial gradients */}
       <div className="absolute bottom-0 left-1/2 -translate-x-1/2 w-full max-w-[104rem] h-[500px] bg-[radial-gradient(ellipse_at_bottom,_var(--tw-gradient-stops))] from-brand-blue/10 via-sky-50/0 to-transparent dark:from-sky-900/20 dark:via-slate-950/0 pointer-events-none" />
 
@@ -273,7 +273,7 @@ function Footer() {
         <div className="mb-16 md:-mt-32 w-full rounded-3xl bg-white/90 dark:bg-white/5 backdrop-blur-2xl border border-sky-100 dark:border-white/10 p-8 shadow-premium dark:shadow-[0_0_40px_rgba(0,0,0,0.3)] md:p-12 lg:flex lg:items-center lg:justify-between lg:gap-10 transition-colors">
           <div className="max-w-xl">
             <h2 className="text-2xl font-black text-brand-dark dark:text-white sm:text-3xl">Get 10% off your first prescription & weekly health tips.</h2>
-            <p className="mt-2 text-slate-500 dark:text-slate-400">Join 50,000+ members getting smarter about their wellness routines.</p>
+            <p className="mt-2 text-slate-500 dark:text-white">Join 50,000+ members getting smarter about their wellness routines.</p>
           </div>
           <div className="mt-6 flex w-full max-w-md items-center gap-2 rounded-2xl bg-sky-50 dark:bg-slate-900/50 p-2 border border-sky-100 dark:border-white/5 lg:mt-0 transition-colors">
             <input type="email" placeholder="Enter your email" className="w-full bg-transparent px-4 py-2 text-slate-800 dark:text-white placeholder-slate-400 dark:placeholder-slate-500 outline-none" />
@@ -285,7 +285,7 @@ function Footer() {
           {/* Brand side */}
           <div>
             <Image src="/firstmed-logo.png" alt="FirstMED" width={122} height={36} className="h-9 w-auto dark:brightness-0 dark:invert transition-all" />
-            <p className="mt-5 max-w-sm text-sm leading-6 text-slate-500 dark:text-slate-400">
+            <p className="mt-5 max-w-sm text-sm leading-6 text-slate-500 dark:text-white">
               Product-first pharmacy commerce with gated prescription safety, fast delivery workflows, and calm account tools.
             </p>
 
@@ -329,8 +329,8 @@ function Footer() {
             ))}
           </div>
 
-          <div className="text-center md:text-right text-xs font-semibold text-slate-500">
-            <div className="mb-2 flex justify-center md:justify-end gap-5 text-slate-500 dark:text-slate-400">
+          <div className="text-center md:text-right text-xs font-semibold text-slate-500 dark:text-white">
+            <div className="mb-2 flex justify-center md:justify-end gap-5 text-slate-500 dark:text-white">
               <Link href="/privacy-policy" className="transition hover:text-brand-blue dark:hover:text-white">Privacy</Link>
               <Link href="/terms-and-conditions" className="transition hover:text-brand-blue dark:hover:text-white">Terms</Link>
               <Link href="/refund-policy" className="transition hover:text-brand-blue dark:hover:text-white">Refund policy</Link>

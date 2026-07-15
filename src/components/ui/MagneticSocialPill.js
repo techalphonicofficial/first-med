@@ -42,7 +42,7 @@ export function MagneticSocialPill({ href, label, hoverColorClass }) {
       className={`group relative flex items-center justify-center rounded-full bg-white/5 backdrop-blur-md border border-white/10 px-5 py-2.5 text-xs font-black text-slate-300 shadow-card transition-colors duration-300 ${hoverColorClass}`}
     >
       <span className="relative z-10">{label}</span>
-      <div className="absolute inset-0 rounded-full bg-white/0 transition-colors duration-300 group-hover:bg-white/10" />
+      <div className="absolute inset-0 rounded-full bg-white dark:bg-slate-900 dark:border-slate-800/0 transition-colors duration-300 group-hover:bg-white dark:bg-slate-900 dark:border-slate-800/10" />
     </motion.a>
   );
 }

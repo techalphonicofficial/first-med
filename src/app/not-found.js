@@ -12,7 +12,7 @@ export default function NotFound() {
       </div>
       
       <h2 className="mb-4 text-3xl font-black text-brand-dark dark:text-white md:text-4xl">Page not found</h2>
-      <p className="mb-10 text-lg font-semibold text-slate-500">
+      <p className="mb-10 text-lg font-semibold text-slate-500 dark:text-white">
         The page you are looking for might have been removed, had its name changed, or is temporarily unavailable.
       </p>
       
@@ -20,7 +20,7 @@ export default function NotFound() {
         <Link href="/" className="flex items-center gap-2 rounded-full bg-brand-blue px-6 py-3 text-sm font-black text-white shadow-glow hover:-translate-y-0.5 transition">
           <Home size={16} /> Back to Home
         </Link>
-        <Link href="/products" className="flex items-center gap-2 rounded-full bg-white px-6 py-3 text-sm font-black text-brand-blue shadow-card hover:bg-sky-50 transition">
+        <Link href="/products" className="flex items-center gap-2 rounded-full bg-white dark:bg-slate-900 dark:border-slate-800 px-6 py-3 text-sm font-black text-brand-blue shadow-card hover:bg-sky-50 transition">
           <Search size={16} /> Browse Products
         </Link>
       </div>

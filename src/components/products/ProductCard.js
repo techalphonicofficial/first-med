@@ -64,7 +64,7 @@ export function ProductCard({ product, view = "Grid" }) {
             if (isSaved) toast.success("Removed from wishlist");
             else toast.success("Added to wishlist");
           }}
-          className={`absolute z-10 grid h-9 w-9 place-items-center rounded-full shadow-card transition duration-200 hover:scale-110 ${isSaved ? "bg-rose-500 text-white" : "bg-white dark:bg-slate-800 text-slate-500 dark:text-slate-400 hover:text-rose-500 dark:hover:text-rose-400"} ${isList ? "right-4 top-4" : "right-4 top-4"}`}
+          className={`absolute z-10 grid h-9 w-9 place-items-center rounded-full shadow-card transition duration-200 hover:scale-110 ${isSaved ? "bg-rose-500 text-white" : "bg-white dark:bg-slate-800 text-slate-500 dark:text-white hover:text-rose-500 dark:hover:text-rose-400"} ${isList ? "right-4 top-4" : "right-4 top-4"}`}
           aria-label={isSaved ? "Remove from wishlist" : "Add to wishlist"}
         >
           <Heart size={16} fill={isSaved ? "currentColor" : "none"} />
@@ -83,7 +83,7 @@ export function ProductCard({ product, view = "Grid" }) {
 
             {/* Badges */}
             {product.rxRequired && (
-              <span className="absolute left-2 top-2 inline-flex items-center gap-1 rounded-full bg-slate-950/88 px-2 py-1 text-[10px] font-black text-white">
+              <span className="absolute left-2 top-2 inline-flex items-center gap-1 rounded-full bg-white/90 dark:bg-slate-800/90 px-2 py-1 text-[10px] font-black text-brand-blue dark:text-sky-400 shadow-sm">
                 <LockKeyhole size={11} /> Rx
               </span>
             )}
@@ -102,20 +102,20 @@ export function ProductCard({ product, view = "Grid" }) {
           {/* Product info */}
           <div className={`px-1 pt-3 ${isList ? "flex flex-1 flex-col justify-center sm:pt-0" : ""}`}>
             <div className={isList ? "pr-12" : ""}>
-              <p className={`text-sm font-black text-slate-900 dark:text-slate-100 ${isList ? "text-lg line-clamp-1" : "line-clamp-2 min-h-10 leading-5"}`}>{product.name}</p>
-              <p className="mt-1 text-xs font-semibold text-slate-500 dark:text-slate-400">{product.brand}</p>
+              <p className={`text-sm font-black text-slate-900 dark:text-white ${isList ? "text-lg line-clamp-1" : "line-clamp-2 min-h-10 leading-5"}`}>{product.name}</p>
+              <p className="mt-1 text-xs font-semibold text-slate-500 dark:text-white">{product.brand}</p>
               <div className="mt-2 flex items-center gap-1.5">
                 <span className="flex items-center gap-1 text-xs font-black text-amber-500">
                   <Star size={12} fill="currentColor" /> {product.rating}
                 </span>
-                <span className="text-slate-300 dark:text-slate-600 dark:text-slate-400">·</span>
-                <Badge className="px-2 py-0.5 text-[10px] dark:bg-slate-800 dark:text-slate-300 dark:border-slate-700">{product.packSize}</Badge>
+                <span className="text-slate-300 dark:text-slate-600 dark:text-white">·</span>
+                <Badge className="px-2 py-0.5 text-[10px] dark:bg-slate-800 dark:text-white dark:border-slate-700">{product.packSize}</Badge>
               </div>
             </div>
             
             <div className={`mt-2 flex items-end gap-2 ${isList ? "mt-4" : ""}`}>
               <span className={`${isList ? "text-xl" : "text-sm"} font-black text-slate-950 dark:text-white`}>Rs. {product.price}</span>
-              <span className="text-xs font-bold text-slate-500 dark:text-slate-400 line-through mb-0.5">Rs. {product.mrp}</span>
+              <span className="text-xs font-bold text-slate-500 dark:text-white line-through mb-0.5">Rs. {product.mrp}</span>
             </div>
           </div>
         </Link>
@@ -149,7 +149,7 @@ export function ProductCard({ product, view = "Grid" }) {
               }, 400); // Simulated delay for premium feel
             }}
             disabled={!product.inStock}
-            className={`focus-ring flex items-center justify-center gap-2 rounded-xl bg-brand-blue px-3 py-2.5 text-sm font-black leading-tight text-white transition duration-200 hover:-translate-y-0.5 hover:bg-[#066CAB] hover:shadow-glow disabled:cursor-not-allowed disabled:bg-slate-200 disabled:text-slate-500 active:scale-95 ${isList ? "min-h-12" : "min-h-11 w-full"} ${buttonState !== "idle" ? "pointer-events-none" : ""}`}
+            className={`focus-ring flex items-center justify-center gap-2 rounded-xl bg-brand-blue px-3 py-2.5 text-sm font-black leading-tight text-white transition duration-200 hover:-translate-y-0.5 hover:bg-[#066CAB] hover:shadow-glow disabled:cursor-not-allowed disabled:bg-slate-200 disabled:text-slate-500 dark:disabled:bg-slate-800 dark:disabled:text-white active:scale-95 ${isList ? "min-h-12" : "min-h-11 w-full"} ${buttonState !== "idle" ? "pointer-events-none" : ""}`}
           >
             <AnimatePresence mode="wait">
               {buttonState === "idle" && (

@@ -60,19 +60,19 @@ export default function VendorOrdersPage() {
             value={search}
             onChange={(e) => setSearch(e.target.value)}
             placeholder="Search order ID or customer…"
-            className="w-64 rounded-full border border-sky-100 bg-white py-2.5 pl-10 pr-4 text-sm font-bold outline-brand-blue"
+            className="w-64 rounded-full border border-sky-100 bg-white dark:bg-slate-900 dark:border-slate-800 py-2.5 pl-10 pr-4 text-sm font-bold outline-brand-blue"
           />
-          {search && <button onClick={() => setSearch("")} className="absolute right-3 top-1/2 -translate-y-1/2 text-slate-400"><X size={14} /></button>}
+          {search && <button onClick={() => setSearch("")} className="absolute right-3 top-1/2 -translate-y-1/2 text-slate-400 dark:text-white"><X size={14} /></button>}
         </div>
       </div>
 
       {/* Tab bar */}
-      <div className="no-scrollbar mb-6 flex gap-2 overflow-auto rounded-2xl bg-white p-1.5 shadow-card">
+      <div className="no-scrollbar mb-6 flex gap-2 overflow-auto rounded-2xl bg-white dark:bg-slate-900 dark:border-slate-800 p-1.5 shadow-card">
         {tabs.map((tab) => (
           <button
             key={tab}
             onClick={() => setActiveTab(tab)}
-            className={`shrink-0 rounded-xl px-4 py-2 text-sm font-black transition ${activeTab === tab ? "bg-brand-blue text-white shadow-glow" : "text-slate-500 hover:bg-sky-50"}`}
+            className={`shrink-0 rounded-xl px-4 py-2 text-sm font-black transition ${activeTab === tab ? "bg-brand-blue text-white shadow-glow" : "text-slate-500 dark:text-white hover:bg-sky-50"}`}
           >
             {tab} {counts[tab] > 0 && <span className={`ml-1 rounded-full px-1.5 text-[10px] ${activeTab === tab ? "bg-white/20 text-white" : "bg-sky-100 text-brand-blue"}`}>{counts[tab]}</span>}
           </button>
@@ -82,8 +82,8 @@ export default function VendorOrdersPage() {
       {/* Orders */}
       <div className="grid gap-4">
         {filtered.length === 0 && (
-          <div className="rounded-2xl bg-white p-10 text-center shadow-card">
-            <p className="text-lg font-black text-slate-400">No orders found</p>
+          <div className="rounded-2xl bg-white dark:bg-slate-900 dark:border-slate-800 p-10 text-center shadow-card">
+            <p className="text-lg font-black text-slate-400 dark:text-white">No orders found</p>
           </div>
         )}
         {filtered.map((order) => {
@@ -106,10 +106,10 @@ export default function VendorOrdersPage() {
                         <span className="rounded-full bg-amber-100 px-2.5 py-1 text-xs font-black text-amber-700">Rx</span>
                       )}
                     </div>
-                    <p className="mt-0.5 text-sm font-bold text-slate-500">{order.customer} · {order.slot}</p>
+                    <p className="mt-0.5 text-sm font-bold text-slate-500 dark:text-white">{order.customer} · {order.slot}</p>
                     <div className="mt-2 flex flex-wrap gap-1.5">
                       {order.items.map((item) => (
-                        <span key={item} className="rounded-full bg-sky-50 px-2.5 py-1 text-xs font-semibold text-slate-600 dark:text-slate-400">{item}</span>
+                        <span key={item} className="rounded-full bg-sky-50 dark:bg-slate-900 px-2.5 py-1 text-xs font-semibold text-slate-600 dark:text-white">{item}</span>
                       ))}
                     </div>
                   </div>
@@ -138,7 +138,7 @@ export default function VendorOrdersPage() {
                       </button>
                     )}
                     {(status === "Completed" || status === "Cancelled") && (
-                      <span className="text-xs font-semibold text-slate-400">No further actions</span>
+                      <span className="text-xs font-semibold text-slate-400 dark:text-white">No further actions</span>
                     )}
                   </div>
                 </div>

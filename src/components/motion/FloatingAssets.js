@@ -19,7 +19,7 @@ export function FloatingAssets() {
         style={{ y: y1 }}
         animate={{ y: [0, -20, 0], rotate: [0, 10, 0] }}
         transition={{ duration: 6, repeat: Infinity, ease: "easeInOut" }}
-        className="absolute top-[15%] left-[5%] grid h-32 w-32 place-items-center rounded-full bg-white/40 shadow-soft backdrop-blur-xl border border-white/60 text-sky-400"
+        className="absolute top-[15%] left-[5%] grid h-32 w-32 place-items-center rounded-full bg-white dark:bg-slate-900 dark:border-slate-800/40 shadow-soft backdrop-blur-xl border border-white/60 text-sky-400"
       >
         <Pill size={48} strokeWidth={1.5} />
       </motion.div>

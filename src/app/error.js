@@ -14,7 +14,7 @@ export default function Error({ error, reset }) {
         <AlertTriangle size={32} />
       </div>
       <h2 className="mb-4 text-3xl font-black text-brand-dark dark:text-white">Something went wrong!</h2>
-      <p className="mb-8 text-sm font-semibold text-slate-500">
+      <p className="mb-8 text-sm font-semibold text-slate-500 dark:text-white">
         We encountered an unexpected error while loading this page.
       </p>
       <button

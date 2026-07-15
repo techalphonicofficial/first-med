@@ -30,12 +30,12 @@ export default function AboutPage() {
           { value: "3",    label: "Partner pharmacies", icon: MapPin,     color: "text-amber-500" },
           { value: "90m",  label: "Avg. delivery time", icon: Clock3,     color: "text-emerald-500" }
         ].map(({ value, label, icon: Icon, color }) => (
-          <div key={label} className="relative rounded-[1.5rem] bg-white p-6 text-center shadow-card transition hover:-translate-y-1 hover:shadow-premium">
+          <div key={label} className="relative rounded-[1.5rem] bg-white dark:bg-slate-900 dark:border-slate-800 p-6 text-center shadow-card transition hover:-translate-y-1 hover:shadow-premium">
             <div className={`mx-auto mb-3 grid h-12 w-12 place-items-center rounded-2xl bg-sky-50 ${color}`}>
               <Icon size={24} />
             </div>
             <p className={`text-4xl font-black ${color}`}>{value}</p>
-            <p className="mt-1 text-sm font-bold text-slate-500">{label}</p>
+            <p className="mt-1 text-sm font-bold text-slate-500 dark:text-white">{label}</p>
           </div>
         ))}
       </div>
@@ -52,12 +52,12 @@ export default function AboutPage() {
             { step: "4", title: "Fast Delivery", desc: "Local dispatch in under 90 minutes.", icon: Truck }
           ].map(({ step, title, desc, icon: Icon }) => (
             <div key={step} className="relative text-center">
-              <div className="mx-auto grid h-20 w-20 place-items-center rounded-full bg-white shadow-soft border-4 border-sky-50">
+              <div className="mx-auto grid h-20 w-20 place-items-center rounded-full bg-white dark:bg-slate-900 dark:border-slate-800 shadow-soft border-4 border-sky-50">
                 <Icon size={32} className="text-brand-blue" />
               </div>
               <span className="absolute top-0 right-1/2 translate-x-10 -translate-y-2 grid h-6 w-6 place-items-center rounded-full bg-brand-yellow text-xs font-black text-brand-blue">{step}</span>
               <h3 className="mt-6 text-lg font-black">{title}</h3>
-              <p className="mt-2 text-sm font-semibold text-slate-500">{desc}</p>
+              <p className="mt-2 text-sm font-semibold text-slate-500 dark:text-white">{desc}</p>
             </div>
           ))}
         </div>
@@ -68,14 +68,14 @@ export default function AboutPage() {
         <div className="rounded-[2rem] bg-brand-softBlue p-10">
           <ShieldCheck size={40} className="mb-6 text-brand-blue" />
           <h2 className="text-3xl font-black text-brand-dark dark:text-white">Prescription safety</h2>
-          <p className="mt-4 text-base font-semibold leading-7 text-slate-600 dark:text-slate-400">
+          <p className="mt-4 text-base font-semibold leading-7 text-slate-600 dark:text-white">
             Restricted products stay gated until the user has uploaded the required prescription information (patient, doctor, date, clinic details) and the status is approved by a registered pharmacist.
           </p>
         </div>
         <div className="rounded-[2rem] bg-emerald-50 p-10">
           <Truck size={40} className="mb-6 text-emerald-600" />
           <h2 className="text-3xl font-black text-brand-dark dark:text-white">Fast local fulfilment</h2>
-          <p className="mt-4 text-base font-semibold leading-7 text-slate-600 dark:text-slate-400">
+          <p className="mt-4 text-base font-semibold leading-7 text-slate-600 dark:text-white">
             The storefront is shaped around nearby pharmacy stock, clear delivery windows and repeatable reorder journeys. Your medicines are dispatched from the nearest verified partner.
           </p>
         </div>

@@ -78,16 +78,16 @@ export function CatalogClient({ initialCategory = "All", initialQuery = "", init
     <div className="grid gap-5">
       {/* Category */}
       <div>
-        <p className="mb-2 text-xs font-black uppercase tracking-[0.14em] text-slate-500">Category</p>
+        <p className="mb-2 text-xs font-black uppercase tracking-[0.14em] text-slate-500 dark:text-white">Category</p>
         <div className="grid gap-1">
           {["All", ...categories].map((item) => (
             <button
               key={item}
               onClick={() => { handleCategoryChange(item); setMobileFilters(false); }}
-              className={`flex items-center justify-between rounded-xl px-3 py-2.5 text-sm font-bold text-left transition ${category === item ? "bg-brand-blue text-white" : "hover:bg-sky-50 text-slate-600 dark:text-slate-400"}`}
+              className={`flex items-center justify-between rounded-xl px-3 py-2.5 text-sm font-bold text-left transition ${category === item ? "bg-brand-blue text-white" : "hover:bg-sky-50 dark:hover:bg-slate-800 text-slate-600 dark:text-white"}`}
             >
               {item}
-              {category === item && <span className="h-1.5 w-1.5 rounded-full bg-white" />}
+              {category === item && <span className="h-1.5 w-1.5 rounded-full bg-white dark:bg-slate-900 dark:border-slate-800" />}
             </button>
           ))}
         </div>
@@ -95,7 +95,7 @@ export function CatalogClient({ initialCategory = "All", initialQuery = "", init
 
       {/* Type */}
       <div>
-        <p className="mb-2 text-xs font-black uppercase tracking-[0.14em] text-slate-500">Type</p>
+        <p className="mb-2 text-xs font-black uppercase tracking-[0.14em] text-slate-500 dark:text-white">Type</p>
         <div className="flex flex-wrap gap-2">
           {["All", "OTC", "Prescription"].map((item) => (
             <button
@@ -111,25 +111,25 @@ export function CatalogClient({ initialCategory = "All", initialQuery = "", init
 
       {/* Sort */}
       <div>
-        <p className="mb-2 text-xs font-black uppercase tracking-[0.14em] text-slate-500">Sort by</p>
+        <p className="mb-2 text-xs font-black uppercase tracking-[0.14em] text-slate-500 dark:text-white">Sort by</p>
         <div className="relative">
           <select
             value={sort}
             onChange={(e) => setSort(e.target.value)}
-            className="w-full appearance-none rounded-2xl border border-sky-100 bg-white px-4 py-3 text-sm font-bold outline-brand-blue"
+            className="w-full appearance-none rounded-2xl border border-sky-100 bg-white px-4 py-3 text-sm font-bold outline-brand-blue dark:border-slate-700 dark:bg-slate-900 dark:text-white"
           >
             {["Popular", "Latest", "Price Low To High", "Price High To Low", "Highest Rated"].map((item) => (
               <option key={item}>{item}</option>
             ))}
           </select>
-          <ChevronDown size={16} className="pointer-events-none absolute right-4 top-1/2 -translate-y-1/2 text-slate-500" />
+          <ChevronDown size={16} className="pointer-events-none absolute right-4 top-1/2 -translate-y-1/2 text-slate-500 dark:text-white" />
         </div>
       </div>
 
       {/* Price range */}
       <div>
         <div className="mb-2 flex items-center justify-between">
-          <p className="text-xs font-black uppercase tracking-[0.14em] text-slate-500">Max price</p>
+          <p className="text-xs font-black uppercase tracking-[0.14em] text-slate-500 dark:text-white">Max price</p>
           <span className="text-sm font-black text-brand-blue">Rs. {maxPrice}</span>
         </div>
         <input
@@ -138,13 +138,13 @@ export function CatalogClient({ initialCategory = "All", initialQuery = "", init
           onChange={(e) => setMaxPrice(Number(e.target.value))}
           className="w-full accent-brand-blue"
         />
-        <div className="mt-1 flex justify-between text-[11px] font-semibold text-slate-500">
+        <div className="mt-1 flex justify-between text-[11px] font-semibold text-slate-500 dark:text-white">
           <span>Rs. 100</span><span>Rs. 1200</span>
         </div>
       </div>
 
       {/* In stock */}
-      <label className="flex cursor-pointer items-center gap-3 rounded-2xl border border-sky-100 bg-white px-4 py-3 text-sm font-black text-slate-600 dark:text-slate-400 transition hover:border-brand-blue">
+      <label className="flex cursor-pointer items-center gap-3 rounded-2xl border border-sky-100 bg-white px-4 py-3 text-sm font-black text-slate-600 dark:text-white transition hover:border-brand-blue dark:border-slate-700 dark:bg-slate-900">
         <input
           type="checkbox"
           checked={inStockOnly}
@@ -167,7 +167,7 @@ export function CatalogClient({ initialCategory = "All", initialQuery = "", init
     <div className="mx-auto max-w-[104rem] px-4 py-10 sm:px-6 lg:px-8 xl:px-10 2xl:px-12">
 
       {/* Page header */}
-      <div className="mb-8 rounded-2xl bg-gradient-to-r from-white via-sky-50 to-brand-mint p-6 shadow-soft">
+      <div className="mb-8 rounded-2xl bg-gradient-to-r from-white via-sky-50 to-brand-mint dark:from-slate-900 dark:via-slate-800 dark:to-slate-900 dark:border dark:border-slate-800 p-6 shadow-soft">
         <div className="flex flex-wrap items-end justify-between gap-4">
           <div>
             <p className="text-xs font-black uppercase tracking-[0.18em] text-brand-blue">Catalogue</p>
@@ -194,18 +194,18 @@ export function CatalogClient({ initialCategory = "All", initialQuery = "", init
               aria-label="Search products"
               value={query}
               onChange={(e) => setQuery(e.target.value)}
-              className="w-full rounded-full border border-sky-100 bg-white py-3 pl-11 pr-5 text-sm font-bold outline-brand-blue"
+              className="w-full rounded-full border border-sky-100 bg-white dark:bg-slate-950 dark:border-slate-800 dark:text-white py-3 pl-11 pr-5 text-sm font-bold outline-brand-blue"
               placeholder="Search products, brands, categories…"
             />
             {query && (
-              <button onClick={() => setQuery("")} className="absolute right-4 top-1/2 -translate-y-1/2 text-slate-400 hover:text-slate-600 dark:text-slate-400">
+              <button onClick={() => setQuery("")} className="absolute right-4 top-1/2 -translate-y-1/2 text-slate-400 hover:text-slate-600 dark:text-white">
                 <X size={16} />
               </button>
             )}
           </div>
           <button
             onClick={() => setView(view === "Grid" ? "List" : "Grid")}
-            className="hidden items-center gap-2 rounded-full border border-sky-100 bg-white px-5 py-3 text-sm font-black text-brand-blue shadow-sm hover:border-brand-blue hover:bg-sky-50 sm:flex transition"
+            className="hidden items-center gap-2 rounded-full border border-sky-100 bg-white dark:bg-slate-950 dark:border-slate-800 dark:text-sky-400 px-5 py-3 text-sm font-black text-brand-blue shadow-sm hover:border-brand-blue hover:bg-sky-50 dark:hover:bg-slate-900 sm:flex transition"
           >
             {view === "Grid" ? <List size={16} /> : <Grid2X2 size={16} />}
             {view === "Grid" ? "List View" : "Grid View"}
@@ -248,7 +248,7 @@ export function CatalogClient({ initialCategory = "All", initialQuery = "", init
       <div className="catalog-layout">
         {/* Desktop sidebar filters */}
         <aside className="hidden lg:block">
-          <div className="sticky top-24 rounded-2xl bg-white p-5 shadow-card">
+          <div className="sticky top-24 rounded-2xl bg-white dark:bg-slate-900 dark:border dark:border-slate-800 p-5 shadow-card">
             <div className="mb-5 flex items-center justify-between">
               <h2 className="text-base font-black">Filters</h2>
               {hasActiveFilters && (
@@ -285,13 +285,13 @@ export function CatalogClient({ initialCategory = "All", initialQuery = "", init
         <div className="fixed inset-0 z-[100] lg:hidden" onClick={() => setMobileFilters(false)}>
           <div className="absolute inset-0 bg-slate-950/40 backdrop-blur-sm" />
           <div
-            className="bottom-sheet absolute bottom-0 left-0 right-0 max-h-[85dvh] overflow-auto rounded-t-[2rem] bg-white p-5 shadow-premium"
+            className="bottom-sheet absolute bottom-0 left-0 right-0 max-h-[85dvh] overflow-auto rounded-t-[2rem] bg-white dark:bg-slate-900 p-5 shadow-premium"
             onClick={(e) => e.stopPropagation()}
           >
             <div className="mx-auto mb-4 h-1 w-10 rounded-full bg-slate-200" />
             <div className="flex items-center justify-between pb-4">
               <h2 className="text-xl font-black">Filters</h2>
-              <button onClick={() => setMobileFilters(false)} className="rounded-full bg-sky-50 p-2 text-brand-blue" aria-label="Close filters">
+              <button onClick={() => setMobileFilters(false)} className="rounded-full bg-sky-50 dark:bg-slate-800 p-2 text-brand-blue dark:text-sky-400" aria-label="Close filters">
                 <X size={18} />
               </button>
             </div>

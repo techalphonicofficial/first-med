@@ -17,6 +17,8 @@
   color-scheme: dark;
   --bg: #020617;      /* slate-950 */
   --text: #f8fafc;    /* slate-50 */
+  --bg-top: #020617;  /* slate-950 */
+  --bg-bottom: #020617; /* slate-950 */
 }
 
 * {
@@ -49,7 +51,7 @@ body {
   background:
     radial-gradient(circle at 0% 2%, rgba(241, 227, 0, 0.18), transparent 30rem),
     radial-gradient(circle at 100% 14%, rgba(8, 120, 190, 0.12), transparent 28rem),
-    linear-gradient(180deg, #f4fbff 0%, var(--bg) 42%, #ffffff 100%);
+    linear-gradient(180deg, var(--bg-top, #f4fbff) 0%, var(--bg) 42%, var(--bg-bottom, #ffffff) 100%);
   color: var(--text);
   font-family: 'Inter', var(--font-geist-sans), ui-sans-serif, system-ui, sans-serif;
   width: 100%;

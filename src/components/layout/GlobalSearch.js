@@ -49,7 +49,7 @@ export function GlobalSearch({ open, onClose }) {
             initial={{ opacity: 0, scale: 0.95, y: -20 }}
             animate={{ opacity: 1, scale: 1, y: 0 }}
             exit={{ opacity: 0, scale: 0.95, y: -20 }}
-            className="relative w-full max-w-2xl overflow-hidden rounded-3xl bg-white shadow-premium"
+            className="relative w-full max-w-2xl overflow-hidden rounded-3xl bg-white dark:bg-slate-900 dark:border-slate-800 shadow-premium"
           >
             <div className="flex items-center border-b border-sky-100 p-4">
               <Search className="mr-3 text-brand-blue" size={20} />
@@ -58,11 +58,11 @@ export function GlobalSearch({ open, onClose }) {
                 value={query}
                 onChange={(e) => setQuery(e.target.value)}
                 placeholder="Search medicines, health products, categories..."
-                className="flex-1 bg-transparent text-lg font-semibold text-slate-800 dark:text-slate-200 placeholder:text-slate-400 focus:outline-none"
+                className="flex-1 bg-transparent text-lg font-semibold text-slate-800 dark:text-white placeholder:text-slate-400 dark:text-white focus:outline-none"
               />
               <button
                 onClick={onClose}
-                className="ml-3 rounded-full bg-sky-50 p-2 text-brand-blue transition hover:bg-sky-100"
+                className="ml-3 rounded-full bg-sky-50 dark:bg-slate-900 p-2 text-brand-blue transition hover:bg-sky-100"
               >
                 <X size={16} />
               </button>
@@ -70,14 +70,14 @@ export function GlobalSearch({ open, onClose }) {
 
             <div className="max-h-[60vh] overflow-y-auto p-4">
               {query.trim().length === 0 ? (
-                <div className="py-8 text-center text-slate-500">
+                <div className="py-8 text-center text-slate-500 dark:text-white">
                   <p className="font-semibold text-brand-dark dark:text-white">Popular searches</p>
                   <div className="mt-4 flex flex-wrap justify-center gap-2">
                     {["Paracetamol", "Vitamin C", "Hair Care", "Protinex"].map((tag) => (
                       <button
                         key={tag}
                         onClick={() => setQuery(tag)}
-                        className="rounded-full bg-sky-50 px-4 py-1.5 text-sm font-bold text-brand-blue hover:bg-sky-100 transition"
+                        className="rounded-full bg-sky-50 dark:bg-slate-900 px-4 py-1.5 text-sm font-bold text-brand-blue hover:bg-sky-100 transition"
                       >
                         {tag}
                       </button>
@@ -86,20 +86,20 @@ export function GlobalSearch({ open, onClose }) {
                 </div>
               ) : results.length > 0 ? (
                 <div className="grid gap-2">
-                  <p className="px-2 text-xs font-black uppercase tracking-wider text-slate-400">Products</p>
+                  <p className="px-2 text-xs font-black uppercase tracking-wider text-slate-400 dark:text-white">Products</p>
                   {results.map((product) => (
                     <Link
                       key={product.id}
                       href={`/products/${product.slug}`}
                       onClick={onClose}
-                      className="flex items-center gap-4 rounded-2xl p-2 transition hover:bg-sky-50"
+                      className="flex items-center gap-4 rounded-2xl p-2 transition hover:bg-sky-50 dark:bg-slate-900"
                     >
-                      <div className="grid h-14 w-14 shrink-0 place-items-center rounded-xl bg-white shadow-sm border border-sky-50 p-1">
+                      <div className="grid h-14 w-14 shrink-0 place-items-center rounded-xl bg-white dark:bg-slate-900 dark:border-slate-800 shadow-sm border border-sky-50 p-1">
                         <Image src={product.image} alt={product.name} width={40} height={40} className="object-contain" />
                       </div>
                       <div className="flex-1">
                         <p className="font-black text-brand-dark dark:text-white">{product.name}</p>
-                        <p className="text-xs font-semibold text-slate-500">{product.category}</p>
+                        <p className="text-xs font-semibold text-slate-500 dark:text-white">{product.category}</p>
                       </div>
                       <div className="flex items-center gap-3 pr-2">
                         <span className="font-black">Rs. {product.price}</span>
@@ -110,15 +110,15 @@ export function GlobalSearch({ open, onClose }) {
                   <Link
                     href={`/products?search=${encodeURIComponent(query)}`}
                     onClick={onClose}
-                    className="mt-2 block rounded-xl bg-sky-50 py-3 text-center text-sm font-black text-brand-blue hover:bg-sky-100 transition"
+                    className="mt-2 block rounded-xl bg-sky-50 dark:bg-slate-900 py-3 text-center text-sm font-black text-brand-blue hover:bg-sky-100 transition"
                   >
                     See all results for "{query}"
                   </Link>
                 </div>
               ) : (
                 <div className="py-12 text-center">
-                  <p className="text-lg font-black text-slate-700 dark:text-slate-300">No results found</p>
-                  <p className="mt-2 text-sm text-slate-500">Try checking for spelling mistakes.</p>
+                  <p className="text-lg font-black text-slate-700 dark:text-white">No results found</p>
+                  <p className="mt-2 text-sm text-slate-500 dark:text-white">Try checking for spelling mistakes.</p>
                 </div>
               )}
             </div>

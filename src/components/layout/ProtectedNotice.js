@@ -23,7 +23,7 @@ export function ProtectedNotice() {
           <select
             value={role}
             onChange={(event) => setRole(event.target.value)}
-            className="rounded-full border border-white/80 bg-white px-3 py-1 text-xs font-black text-brand-blue shadow-sm outline-brand-blue"
+            className="rounded-full border border-white/80 bg-white dark:bg-slate-900 dark:border-slate-800 px-3 py-1 text-xs font-black text-brand-blue shadow-sm outline-brand-blue"
           >
             {roleOptions.map((option) => (
               <option key={option.value} value={option.value}>{option.label}</option>

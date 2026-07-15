@@ -848,7 +848,7 @@ export default function DomeGallery({
                   }}
                 >
                   <div
-                    className="item__image absolute block overflow-hidden cursor-pointer bg-white transition-transform duration-300"
+                    className="item__image absolute block overflow-hidden cursor-pointer bg-white dark:bg-slate-900 dark:border-slate-800 transition-transform duration-300"
                     role="button"
                     tabIndex={0}
                     aria-label={it.alt || 'Open image'}

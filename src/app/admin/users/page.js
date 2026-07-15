@@ -39,7 +39,7 @@ export default function AdminUsersPage() {
       <div className="flex flex-wrap items-center justify-between gap-4">
         <div>
           <p className="text-xs font-black uppercase tracking-[0.18em] text-brand-blue">Platform</p>
-          <h1 className="mt-1 text-3xl font-black text-slate-900 dark:text-slate-100">User Management</h1>
+          <h1 className="mt-1 text-3xl font-black text-slate-900 dark:text-white">User Management</h1>
         </div>
         <form onSubmit={(e) => { e.preventDefault(); toast.success("Search submitted!"); }} className="relative">
           <Search className="absolute left-3 top-1/2 -translate-y-1/2 text-brand-blue" size={16} />
@@ -48,38 +48,38 @@ export default function AdminUsersPage() {
             placeholder="Search by name, email, or ID..."
             value={searchTerm}
             onChange={(e) => setSearchTerm(e.target.value)}
-            className="w-64 rounded-full border border-sky-100 bg-white py-2.5 pl-10 pr-4 text-sm font-bold outline-brand-blue shadow-sm"
+            className="w-64 rounded-full border border-sky-100 bg-white dark:bg-slate-900 dark:border-slate-800 py-2.5 pl-10 pr-4 text-sm font-bold outline-brand-blue shadow-sm"
           />
         </form>
       </div>
 
-      <div className="soft-card overflow-hidden rounded-2xl bg-white shadow-premium">
+      <div className="soft-card overflow-hidden rounded-2xl bg-white dark:bg-slate-900 dark:border-slate-800 shadow-premium">
         <div className="overflow-x-auto">
           <table className="w-full text-sm">
             <thead>
-              <tr className="border-b border-sky-50 bg-slate-50 text-left">
-                <th className="px-5 py-4 text-xs font-black uppercase tracking-widest text-slate-400">User Details</th>
-                <th className="px-5 py-4 text-xs font-black uppercase tracking-widest text-slate-400">Contact</th>
-                <th className="px-5 py-4 text-xs font-black uppercase tracking-widest text-slate-400">Role</th>
-                <th className="px-5 py-4 text-xs font-black uppercase tracking-widest text-slate-400">Status</th>
-                <th className="px-5 py-4 text-xs font-black uppercase tracking-widest text-slate-400 text-right">Actions</th>
+              <tr className="border-b border-sky-50 bg-slate-50 dark:bg-slate-950 dark:border-slate-800 text-left">
+                <th className="px-5 py-4 text-xs font-black uppercase tracking-widest text-slate-400 dark:text-white">User Details</th>
+                <th className="px-5 py-4 text-xs font-black uppercase tracking-widest text-slate-400 dark:text-white">Contact</th>
+                <th className="px-5 py-4 text-xs font-black uppercase tracking-widest text-slate-400 dark:text-white">Role</th>
+                <th className="px-5 py-4 text-xs font-black uppercase tracking-widest text-slate-400 dark:text-white">Status</th>
+                <th className="px-5 py-4 text-xs font-black uppercase tracking-widest text-slate-400 dark:text-white text-right">Actions</th>
               </tr>
             </thead>
             <tbody>
               {filteredUsers.length === 0 ? (
                 <tr>
-                  <td colSpan={5} className="px-5 py-12 text-center font-bold text-slate-400">No users found.</td>
+                  <td colSpan={5} className="px-5 py-12 text-center font-bold text-slate-400 dark:text-white">No users found.</td>
                 </tr>
               ) : (
                 filteredUsers.map((user) => (
-                  <tr key={user.id} className="border-b border-sky-50 last:border-0 hover:bg-sky-50/40 transition">
+                  <tr key={user.id} className="border-b border-sky-50 last:border-0 hover:bg-sky-50 dark:bg-slate-900/40 transition">
                     <td className="px-5 py-4">
                       <p className="font-black text-brand-blue">{user.name}</p>
-                      <p className="text-xs font-semibold text-slate-400">{user.id} • Joined {user.joined}</p>
+                      <p className="text-xs font-semibold text-slate-400 dark:text-white">{user.id} • Joined {user.joined}</p>
                     </td>
                     <td className="px-5 py-4">
-                      <p className="font-bold text-slate-700 dark:text-slate-300">{user.email}</p>
-                      <p className="text-xs font-semibold text-slate-500">{user.phone}</p>
+                      <p className="font-bold text-slate-700 dark:text-white">{user.email}</p>
+                      <p className="text-xs font-semibold text-slate-500 dark:text-white">{user.phone}</p>
                     </td>
                     <td className="px-5 py-4">
                       <span className={`inline-flex items-center gap-1.5 rounded-full px-2.5 py-1 text-xs font-black ${
@@ -100,7 +100,7 @@ export default function AdminUsersPage() {
                       </span>
                     </td>
                     <td className="px-5 py-4 text-right">
-                      <button onClick={() => toggleStatus(user.id)} className="rounded-full p-2 text-slate-400 hover:bg-slate-100 hover:text-brand-blue transition">
+                      <button onClick={() => toggleStatus(user.id)} className="rounded-full p-2 text-slate-400 dark:text-white hover:bg-slate-100 hover:text-brand-blue transition">
                         <MoreVertical size={18} />
                       </button>
                     </td>
@@ -110,11 +110,11 @@ export default function AdminUsersPage() {
             </tbody>
           </table>
         </div>
-        <div className="border-t border-sky-50 bg-slate-50 px-5 py-3 flex items-center justify-between text-xs font-bold text-slate-500">
+        <div className="border-t border-sky-50 bg-slate-50 dark:bg-slate-950 dark:border-slate-800 px-5 py-3 flex items-center justify-between text-xs font-bold text-slate-500 dark:text-white">
           <span>Showing {filteredUsers.length} users</span>
           <div className="flex gap-2">
-            <button className="px-3 py-1 rounded border border-slate-200 hover:bg-white disabled:opacity-50" disabled>Prev</button>
-            <button className="px-3 py-1 rounded border border-slate-200 hover:bg-white disabled:opacity-50" disabled>Next</button>
+            <button className="px-3 py-1 rounded border border-slate-200 hover:bg-white dark:bg-slate-900 dark:border-slate-800 disabled:opacity-50" disabled>Prev</button>
+            <button className="px-3 py-1 rounded border border-slate-200 hover:bg-white dark:bg-slate-900 dark:border-slate-800 disabled:opacity-50" disabled>Next</button>
           </div>
         </div>
       </div>

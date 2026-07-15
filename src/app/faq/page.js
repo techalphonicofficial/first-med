@@ -51,7 +51,7 @@ export default function FaqPage() {
             value={search}
             onChange={(e) => setSearch(e.target.value)}
             placeholder="Search for answers..."
-            className="w-full rounded-full border-2 border-white bg-white py-4 pl-14 pr-6 text-base font-bold text-slate-800 dark:text-slate-200 shadow-premium outline-brand-blue"
+            className="w-full rounded-full border-2 border-white bg-white dark:bg-slate-900 dark:border-slate-800 py-4 pl-14 pr-6 text-base font-bold text-slate-800 dark:text-white shadow-premium outline-brand-blue"
           />
         </div>
       </div>
@@ -70,25 +70,25 @@ export default function FaqPage() {
               <h2 className="mb-6 text-2xl font-black">{section.category}</h2>
               <div className="grid gap-4">
                 {filteredItems.map(({ q, a }) => (
-                  <details key={q} className="group soft-card rounded-2xl bg-white p-6 transition-all open:ring-2 open:ring-brand-blue/20">
-                    <summary className="flex cursor-pointer items-center justify-between font-black text-slate-800 dark:text-slate-200 outline-none group-open:text-brand-blue text-lg">
+                  <details key={q} className="group soft-card rounded-2xl bg-white dark:bg-slate-900 dark:border-slate-800 p-6 transition-all open:ring-2 open:ring-brand-blue/20">
+                    <summary className="flex cursor-pointer items-center justify-between font-black text-slate-800 dark:text-white outline-none group-open:text-brand-blue text-lg">
                       {q}
-                      <span className="ml-4 shrink-0 rounded-full bg-sky-50 p-2 text-brand-blue transition group-open:rotate-180">
+                      <span className="ml-4 shrink-0 rounded-full bg-sky-50 dark:bg-slate-900 p-2 text-brand-blue transition group-open:rotate-180">
                         <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round"><path d="m6 9 6 6 6-6"/></svg>
                       </span>
                     </summary>
                     <div className="mt-4 border-t border-sky-50 pt-4">
-                      <p className="font-semibold leading-7 text-slate-600 dark:text-slate-400">{a}</p>
+                      <p className="font-semibold leading-7 text-slate-600 dark:text-white">{a}</p>
                       
                       {/* Micro-interaction: Feedback */}
-                      <div className="mt-6 flex items-center gap-4 rounded-xl bg-slate-50 p-3 text-sm font-bold text-slate-500">
+                      <div className="mt-6 flex items-center gap-4 rounded-xl bg-slate-50 dark:bg-slate-950 dark:border-slate-800 p-3 text-sm font-bold text-slate-500 dark:text-white">
                         <span>Was this helpful?</span>
                         {feedback[q] ? (
                           <span className="text-brand-blue">Thanks for your feedback!</span>
                         ) : (
                           <div className="flex gap-2">
-                            <button onClick={() => handleFeedback(q, 'yes')} className="flex items-center gap-1.5 rounded-lg px-3 py-1.5 hover:bg-white hover:text-brand-blue hover:shadow-sm transition"><ThumbsUp size={14} /> Yes</button>
-                            <button onClick={() => handleFeedback(q, 'no')} className="flex items-center gap-1.5 rounded-lg px-3 py-1.5 hover:bg-white hover:text-rose-600 hover:shadow-sm transition"><ThumbsDown size={14} /> No</button>
+                            <button onClick={() => handleFeedback(q, 'yes')} className="flex items-center gap-1.5 rounded-lg px-3 py-1.5 hover:bg-white dark:bg-slate-900 dark:border-slate-800 hover:text-brand-blue hover:shadow-sm transition"><ThumbsUp size={14} /> Yes</button>
+                            <button onClick={() => handleFeedback(q, 'no')} className="flex items-center gap-1.5 rounded-lg px-3 py-1.5 hover:bg-white dark:bg-slate-900 dark:border-slate-800 hover:text-rose-600 hover:shadow-sm transition"><ThumbsDown size={14} /> No</button>
                           </div>
                         )}
                       </div>
@@ -103,8 +103,8 @@ export default function FaqPage() {
         {/* Empty state */}
         {search && !faqData.some(s => s.items.some(i => i.q.toLowerCase().includes(search.toLowerCase()) || i.a.toLowerCase().includes(search.toLowerCase()))) && (
           <div className="text-center py-12">
-            <p className="text-lg font-black text-slate-400">No results found for "{search}"</p>
-            <p className="mt-2 text-sm font-semibold text-slate-500">Try adjusting your search terms or contact support.</p>
+            <p className="text-lg font-black text-slate-400 dark:text-white">No results found for "{search}"</p>
+            <p className="mt-2 text-sm font-semibold text-slate-500 dark:text-white">Try adjusting your search terms or contact support.</p>
           </div>
         )}
       </div>

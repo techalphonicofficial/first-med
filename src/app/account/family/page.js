@@ -37,7 +37,7 @@ export default function FamilyProfilesPage() {
         <div>
           <p className="text-xs font-black uppercase tracking-[0.18em] text-brand-blue">Account</p>
           <h1 className="mt-1 text-4xl font-black">Family profiles</h1>
-          <p className="mt-2 max-w-2xl text-sm font-semibold leading-6 text-slate-500">
+          <p className="mt-2 max-w-2xl text-sm font-semibold leading-6 text-slate-500 dark:text-white">
             Manage household care profiles for safer prescription, reorder, and reminder experiences.
           </p>
         </div>
@@ -55,7 +55,7 @@ export default function FamilyProfilesPage() {
             <h2 className="mt-5 text-xl font-black">{profile.name}</h2>
             <p className="mt-1 text-sm font-bold text-brand-blue">{profile.relation}</p>
             <div className="mt-5 grid gap-2">
-              <div className="flex items-center gap-2 rounded-2xl bg-sky-50 px-3 py-2 text-sm font-black text-slate-600 dark:text-slate-400">
+              <div className="flex items-center gap-2 rounded-2xl bg-sky-50 dark:bg-slate-900 px-3 py-2 text-sm font-black text-slate-600 dark:text-white">
                 <Cake size={15} className="text-brand-blue" /> {profile.age} years
               </div>
               <div className="flex items-center gap-2 rounded-2xl bg-emerald-50 px-3 py-2 text-sm font-black text-emerald-700">
@@ -70,12 +70,12 @@ export default function FamilyProfilesPage() {
         <form onSubmit={handleAddProfile} className="grid gap-4">
           <label className="grid gap-2 text-sm font-black">
             Full Name
-            <input name="name" required placeholder="e.g. Rahul Sharma" className="rounded-2xl border border-sky-100 bg-sky-50 px-4 py-3 font-semibold outline-brand-blue" />
+            <input name="name" required placeholder="e.g. Rahul Sharma" className="rounded-2xl border dark:border-slate-800 border dark:border-slate-800-sky-100 bg-sky-50 dark:bg-slate-900 px-4 py-3 font-semibold outline-brand-blue" />
           </label>
           <div className="grid grid-cols-2 gap-4">
             <label className="grid gap-2 text-sm font-black">
               Relation
-              <select name="relation" required className="rounded-2xl border border-sky-100 bg-sky-50 px-4 py-3 font-semibold outline-brand-blue">
+              <select name="relation" required className="rounded-2xl border dark:border-slate-800 border dark:border-slate-800-sky-100 bg-sky-50 dark:bg-slate-900 px-4 py-3 font-semibold outline-brand-blue">
                 <option value="Self">Self</option>
                 <option value="Spouse">Spouse</option>
                 <option value="Child">Child</option>
@@ -85,12 +85,12 @@ export default function FamilyProfilesPage() {
             </label>
             <label className="grid gap-2 text-sm font-black">
               Age
-              <input type="number" name="age" required min="0" placeholder="e.g. 30" className="rounded-2xl border border-sky-100 bg-sky-50 px-4 py-3 font-semibold outline-brand-blue" />
+              <input type="number" name="age" required min="0" placeholder="e.g. 30" className="rounded-2xl border dark:border-slate-800 border dark:border-slate-800-sky-100 bg-sky-50 dark:bg-slate-900 px-4 py-3 font-semibold outline-brand-blue" />
             </label>
           </div>
           <label className="grid gap-2 text-sm font-black">
             Medical Notes / Allergies
-            <textarea name="notes" placeholder="Any specific allergies or medical notes?" rows={2} className="resize-none rounded-2xl border border-sky-100 bg-sky-50 px-4 py-3 font-semibold outline-brand-blue" />
+            <textarea name="notes" placeholder="Any specific allergies or medical notes?" rows={2} className="resize-none rounded-2xl border dark:border-slate-800 border dark:border-slate-800-sky-100 bg-sky-50 dark:bg-slate-900 px-4 py-3 font-semibold outline-brand-blue" />
           </label>
           <button type="submit" className="mt-2 rounded-full bg-brand-blue py-3 font-black text-white shadow-glow hover:bg-[#066CAB] transition">
             Save Profile

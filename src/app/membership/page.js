@@ -34,7 +34,7 @@ export default function MembershipPage() {
             </p>
           </div>
           
-          <div className="rounded-3xl bg-white/10 backdrop-blur-md border border-white/20 p-8 shadow-2xl">
+          <div className="rounded-3xl bg-white dark:bg-slate-900 dark:border-slate-800/10 backdrop-blur-md border border-white/20 p-8 shadow-2xl">
             <h2 className="text-2xl font-black text-white mb-2">Join FirstMED Plus</h2>
             <div className="flex items-end gap-1 mb-6">
               <span className="text-4xl font-black text-brand-yellow">Rs. 999</span>
@@ -57,8 +57,8 @@ export default function MembershipPage() {
       {/* Benefits Grid */}
       <div className="mb-16">
         <div className="text-center mb-10">
-          <h2 className="text-3xl font-black text-slate-900 dark:text-slate-100">Why choose FirstMED Plus?</h2>
-          <p className="text-slate-500 font-semibold mt-2">Exclusive benefits designed to save you time and money.</p>
+          <h2 className="text-3xl font-black text-slate-900 dark:text-white">Why choose FirstMED Plus?</h2>
+          <p className="text-slate-500 dark:text-white font-semibold mt-2">Exclusive benefits designed to save you time and money.</p>
         </div>
 
         <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
@@ -71,27 +71,27 @@ export default function MembershipPage() {
             { icon: CalendarCheck, title: "Free Doctor Consult", desc: "Get one free tele-consultation every month with a certified general physician." }
           ].map((benefit, idx) => (
             <div key={idx} className="soft-card rounded-[2rem] p-8 transition hover:shadow-premium hover:-translate-y-1 group">
-              <div className="grid h-16 w-16 place-items-center rounded-2xl bg-sky-50 text-brand-blue transition group-hover:bg-brand-blue group-hover:text-white">
+              <div className="grid h-16 w-16 place-items-center rounded-2xl bg-sky-50 dark:bg-slate-900 text-brand-blue transition group-hover:bg-brand-blue group-hover:text-white">
                 <benefit.icon size={32} />
               </div>
-              <h3 className="mt-6 text-xl font-black text-slate-900 dark:text-slate-100">{benefit.title}</h3>
-              <p className="mt-2 text-sm font-semibold leading-relaxed text-slate-500">{benefit.desc}</p>
+              <h3 className="mt-6 text-xl font-black text-slate-900 dark:text-white">{benefit.title}</h3>
+              <p className="mt-2 text-sm font-semibold leading-relaxed text-slate-500 dark:text-white">{benefit.desc}</p>
             </div>
           ))}
         </div>
       </div>
 
       {/* Comparison Table */}
-      <div className="mx-auto max-w-4xl soft-card overflow-hidden rounded-[2rem] bg-white shadow-premium">
-        <div className="bg-slate-50 px-8 py-6 border-b border-sky-50 text-center">
-          <h2 className="text-2xl font-black text-slate-900 dark:text-slate-100">See the difference</h2>
+      <div className="mx-auto max-w-4xl soft-card overflow-hidden rounded-[2rem] bg-white dark:bg-slate-900 dark:border-slate-800 shadow-premium">
+        <div className="bg-slate-50 dark:bg-slate-950 dark:border-slate-800 px-8 py-6 border-b border-sky-50 text-center">
+          <h2 className="text-2xl font-black text-slate-900 dark:text-white">See the difference</h2>
         </div>
         <div className="p-8">
           <table className="w-full text-left">
             <thead>
               <tr className="border-b-2 border-slate-100">
-                <th className="pb-4 font-black text-slate-400">Features</th>
-                <th className="pb-4 font-black text-slate-900 dark:text-slate-100 text-center">Standard User</th>
+                <th className="pb-4 font-black text-slate-400 dark:text-white">Features</th>
+                <th className="pb-4 font-black text-slate-900 dark:text-white text-center">Standard User</th>
                 <th className="pb-4 font-black text-brand-blue text-center flex items-center justify-center gap-1"><Crown size={18}/> Plus Member</th>
               </tr>
             </thead>
@@ -104,9 +104,9 @@ export default function MembershipPage() {
                 ["Doctor Consultation", "Paid", "1 Free / Month"]
               ].map((row, i) => (
                 <tr key={i} className="border-b border-sky-50 last:border-0">
-                  <td className="py-5 font-bold text-slate-600 dark:text-slate-400">{row[0]}</td>
-                  <td className="py-5 text-center font-semibold text-slate-400">{row[1]}</td>
-                  <td className="py-5 text-center font-black text-emerald-600 bg-sky-50/30 rounded-lg">{row[2]}</td>
+                  <td className="py-5 font-bold text-slate-600 dark:text-white">{row[0]}</td>
+                  <td className="py-5 text-center font-semibold text-slate-400 dark:text-white">{row[1]}</td>
+                  <td className="py-5 text-center font-black text-emerald-600 bg-sky-50 dark:bg-slate-900/30 rounded-lg">{row[2]}</td>
                 </tr>
               ))}
             </tbody>

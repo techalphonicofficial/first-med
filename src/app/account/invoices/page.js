@@ -16,7 +16,7 @@ export default function CustomerInvoicesPage() {
         <div>
           <p className="text-xs font-black uppercase tracking-[0.18em] text-brand-blue">Account</p>
           <h1 className="mt-1 text-4xl font-black">Invoices</h1>
-          <p className="mt-2 max-w-2xl text-sm font-semibold leading-6 text-slate-500">
+          <p className="mt-2 max-w-2xl text-sm font-semibold leading-6 text-slate-500 dark:text-white">
             Download billing records for confirmed and delivered FirstMED orders.
           </p>
         </div>
@@ -27,11 +27,11 @@ export default function CustomerInvoicesPage() {
 
       <div className="grid gap-6 lg:grid-cols-[1fr_320px]">
         <div className="soft-card overflow-hidden rounded-[2rem]">
-          <div className="flex flex-wrap items-center justify-between gap-3 border-b border-sky-100 bg-sky-50/60 px-5 py-4">
+          <div className="flex flex-wrap items-center justify-between gap-3 border-b border-sky-100 bg-sky-50 dark:bg-slate-900/60 px-5 py-4">
             <h2 className="text-xl font-black">Billing history</h2>
             <div className="relative">
               <Search className="absolute left-3 top-1/2 -translate-y-1/2 text-brand-blue" size={14} />
-              <input placeholder="Search invoice" className="w-56 rounded-full border border-sky-100 bg-white py-2 pl-9 pr-3 text-xs font-bold outline-brand-blue" />
+              <input placeholder="Search invoice" className="w-56 rounded-full border border-sky-100 bg-white dark:bg-slate-900 dark:border-slate-800 py-2 pl-9 pr-3 text-xs font-bold outline-brand-blue" />
             </div>
           </div>
           <div className="overflow-x-auto">
@@ -39,24 +39,24 @@ export default function CustomerInvoicesPage() {
               <thead>
                 <tr className="border-b border-sky-50 text-left">
                   {["Invoice", "Order", "Date", "Tax", "Total", "Status", "Actions"].map((heading) => (
-                    <th key={heading} className="px-5 py-3 text-xs font-black uppercase tracking-widest text-slate-400">{heading}</th>
+                    <th key={heading} className="px-5 py-3 text-xs font-black uppercase tracking-widest text-slate-400 dark:text-white">{heading}</th>
                   ))}
                 </tr>
               </thead>
               <tbody>
                 {invoices.map((invoice) => (
-                  <tr key={invoice.id} className="border-b border-sky-50 last:border-0 hover:bg-sky-50/40">
+                  <tr key={invoice.id} className="border-b border-sky-50 last:border-0 hover:bg-sky-50 dark:bg-slate-900/40">
                     <td className="px-5 py-4 font-black text-brand-blue">{invoice.id}</td>
-                    <td className="px-5 py-4 font-bold text-slate-700 dark:text-slate-300">{invoice.order}</td>
-                    <td className="px-5 py-4 text-xs font-semibold text-slate-500">{invoice.date}</td>
-                    <td className="px-5 py-4 font-bold text-slate-600 dark:text-slate-400">{invoice.tax}</td>
-                    <td className="px-5 py-4 font-black text-slate-900 dark:text-slate-100">{invoice.total}</td>
+                    <td className="px-5 py-4 font-bold text-slate-700 dark:text-white">{invoice.order}</td>
+                    <td className="px-5 py-4 text-xs font-semibold text-slate-500 dark:text-white">{invoice.date}</td>
+                    <td className="px-5 py-4 font-bold text-slate-600 dark:text-white">{invoice.tax}</td>
+                    <td className="px-5 py-4 font-black text-slate-900 dark:text-white">{invoice.total}</td>
                     <td className="px-5 py-4">
                       <span className="rounded-full bg-emerald-100 px-3 py-1 text-xs font-black text-emerald-700">{invoice.status}</span>
                     </td>
                     <td className="px-5 py-4">
                       <div className="flex gap-2">
-                        <button className="grid h-8 w-8 place-items-center rounded-xl bg-sky-50 text-brand-blue hover:bg-sky-100">
+                        <button className="grid h-8 w-8 place-items-center rounded-xl bg-sky-50 dark:bg-slate-900 text-brand-blue hover:bg-sky-100">
                           <Eye size={14} />
                         </button>
                         <button className="grid h-8 w-8 place-items-center rounded-xl bg-brand-blue text-white">
@@ -75,7 +75,7 @@ export default function CustomerInvoicesPage() {
           <div className="soft-card rounded-[2rem] p-5">
             <FileText size={22} className="text-brand-blue" />
             <h2 className="mt-3 text-lg font-black">Invoice rules</h2>
-            <p className="mt-2 text-sm font-semibold leading-6 text-slate-500">
+            <p className="mt-2 text-sm font-semibold leading-6 text-slate-500 dark:text-white">
               Invoices become available after order confirmation and include item totals, taxes, discounts, and payment status.
             </p>
           </div>

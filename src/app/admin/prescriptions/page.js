@@ -24,7 +24,7 @@ export default function AdminPrescriptionsPage() {
       <div className="flex flex-wrap items-center justify-between gap-4">
         <div>
           <p className="text-xs font-black uppercase tracking-[0.18em] text-brand-blue">Platform</p>
-          <h1 className="mt-1 text-3xl font-black text-slate-900 dark:text-slate-100">Prescription Verification</h1>
+          <h1 className="mt-1 text-3xl font-black text-slate-900 dark:text-white">Prescription Verification</h1>
         </div>
         <div className="rounded-full bg-rose-50 border border-rose-100 px-4 py-2 flex items-center gap-2">
           <AlertTriangle size={16} className="text-rose-600" />
@@ -39,23 +39,23 @@ export default function AdminPrescriptionsPage() {
             <div key={prx.id} className="soft-card rounded-2xl p-5 border-l-4 border-l-brand-blue transition hover:shadow-premium hover:-translate-y-1">
               <div className="flex justify-between items-start gap-4">
                 <div className="flex gap-4">
-                  <div className="grid h-12 w-12 shrink-0 place-items-center rounded-2xl bg-sky-50 text-brand-blue">
+                  <div className="grid h-12 w-12 shrink-0 place-items-center rounded-2xl bg-sky-50 dark:bg-slate-900 text-brand-blue">
                     <FileText size={24} />
                   </div>
                   <div>
                     <div className="flex items-center gap-2">
-                      <h3 className="text-lg font-black text-slate-900 dark:text-slate-100">{prx.id}</h3>
+                      <h3 className="text-lg font-black text-slate-900 dark:text-white">{prx.id}</h3>
                       {prx.priority === 'High' && (
                         <span className="rounded bg-rose-100 px-1.5 py-0.5 text-[10px] font-black uppercase text-rose-700">Urgent SLA</span>
                       )}
                     </div>
-                    <p className="text-sm font-bold text-slate-600 dark:text-slate-400">{prx.patient}</p>
-                    <p className="mt-1 text-xs font-semibold text-slate-400">Uploaded {prx.date} • {prx.type}</p>
+                    <p className="text-sm font-bold text-slate-600 dark:text-white">{prx.patient}</p>
+                    <p className="mt-1 text-xs font-semibold text-slate-400 dark:text-white">Uploaded {prx.date} • {prx.type}</p>
                   </div>
                 </div>
                 <div className="text-right">
                   <p className="text-xl font-black text-brand-blue">{prx.items}</p>
-                  <p className="text-xs font-bold text-slate-400">Medicines</p>
+                  <p className="text-xs font-bold text-slate-400 dark:text-white">Medicines</p>
                 </div>
               </div>
               

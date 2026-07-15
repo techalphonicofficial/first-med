@@ -66,12 +66,12 @@ export function CheckoutClient() {
       {cart.length ? (
         <form onSubmit={handleSubmit(submit)} className="mt-8 grid gap-6 lg:grid-cols-[1fr_360px]">
           <div className="grid gap-5">
-            <section className="rounded-2xl bg-white p-6 shadow-card">
+            <section className="rounded-2xl bg-white dark:bg-slate-900 dark:border-slate-800 p-6 shadow-card">
               <div className="mb-5 flex items-center gap-3">
                 <span className="grid size-10 place-items-center rounded-2xl bg-brand-softBlue text-brand-blue"><Home size={18} /></span>
                 <div>
                   <h2 className="text-xl font-black">Delivery address</h2>
-                  <p className="text-sm font-semibold text-slate-500">Saved addresses can be connected once auth APIs are live.</p>
+                  <p className="text-sm font-semibold text-slate-500 dark:text-white">Saved addresses can be connected once auth APIs are live.</p>
                 </div>
               </div>
               <div className="grid gap-4 md:grid-cols-2">
@@ -95,13 +95,13 @@ export function CheckoutClient() {
                   </span>
                   <div>
                     <h2 className="text-xl font-black">Prescription verification</h2>
-                    <p className="text-sm font-semibold text-slate-500">
+                    <p className="text-sm font-semibold text-slate-500 dark:text-white">
                       Required for {rxItems.length} prescription item{rxItems.length > 1 ? "s" : ""}: {rxItems.map((item) => item.name).join(", ")}
                     </p>
                   </div>
                 </div>
                 {prescription.status === "approved" ? (
-                  <div className="rounded-2xl bg-white p-4 text-sm font-bold text-emerald-700">
+                  <div className="rounded-2xl bg-white dark:bg-slate-900 dark:border-slate-800 p-4 text-sm font-bold text-emerald-700">
                     <ShieldCheck className="mr-2 inline" size={17} /> Prescription approved. Rx checkout is unlocked.
                   </div>
                 ) : (
@@ -126,12 +126,12 @@ export function CheckoutClient() {
                     ))}
                     <label className="grid gap-2 text-sm font-black md:col-span-2">
                       Prescription file
-                      <div className="rounded-2xl border-2 border-dashed border-sky-200 bg-sky-50 p-5">
+                      <div className="rounded-2xl border-2 border-dashed border-sky-200 bg-sky-50 dark:bg-slate-900 p-5">
                         <UploadCloud className="mb-2 text-brand-blue" />
                         <input type="file" accept="image/*,.pdf" onChange={(event) => setFileName(event.target.files?.[0]?.name || "")} className="text-sm" />
-                        {fileName ? <p className="mt-2 rounded-xl bg-white px-3 py-2 text-brand-blue">{fileName}</p> : null}
+                        {fileName ? <p className="mt-2 rounded-xl bg-white dark:bg-slate-900 dark:border-slate-800 px-3 py-2 text-brand-blue">{fileName}</p> : null}
                       </div>
-                      <span className="text-xs font-bold text-slate-500">Upload a clear image or PDF before placing this Rx order.</span>
+                      <span className="text-xs font-bold text-slate-500 dark:text-white">Upload a clear image or PDF before placing this Rx order.</span>
                     </label>
                     <div className="md:col-span-2 flex flex-wrap items-center gap-3">
                       <button type="button" onClick={validatePrescription} className="blue-button px-5 py-2.5">
@@ -147,17 +147,17 @@ export function CheckoutClient() {
                 <ShieldCheck className="mr-2 inline" size={17} /> No prescription required for the current cart.
               </section>
             )}
-            <section className="grid gap-4 rounded-2xl bg-white p-6 shadow-card md:grid-cols-2">
+            <section className="grid gap-4 rounded-2xl bg-white dark:bg-slate-900 dark:border-slate-800 p-6 shadow-card md:grid-cols-2">
               <div className="md:col-span-2 flex items-center gap-3">
                 <span className="grid size-10 place-items-center rounded-2xl bg-brand-softBlue text-brand-blue"><Truck size={18} /></span>
                 <div>
                   <h2 className="text-xl font-black">Delivery and payment</h2>
-                  <p className="text-sm font-semibold text-slate-500">Pick a fulfilment window and payment handoff.</p>
+                  <p className="text-sm font-semibold text-slate-500 dark:text-white">Pick a fulfilment window and payment handoff.</p>
                 </div>
               </div>
             <label className="grid gap-2 text-sm font-black">
               Delivery slot
-              <select {...register("delivery_slot")} className="rounded-2xl border border-sky-100 bg-sky-50 px-4 py-3 font-semibold">
+              <select {...register("delivery_slot")} className="rounded-2xl border dark:border-slate-800 border dark:border-slate-800-sky-100 bg-sky-50 dark:bg-slate-900 px-4 py-3 font-semibold">
                 <option>Today, 6 PM - 8 PM</option>
                 <option>Tomorrow, 9 AM - 11 AM</option>
                 <option>Express, 90 min</option>
@@ -165,7 +165,7 @@ export function CheckoutClient() {
             </label>
             <label className="grid gap-2 text-sm font-black">
               Payment
-              <select {...register("payment")} className="rounded-2xl border border-sky-100 bg-sky-50 px-4 py-3 font-semibold">
+              <select {...register("payment")} className="rounded-2xl border dark:border-slate-800 border dark:border-slate-800-sky-100 bg-sky-50 dark:bg-slate-900 px-4 py-3 font-semibold">
                 <option>Razorpay placeholder</option>
                 <option>Stripe placeholder</option>
                 <option>PayPal placeholder</option>
@@ -176,7 +176,7 @@ export function CheckoutClient() {
           </div>
           <aside className="sticky top-24 h-fit rounded-2xl bg-brand-navy p-6 text-white shadow-soft">
             <div className="flex items-center gap-3">
-              <span className="grid size-10 place-items-center rounded-2xl bg-white/10 text-brand-yellow"><CreditCard size={18} /></span>
+              <span className="grid size-10 place-items-center rounded-2xl bg-white dark:bg-slate-900 dark:border-slate-800/10 text-brand-yellow"><CreditCard size={18} /></span>
               <h2 className="text-xl font-black">Review</h2>
             </div>
             <p className="mt-3 text-sm font-bold text-slate-300">{cart.length} items ready for checkout</p>

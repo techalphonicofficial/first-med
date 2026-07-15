@@ -54,13 +54,13 @@ export function Hero() {
             for everyday care.
           </h1>
 
-          <p className="mt-5 max-w-lg text-base font-semibold leading-7 text-slate-600 dark:text-slate-400">
+          <p className="mt-5 max-w-lg text-base font-semibold leading-7 text-slate-600 dark:text-white">
             Search OTC medicines, upload prescriptions for restricted products, and build fast daily-care baskets from focused shelves.
           </p>
 
           <div className="mt-7 flex flex-wrap gap-3">
             <Button href="/products" id="hero-shop-btn">Shop medicines</Button>
-            <Link href="/prescription" id="hero-rx-btn" className="inline-flex items-center justify-center gap-2 px-5 py-2.5 min-h-[2.65rem] rounded-full bg-white text-brand-blue font-[800] shadow-card hover:-translate-y-0.5 hover:bg-brand-blue hover:text-white hover:shadow-premium transition-all duration-150">
+            <Link href="/prescription" id="hero-rx-btn" className="inline-flex items-center justify-center gap-2 px-5 py-2.5 min-h-[2.65rem] rounded-full bg-white dark:bg-slate-900 dark:border-slate-800 text-brand-blue font-[800] shadow-card hover:-translate-y-0.5 hover:bg-brand-blue hover:text-white hover:shadow-premium transition-all duration-150">
               Upload prescription
             </Link>
           </div>
@@ -70,14 +70,14 @@ export function Hero() {
               <motion.div
                 key={label}
                 whileHover={{ scale: 1.05, rotate: -2 }}
-                className="flex cursor-pointer items-center gap-2.5 rounded-2xl bg-white px-4 py-2.5 shadow-card"
+                className="flex cursor-pointer items-center gap-2.5 rounded-2xl bg-white dark:bg-slate-900 dark:border-slate-800 px-4 py-2.5 shadow-card"
               >
                 <span className={`grid h-8 w-8 place-items-center rounded-xl ${bg} ${color}`}>
                   <Icon size={15} />
                 </span>
                 <div>
                   <p className={`text-sm font-black ${color}`}>{value}</p>
-                  <p className="text-[11px] font-semibold text-slate-400">{label}</p>
+                  <p className="text-[11px] font-semibold text-slate-400 dark:text-white">{label}</p>
                 </div>
               </motion.div>
             ))}
@@ -112,9 +112,9 @@ export function Hero() {
           {/* <motion.div
             animate={{ y: [0, -10, 0] }}
             transition={{ duration: 6, repeat: Infinity, ease: "easeInOut" }}
-            className="absolute -bottom-6 -left-4 rounded-2xl bg-white px-4 py-3 shadow-premium"
+            className="absolute -bottom-6 -left-4 rounded-2xl bg-white dark:bg-slate-900 dark:border-slate-800 px-4 py-3 shadow-premium"
           >
-            <p className="text-[10px] font-black uppercase tracking-widest text-slate-400">Prescription</p>
+            <p className="text-[10px] font-black uppercase tracking-widest text-slate-400 dark:text-white">Prescription</p>
             <p className="mt-0.5 text-sm font-black text-brand-blue">Ready for review ✓</p>
           </motion.div> */}
 
@@ -122,10 +122,10 @@ export function Hero() {
           {/* <motion.div
             animate={{ opacity: [0.8, 1, 0.8], scale: [1, 1.03, 1] }}
             transition={{ duration: 5, repeat: Infinity, ease: "easeInOut" }}
-            className="absolute -right-4 top-1/3 rounded-2xl bg-white px-4 py-3 shadow-premium"
+            className="absolute -right-4 top-1/3 rounded-2xl bg-white dark:bg-slate-900 dark:border-slate-800 px-4 py-3 shadow-premium"
           >
             <p className="text-2xl font-black text-slate-950 dark:text-white">4.8 ★</p>
-            <p className="text-[10px] font-bold text-slate-500">User rating</p>
+            <p className="text-[10px] font-bold text-slate-500 dark:text-white">User rating</p>
           </motion.div> */}
 
           {/* Floating badge */}

@@ -14,7 +14,7 @@ export default function WarehouseReceivingPage() {
       <div className="flex flex-wrap items-center justify-between gap-4">
         <div>
           <p className="text-xs font-black uppercase tracking-[0.18em] text-brand-blue">Warehouse Operations</p>
-          <h1 className="mt-1 text-3xl font-black text-slate-900 dark:text-slate-100">Inbound Receiving</h1>
+          <h1 className="mt-1 text-3xl font-black text-slate-900 dark:text-white">Inbound Receiving</h1>
         </div>
       </div>
 
@@ -28,14 +28,14 @@ export default function WarehouseReceivingPage() {
                     <Download size={24} />
                   </div>
                   <div>
-                    <h3 className="text-lg font-black text-slate-900 dark:text-slate-100">{rcv.id}</h3>
-                    <p className="text-sm font-bold text-slate-600 dark:text-slate-400">{rcv.vendor}</p>
-                    <p className="mt-1 text-xs font-semibold text-slate-400">ETA: {rcv.eta}</p>
+                    <h3 className="text-lg font-black text-slate-900 dark:text-white">{rcv.id}</h3>
+                    <p className="text-sm font-bold text-slate-600 dark:text-white">{rcv.vendor}</p>
+                    <p className="mt-1 text-xs font-semibold text-slate-400 dark:text-white">ETA: {rcv.eta}</p>
                   </div>
                 </div>
                 <div className="text-right">
                   <p className="text-xl font-black text-brand-blue">{rcv.items}</p>
-                  <p className="text-xs font-bold text-slate-400">Expected Units</p>
+                  <p className="text-xs font-bold text-slate-400 dark:text-white">Expected Units</p>
                 </div>
               </div>
               
@@ -45,12 +45,12 @@ export default function WarehouseReceivingPage() {
                     <button onClick={(e) => { e.preventDefault(); toast.info('Initializing barcode scanner...'); }} className="flex items-center justify-center gap-2 rounded-xl bg-brand-blue py-2.5 text-sm font-black text-white hover:bg-[#066CAB] transition shadow-glow">
                       <ScanLine size={16} /> Begin Scanning
                     </button>
-                    <button onClick={(e) => { e.preventDefault(); toast.info('Opening inbound manifest...'); }} className="flex items-center justify-center gap-2 rounded-xl bg-sky-50 text-brand-blue py-2.5 text-sm font-black hover:bg-sky-100 transition">
+                    <button onClick={(e) => { e.preventDefault(); toast.info('Opening inbound manifest...'); }} className="flex items-center justify-center gap-2 rounded-xl bg-sky-50 dark:bg-slate-900 text-brand-blue py-2.5 text-sm font-black hover:bg-sky-100 transition">
                       View Manifest
                     </button>
                   </>
                 ) : (
-                  <button onClick={(e) => { e.preventDefault(); toast.success('Action completed successfully!'); }} className="col-span-2 flex items-center justify-center gap-2 rounded-xl bg-slate-100 text-slate-500 py-2.5 text-sm font-black" disabled>
+                  <button onClick={(e) => { e.preventDefault(); toast.success('Action completed successfully!'); }} className="col-span-2 flex items-center justify-center gap-2 rounded-xl bg-slate-100 text-slate-500 dark:text-white py-2.5 text-sm font-black" disabled>
                     Waiting for Arrival
                   </button>
                 )}
@@ -64,7 +64,7 @@ export default function WarehouseReceivingPage() {
             <CheckSquare size={20} className="text-brand-blue" />
             <h2 className="text-lg font-black">Receiving Protocol</h2>
           </div>
-          <ul className="text-sm font-semibold text-slate-600 dark:text-slate-400 space-y-3 list-disc pl-4">
+          <ul className="text-sm font-semibold text-slate-600 dark:text-white space-y-3 list-disc pl-4">
             <li>Verify physical seal on delivery vehicle.</li>
             <li>Scan each box barcode against the manifest.</li>
             <li>Log any damages immediately in the Audit tab.</li>

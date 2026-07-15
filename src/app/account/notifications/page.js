@@ -24,7 +24,7 @@ export default function CustomerNotificationsPage() {
         <div>
           <p className="text-xs font-black uppercase tracking-[0.18em] text-brand-blue">Account</p>
           <h1 className="mt-1 text-4xl font-black">Notifications</h1>
-          <p className="mt-2 max-w-2xl text-sm font-semibold leading-6 text-slate-500">
+          <p className="mt-2 max-w-2xl text-sm font-semibold leading-6 text-slate-500 dark:text-white">
             Track order, prescription, subscription, invoice, and membership updates in one place.
           </p>
         </div>
@@ -43,10 +43,10 @@ export default function CustomerNotificationsPage() {
                 </div>
                 <div className="min-w-0 flex-1">
                   <div className="flex flex-wrap items-start justify-between gap-2">
-                    <h2 className="font-black text-slate-900 dark:text-slate-100">{title}</h2>
-                    <span className="text-xs font-bold text-slate-400">{time}</span>
+                    <h2 className="font-black text-slate-900 dark:text-white">{title}</h2>
+                    <span className="text-xs font-bold text-slate-400 dark:text-white">{time}</span>
                   </div>
-                  <p className="mt-1 text-sm font-semibold leading-6 text-slate-500">{text}</p>
+                  <p className="mt-1 text-sm font-semibold leading-6 text-slate-500 dark:text-white">{text}</p>
                   {unread ? <span className="mt-3 inline-flex rounded-full bg-brand-softBlue px-3 py-1 text-xs font-black text-brand-blue">Unread</span> : null}
                 </div>
               </div>
@@ -61,7 +61,7 @@ export default function CustomerNotificationsPage() {
           </div>
           <div className="mt-5 grid gap-3">
             {preferences.map((item, index) => (
-              <label key={item} className="flex items-center justify-between rounded-2xl bg-sky-50 px-4 py-3 text-sm font-black text-slate-700 dark:text-slate-300">
+              <label key={item} className="flex items-center justify-between rounded-2xl bg-sky-50 dark:bg-slate-900 px-4 py-3 text-sm font-black text-slate-700 dark:text-white">
                 {item}
                 <input type="checkbox" defaultChecked={index < 3} className="h-4 w-4 accent-brand-blue" />
               </label>

@@ -34,7 +34,7 @@ export default function WishlistPage() {
         {wishlist.length ? (
           <ProductShelf products={wishlist} />
         ) : (
-          <div className="rounded-[2rem] bg-sky-50/50 p-6 md:p-12">
+          <div className="rounded-[2rem] bg-sky-50 dark:bg-slate-900/50 p-6 md:p-12">
             <EmptyState 
               title="Your wishlist is empty" 
               text="Save medicines and wellness products to compare later or move them into your cart." 

@@ -35,7 +35,7 @@ export function TrackingClient({ id }) {
           <div className="absolute left-[20%] top-[20%] h-[50%] w-[60%] rounded-br-[80px] border-b-4 border-r-4 border-dashed border-brand-blue/30" />
           
           {/* Pulse marker origin */}
-          <div className="absolute left-[20%] top-[20%] grid h-6 w-6 -translate-x-1/2 -translate-y-1/2 place-items-center rounded-full bg-white shadow-md">
+          <div className="absolute left-[20%] top-[20%] grid h-6 w-6 -translate-x-1/2 -translate-y-1/2 place-items-center rounded-full bg-white dark:bg-slate-900 dark:border-slate-800 shadow-md">
             <div className="h-2 w-2 rounded-full bg-slate-300" />
           </div>
           
@@ -57,9 +57,9 @@ export function TrackingClient({ id }) {
             </div>
           </div>
 
-          <div className="absolute bottom-6 left-6 rounded-2xl bg-white p-4 shadow-card">
+          <div className="absolute bottom-6 left-6 rounded-2xl bg-white dark:bg-slate-900 dark:border-slate-800 p-4 shadow-card">
             <p className="text-sm font-black text-brand-dark dark:text-white">Arriving at</p>
-            <p className="mt-1 text-xs font-semibold text-slate-500">Sector 21, Block C</p>
+            <p className="mt-1 text-xs font-semibold text-slate-500 dark:text-white">Sector 21, Block C</p>
           </div>
         </div>
 
@@ -71,11 +71,11 @@ export function TrackingClient({ id }) {
                 <Clock size={14} /> Expected Delivery
               </div>
               <h2 className="mt-4 text-5xl font-black text-brand-dark dark:text-white">{track.eta}</h2>
-              <p className="mt-2 text-sm font-semibold text-slate-500">Partner is heading to your location.</p>
+              <p className="mt-2 text-sm font-semibold text-slate-500 dark:text-white">Partner is heading to your location.</p>
             </div>
             
             {/* Live Progress Bar */}
-            <div className="mt-8 h-3 overflow-hidden rounded-full bg-sky-50 shadow-inner">
+            <div className="mt-8 h-3 overflow-hidden rounded-full bg-sky-50 dark:bg-slate-900 shadow-inner">
               <div className="h-full rounded-full bg-brand-blue transition-all duration-1000" style={{ width: `${track.progress}%` }} />
             </div>
           </div>
@@ -96,8 +96,8 @@ export function TrackingClient({ id }) {
                       </div>
                     </div>
                     <div>
-                      <p className={`font-black ${active ? "text-brand-dark dark:text-white" : "text-slate-400"}`}>{step.label}</p>
-                      <p className={`text-xs font-bold ${active ? "text-slate-500" : "text-slate-300"}`}>{step.time}</p>
+                      <p className={`font-black ${active ? "text-brand-dark dark:text-white" : "text-slate-400 dark:text-white"}`}>{step.label}</p>
+                      <p className={`text-xs font-bold ${active ? "text-slate-500 dark:text-white" : "text-slate-300"}`}>{step.time}</p>
                     </div>
                   </div>
                 );

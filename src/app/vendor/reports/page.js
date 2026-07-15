@@ -19,7 +19,7 @@ export default function VendorReportsPage() {
           <h1 className="mt-1 text-4xl font-black">Financial Reports</h1>
         </div>
         <div className="flex gap-3">
-          <button onClick={(e) => { e.preventDefault(); toast.info('Generating PDF report...'); }} className="flex items-center gap-2 rounded-full bg-white px-5 py-2.5 text-sm font-black text-brand-blue shadow-card hover:bg-sky-50 transition">
+          <button onClick={(e) => { e.preventDefault(); toast.info('Generating PDF report...'); }} className="flex items-center gap-2 rounded-full bg-white dark:bg-slate-900 dark:border-slate-800 px-5 py-2.5 text-sm font-black text-brand-blue shadow-card hover:bg-sky-50 transition">
             <Download size={15} /> Export PDF
           </button>
         </div>
@@ -31,7 +31,7 @@ export default function VendorReportsPage() {
           <div className="soft-card rounded-2xl p-6">
             <div className="flex items-center justify-between mb-6">
               <h2 className="text-xl font-black">Revenue Overview</h2>
-              <select className="rounded-full border border-sky-100 bg-white px-3 py-1.5 text-sm font-bold text-slate-600 dark:text-slate-400 outline-brand-blue">
+              <select className="rounded-full border border-sky-100 bg-white dark:bg-slate-900 dark:border-slate-800 px-3 py-1.5 text-sm font-bold text-slate-600 dark:text-white outline-brand-blue">
                 <option>This Month</option>
                 <option>Last 3 Months</option>
                 <option>Year to Date</option>
@@ -39,17 +39,17 @@ export default function VendorReportsPage() {
             </div>
             
             <div className="grid grid-cols-2 gap-4">
-              <div className="rounded-xl bg-sky-50 p-5">
-                <p className="text-sm font-black text-slate-500">Gross Sales</p>
+              <div className="rounded-xl bg-sky-50 dark:bg-slate-900 p-5">
+                <p className="text-sm font-black text-slate-500 dark:text-white">Gross Sales</p>
                 <p className="mt-2 text-3xl font-black text-brand-blue">Rs. 1,45,200</p>
                 <p className="mt-1 text-xs font-semibold text-emerald-600 flex items-center gap-1">
                   <TrendingUp size={12} /> +12.5% vs last month
                 </p>
               </div>
               <div className="rounded-xl bg-emerald-50 p-5">
-                <p className="text-sm font-black text-slate-500">Net Payout</p>
+                <p className="text-sm font-black text-slate-500 dark:text-white">Net Payout</p>
                 <p className="mt-2 text-3xl font-black text-emerald-600">Rs. 1,28,450</p>
-                <p className="mt-1 text-xs font-semibold text-slate-500">After commission & taxes</p>
+                <p className="mt-1 text-xs font-semibold text-slate-500 dark:text-white">After commission & taxes</p>
               </div>
             </div>
             
@@ -59,7 +59,7 @@ export default function VendorReportsPage() {
                   <div className="w-full rounded-t-xl bg-brand-blue/20" style={{ height: '100%', position: 'relative' }}>
                     <div className="absolute bottom-0 w-full rounded-t-xl bg-brand-blue transition-all duration-500" style={{ height: `${h}%` }} />
                   </div>
-                  <p className="text-[10px] font-bold text-slate-400">Day {i + 1}</p>
+                  <p className="text-[10px] font-bold text-slate-400 dark:text-white">Day {i + 1}</p>
                 </div>
               ))}
             </div>
@@ -77,8 +77,8 @@ export default function VendorReportsPage() {
               {recentSettlements.map((settlement) => (
                 <div key={settlement.id} className="flex items-center justify-between border-b border-sky-50 pb-3 last:border-0 last:pb-0">
                   <div>
-                    <p className="text-sm font-black text-slate-800 dark:text-slate-200">{settlement.amount}</p>
-                    <p className="text-xs font-semibold text-slate-500">{settlement.date} • {settlement.id}</p>
+                    <p className="text-sm font-black text-slate-800 dark:text-white">{settlement.amount}</p>
+                    <p className="text-xs font-semibold text-slate-500 dark:text-white">{settlement.date} • {settlement.id}</p>
                   </div>
                   <span className="rounded-full bg-emerald-100 px-2 py-1 text-[10px] font-black uppercase tracking-widest text-emerald-700">
                     {settlement.status}
@@ -86,7 +86,7 @@ export default function VendorReportsPage() {
                 </div>
               ))}
             </div>
-            <button onClick={(e) => { e.preventDefault(); toast.info('Loading full statement history...'); }} className="mt-4 w-full rounded-xl bg-sky-50 py-2.5 text-sm font-black text-brand-blue hover:bg-sky-100 transition">
+            <button onClick={(e) => { e.preventDefault(); toast.info('Loading full statement history...'); }} className="mt-4 w-full rounded-xl bg-sky-50 dark:bg-slate-900 py-2.5 text-sm font-black text-brand-blue hover:bg-sky-100 transition">
               View All Statements
             </button>
           </div>

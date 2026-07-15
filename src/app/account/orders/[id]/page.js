@@ -47,7 +47,7 @@ export default function OrderDetailPage({ params }) {
             <div className="relative z-10">
               <p className="text-xs font-black uppercase tracking-widest text-brand-yellow">Order Details</p>
               <h1 className="mt-2 text-4xl font-black">{displayId}</h1>
-              <span className="mt-4 inline-flex items-center gap-2 rounded-full bg-brand-blue/30 px-4 py-1.5 text-sm font-black backdrop-blur-md print:text-black print:bg-slate-100">
+              <span className="mt-4 inline-flex items-center gap-2 rounded-full bg-brand-blue/30 px-4 py-1.5 text-sm font-black backdrop-blur-md print:text-black dark:text-white print:bg-slate-100">
                 <span className="h-2 w-2 rounded-full bg-emerald-400" /> Preparing for dispatch
               </span>
             </div>
@@ -60,19 +60,19 @@ export default function OrderDetailPage({ params }) {
         <div className="grid gap-6">
           <div className="soft-card rounded-[2rem] p-6 sm:p-8">
             <h2 className="mb-6 flex items-center gap-2 text-xl font-black">
-              <Box size={20} className="text-brand-blue print:text-black" /> Items in this order
+              <Box size={20} className="text-brand-blue print:text-black dark:text-white" /> Items in this order
             </h2>
             
             <div className="grid gap-6">
               {orderItems.map((item) => (
                 <div key={item.id} className="flex gap-4 border-b border-sky-50 pb-6 last:border-0 last:pb-0 print:break-inside-avoid">
-                  <div className="grid h-20 w-20 shrink-0 place-items-center rounded-2xl bg-sky-50 p-2">
+                  <div className="grid h-20 w-20 shrink-0 place-items-center rounded-2xl bg-sky-50 dark:bg-slate-900 p-2">
                     <Image src={item.img} alt={item.name} width={50} height={50} className="object-contain mix-blend-multiply" />
                   </div>
                   <div className="flex flex-1 flex-col justify-between">
                     <div>
                       <p className="font-black text-brand-dark dark:text-white leading-tight">{item.name}</p>
-                      <p className="text-sm font-bold text-slate-500">Qty: {item.qty}</p>
+                      <p className="text-sm font-bold text-slate-500 dark:text-white">Qty: {item.qty}</p>
                     </div>
                     <p className="font-black">Rs. {item.total}</p>
                   </div>
@@ -89,7 +89,7 @@ export default function OrderDetailPage({ params }) {
             <Link href={`/track/${displayId}`} className="flex w-full items-center justify-center gap-2 rounded-xl bg-brand-blue py-3.5 text-sm font-black text-white shadow-glow hover:bg-[#066CAB] transition">
               <Navigation size={18} /> Track Delivery
             </Link>
-            <button onClick={() => window.print()} className="mt-3 flex w-full items-center justify-center gap-2 rounded-xl bg-sky-50 py-3 text-sm font-black text-brand-blue hover:bg-sky-100 transition">
+            <button onClick={() => window.print()} className="mt-3 flex w-full items-center justify-center gap-2 rounded-xl bg-sky-50 dark:bg-slate-900 py-3 text-sm font-black text-brand-blue hover:bg-sky-100 transition">
               <Receipt size={16} /> Download Invoice
             </button>
           </div>
@@ -99,8 +99,8 @@ export default function OrderDetailPage({ params }) {
             <h3 className="mb-4 text-base font-black flex items-center gap-2">
               <MapPin size={16} className="text-brand-blue" /> Delivery Address
             </h3>
-            <p className="text-sm font-bold text-slate-800 dark:text-slate-200">Akash Sharma</p>
-            <p className="mt-1 text-sm font-semibold leading-6 text-slate-500">
+            <p className="text-sm font-bold text-slate-800 dark:text-white">Akash Sharma</p>
+            <p className="mt-1 text-sm font-semibold leading-6 text-slate-500 dark:text-white">
               Block C, Green Park, Sector 21<br/>
               New Delhi, 110016<br/>
               +91 98765 43210
@@ -111,10 +111,10 @@ export default function OrderDetailPage({ params }) {
           <div className="soft-card rounded-[2rem] p-6 print:break-inside-avoid">
             <h3 className="mb-4 text-base font-black">Payment Summary</h3>
             <div className="grid gap-3 text-sm">
-              <div className="flex justify-between font-semibold text-slate-600 dark:text-slate-400">
+              <div className="flex justify-between font-semibold text-slate-600 dark:text-white">
                 <span>Subtotal</span><span>Rs. {subtotal}</span>
               </div>
-              <div className="flex justify-between font-semibold text-slate-600 dark:text-slate-400">
+              <div className="flex justify-between font-semibold text-slate-600 dark:text-white">
                 <span>Delivery Fee</span><span>Rs. {deliveryFee}</span>
               </div>
               <div className="flex justify-between font-semibold text-emerald-600">
@@ -125,7 +125,7 @@ export default function OrderDetailPage({ params }) {
                 <span>Total Paid</span><span>Rs. {total}</span>
               </div>
             </div>
-            <div className="mt-6 rounded-xl bg-slate-50 p-3 text-center text-xs font-bold text-slate-500">
+            <div className="mt-6 rounded-xl bg-slate-50 dark:bg-slate-950 dark:border-slate-800 p-3 text-center text-xs font-bold text-slate-500 dark:text-white">
               Paid via UPI (Google Pay)
             </div>
           </div>

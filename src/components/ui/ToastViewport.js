@@ -24,7 +24,7 @@ export function ToastViewport() {
                 <p className="font-black text-brand-dark dark:text-white">{toast.title}</p>
                 {toast.text ? <p className="mt-1 text-sm font-semibold leading-5 text-brand-gray">{toast.text}</p> : null}
               </div>
-              <button onClick={() => dismissToast(toast.id)} className="rounded-full bg-sky-50 p-1.5 text-brand-blue" aria-label="Dismiss notification">
+              <button onClick={() => dismissToast(toast.id)} className="rounded-full bg-sky-50 dark:bg-slate-900 p-1.5 text-brand-blue" aria-label="Dismiss notification">
                 <X size={15} />
               </button>
             </div>

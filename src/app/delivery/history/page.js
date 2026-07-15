@@ -17,15 +17,15 @@ export default function DeliveryHistoryPage() {
         <h1 className="mt-1 text-4xl font-black">Delivery History</h1>
       </div>
 
-      <div className="soft-card overflow-hidden rounded-2xl bg-white shadow-premium">
+      <div className="soft-card overflow-hidden rounded-2xl bg-white dark:bg-slate-900 dark:border-slate-800 shadow-premium">
         <div className="overflow-x-auto">
           <table className="w-full text-sm">
             <thead>
-              <tr className="border-b border-emerald-50 bg-slate-50 text-left">
-                <th className="px-5 py-4 text-xs font-black uppercase tracking-widest text-slate-400">Order ID & Date</th>
-                <th className="px-5 py-4 text-xs font-black uppercase tracking-widest text-slate-400">Route</th>
-                <th className="px-5 py-4 text-xs font-black uppercase tracking-widest text-slate-400">Status</th>
-                <th className="px-5 py-4 text-xs font-black uppercase tracking-widest text-slate-400 text-right">Earnings</th>
+              <tr className="border-b border-emerald-50 bg-slate-50 dark:bg-slate-950 dark:border-slate-800 text-left">
+                <th className="px-5 py-4 text-xs font-black uppercase tracking-widest text-slate-400 dark:text-white">Order ID & Date</th>
+                <th className="px-5 py-4 text-xs font-black uppercase tracking-widest text-slate-400 dark:text-white">Route</th>
+                <th className="px-5 py-4 text-xs font-black uppercase tracking-widest text-slate-400 dark:text-white">Status</th>
+                <th className="px-5 py-4 text-xs font-black uppercase tracking-widest text-slate-400 dark:text-white text-right">Earnings</th>
               </tr>
             </thead>
             <tbody>
@@ -33,15 +33,15 @@ export default function DeliveryHistoryPage() {
                 <tr key={item.id} className="border-b border-emerald-50 last:border-0 hover:bg-emerald-50/40 transition">
                   <td className="px-5 py-4">
                     <p className="font-black text-emerald-600">{item.id}</p>
-                    <p className="text-xs font-semibold text-slate-400 flex items-center gap-1 mt-0.5">
+                    <p className="text-xs font-semibold text-slate-400 dark:text-white flex items-center gap-1 mt-0.5">
                       <Clock size={12} /> {item.date}
                     </p>
                   </td>
                   <td className="px-5 py-4">
                     <div className="flex items-center gap-2">
-                      <span className="font-bold text-slate-700 dark:text-slate-300">{item.pickup}</span>
-                      <Truck size={12} className="text-slate-400" />
-                      <span className="font-bold text-slate-700 dark:text-slate-300">{item.drop}</span>
+                      <span className="font-bold text-slate-700 dark:text-white">{item.pickup}</span>
+                      <Truck size={12} className="text-slate-400 dark:text-white" />
+                      <span className="font-bold text-slate-700 dark:text-white">{item.drop}</span>
                     </div>
                   </td>
                   <td className="px-5 py-4">
@@ -53,7 +53,7 @@ export default function DeliveryHistoryPage() {
                     </span>
                   </td>
                   <td className="px-5 py-4 text-right">
-                    <p className="font-black text-slate-900 dark:text-slate-100">{item.earnings}</p>
+                    <p className="font-black text-slate-900 dark:text-white">{item.earnings}</p>
                   </td>
                 </tr>
               ))}

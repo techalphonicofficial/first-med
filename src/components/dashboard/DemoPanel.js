@@ -8,13 +8,13 @@ export function DemoPanel({ title, eyebrow = "Workspace", items = [], actions = 
         <div>
           <p className="text-xs font-black uppercase tracking-[0.18em] text-brand-blue">{eyebrow}</p>
           <h1 className="mt-2 max-w-3xl text-4xl font-black">{title}</h1>
-          <p className="mt-3 max-w-2xl text-sm font-semibold leading-6 text-slate-600 dark:text-slate-400">
+          <p className="mt-3 max-w-2xl text-sm font-semibold leading-6 text-slate-600 dark:text-white">
             A production-ready workspace layout with clear status, primary actions, and the next best thing to do.
           </p>
         </div>
-        <div className="grid gap-2 rounded-2xl bg-white/80 p-4 shadow-card">
+        <div className="grid gap-2 rounded-2xl bg-white dark:bg-slate-900 dark:border-slate-800/80 p-4 shadow-card">
           {["Verified access", "Action queue", "Audit friendly"].map((label, index) => (
-            <div key={label} className="flex items-center gap-3 rounded-xl bg-sky-50 px-3 py-2 text-sm font-black text-brand-blue">
+            <div key={label} className="flex items-center gap-3 rounded-xl bg-sky-50 dark:bg-slate-900 px-3 py-2 text-sm font-black text-brand-blue">
               {[ShieldCheck, Clock3, FileText][index] ? (() => {
                 const Icon = [ShieldCheck, Clock3, FileText][index];
                 return <Icon size={17} />;
@@ -34,7 +34,7 @@ export function DemoPanel({ title, eyebrow = "Workspace", items = [], actions = 
               </span>
             </div>
             <h2 className="mt-2 text-2xl font-black">{item.title}</h2>
-            <p className="mt-2 text-sm leading-6 text-slate-500">{item.text}</p>
+            <p className="mt-2 text-sm leading-6 text-slate-500 dark:text-white">{item.text}</p>
             <div className="mt-5 h-2 rounded-full bg-sky-100">
               <div className="h-2 rounded-full bg-brand-blue" style={{ width: item.progress || "68%" }} />
             </div>

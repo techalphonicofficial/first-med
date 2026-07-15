@@ -77,7 +77,7 @@ export default function HomePage() {
                   <Icon size={18} className={color} />
                   <div>
                     <p className={`text-xl font-black ${color}`}>{value}</p>
-                    <p className="text-xs font-bold text-slate-500">{label}</p>
+                    <p className="text-xs font-bold text-slate-500 dark:text-white">{label}</p>
                   </div>
                 </div>
               </div>
@@ -91,7 +91,7 @@ export default function HomePage() {
         <Reveal>
           <div className="grid gap-5 md:grid-cols-[1fr_1.2fr]">
             <div className="rounded-2xl bg-gradient-to-br from-white via-sky-50 to-brand-mint p-8 shadow-soft">
-              <p className="max-w-md text-sm leading-6 text-slate-600 dark:text-slate-400">
+              <p className="max-w-md text-sm leading-6 text-slate-600 dark:text-slate-800">
                 Add vitamins, energy gels and protein support to your monthly wellness basket.
               </p>
               <Button href="/products" className="mt-5">
@@ -124,7 +124,7 @@ export default function HomePage() {
       </Section>
 
       {/* Shop by need */}
-      <section className="bg-slate-50/80">
+      <section className="bg-slate-50/80 dark:bg-transparent">
         <Section eyebrow="Shop by need" title="Start with the care moment, then add what fits.">
           <div className="grid gap-4 md:grid-cols-3">
             {needKits.map(({ name, desc, items, href, color, accent, icon: Icon }, index) => (
@@ -138,20 +138,20 @@ export default function HomePage() {
                     <div className={`grid h-10 w-10 place-items-center rounded-2xl ${accent} text-white`}>
                       <Icon size={18} />
                     </div>
-                    <span className="rounded-full bg-white/80 px-3 py-1 text-xs font-black text-slate-600 dark:text-slate-400 shadow-card">
+                    <span className="rounded-full bg-white/80 dark:bg-slate-800 px-3 py-1 text-xs font-black text-slate-600 dark:text-white shadow-card border border-transparent dark:border-slate-700">
                       {items.length} items
                     </span>
                   </div>
-                  <h3 className="mt-4 font-black text-slate-900 dark:text-slate-100">{name}</h3>
-                  <p className="mt-2 text-xs font-semibold leading-5 text-slate-500">{desc}</p>
+                  <h3 className="mt-4 font-black text-slate-900 dark:text-white">{name}</h3>
+                  <p className="mt-2 text-xs font-semibold leading-5 text-slate-500 dark:text-white">{desc}</p>
                   <div className="mt-4 flex flex-wrap gap-1.5">
                     {items.map((item) => (
-                      <span key={item} className="rounded-full bg-white/70 px-2 py-0.5 text-[10px] font-black text-slate-600 dark:text-slate-400">
+                      <span key={item} className="rounded-full bg-white/70 dark:bg-slate-800 px-2 py-0.5 text-[10px] font-black text-slate-600 dark:text-white border border-transparent dark:border-slate-700">
                         {item}
                       </span>
                     ))}
                   </div>
-                  <div className="mt-4 flex items-center gap-1 text-xs font-black text-slate-600 dark:text-slate-400 group-hover:text-brand-blue">
+                  <div className="mt-4 flex items-center gap-1 text-xs font-black text-slate-600 dark:text-white group-hover:text-brand-blue dark:group-hover:text-sky-400">
                     Shop now <ArrowRight size={13} className="transition-transform group-hover:translate-x-1" />
                   </div>
                 </motion.a>
@@ -196,10 +196,10 @@ export default function HomePage() {
       {/* Recovery CTA banner */}
       <Section>
         <Reveal>
-          <div className="rounded-[2rem] border border-white/80 bg-gradient-to-r from-[#fffef0] via-white to-[#e1fff5] p-8 shadow-premium md:flex md:items-center md:justify-between">
+          <div className="rounded-[2rem] border border-white/80 dark:border-slate-200/20 bg-gradient-to-r from-[#fffef0] via-white to-[#e1fff5] p-8 shadow-premium md:flex md:items-center md:justify-between text-slate-950 dark:text-slate-950">
             <div>
-              <p className="text-xs font-black uppercase tracking-[0.18em] text-brand-blue">Recovery bundle</p>
-              <h2 className="mt-2 max-w-xl text-3xl font-black">Build a quick recovery kit for fever, hydration and first-aid needs.</h2>
+              <p className="text-xs font-black uppercase tracking-[0.18em] text-brand-blue dark:text-brand-blue">Recovery bundle</p>
+              <h2 className="mt-2 max-w-xl text-3xl font-black text-slate-950 dark:text-slate-950">Build a quick recovery kit for fever, hydration and first-aid needs.</h2>
             </div>
             <Button href="/products/?category=Health%20Resource%20Center" className="mt-6 md:mt-0">
               Build kit
@@ -229,13 +229,13 @@ export default function HomePage() {
                     </div>
                   </div>
                   <h3 className="mt-3 font-black group-hover:text-brand-blue transition-colors">{vendor.name}</h3>
-                  <p className="mt-1 text-sm font-semibold text-slate-500">{vendor.area}</p>
+                  <p className="mt-1 text-sm font-semibold text-slate-500 dark:text-white">{vendor.area}</p>
                   <div className="mt-3 flex items-center gap-2">
                     <Truck size={14} className="text-brand-blue" />
                     <span className="text-xs font-black text-brand-blue">{vendor.eta} avg delivery</span>
                   </div>
                   <div className="mt-3 flex gap-2">
-                    <span className="rounded-full bg-sky-50 px-2 py-0.5 text-[10px] font-black text-brand-blue">OTC</span>
+                    <span className="rounded-full bg-sky-50 dark:bg-slate-900 px-2 py-0.5 text-[10px] font-black text-brand-blue">OTC</span>
                     <span className="rounded-full bg-amber-50 px-2 py-0.5 text-[10px] font-black text-amber-700">Rx-ready</span>
                     <span className="rounded-full bg-emerald-50 px-2 py-0.5 text-[10px] font-black text-emerald-600">Express</span>
                   </div>
@@ -256,13 +256,13 @@ export default function HomePage() {
               <p className="mt-3 text-sm leading-6 text-slate-300">
                 Upload doctor and clinic details once, then restricted products can be added after approval.
               </p>
-              <Button href="/prescription" className="mt-6 bg-white text-brand-blue hover:bg-blue-50">
+              <Button href="/prescription" className="mt-6 bg-white dark:bg-slate-900 dark:border-slate-800 text-brand-blue hover:bg-blue-50">
                 Upload prescription
               </Button>
             </div>
-            <div className="rounded-2xl bg-white/10 p-5">
+            <div className="rounded-2xl bg-white dark:bg-slate-900 dark:border-slate-800/10 p-5">
               {["Doctor name", "Clinic letterhead", "Registration number", "Patient name"].map((item) => (
-                <div key={item} className="mb-3 flex items-center gap-3 rounded-xl bg-white/10 p-3 text-sm font-bold">
+                <div key={item} className="mb-3 flex items-center gap-3 rounded-xl bg-white dark:bg-slate-900 dark:border-slate-800/10 p-3 text-sm font-bold">
                   <FileCheck2 size={18} className="text-brand-yellow" />
                   {item}
                   <span className="ml-auto h-2 w-2 rounded-full bg-brand-yellow" />

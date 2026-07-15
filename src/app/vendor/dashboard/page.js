@@ -53,13 +53,13 @@ export default function VendorDashboardPage() {
         <div>
           <p className="text-xs font-black uppercase tracking-[0.18em] text-brand-blue">Vendor portal</p>
           <h1 className="mt-1 text-4xl font-black">Dashboard</h1>
-          <p className="mt-1 text-sm font-semibold text-slate-500">Welcome back, FirstMED Plus · Sector 21</p>
+          <p className="mt-1 text-sm font-semibold text-slate-500 dark:text-white">Welcome back, FirstMED Plus · Sector 21</p>
         </div>
         <div className="flex gap-3">
           <Link href="/vendor/orders" className="flex items-center gap-2 rounded-full bg-brand-blue px-5 py-2.5 text-sm font-black text-white shadow-glow hover:-translate-y-0.5 transition">
             View orders <ArrowRight size={15} />
           </Link>
-          <Link href="/vendor/products" className="flex items-center gap-2 rounded-full bg-white px-5 py-2.5 text-sm font-black text-brand-blue shadow-card hover:bg-sky-50 transition">
+          <Link href="/vendor/products" className="flex items-center gap-2 rounded-full bg-white dark:bg-slate-900 dark:border-slate-800 px-5 py-2.5 text-sm font-black text-brand-blue shadow-card hover:bg-sky-50 transition">
             Manage products
           </Link>
         </div>
@@ -76,13 +76,13 @@ export default function VendorDashboardPage() {
         {stats.map(({ label, value, sub, icon: Icon, color, bg }) => (
           <div key={label} className="soft-card rounded-2xl p-5 transition hover:-translate-y-1 hover:shadow-premium">
             <div className="flex items-center justify-between">
-              <p className="text-sm font-black text-slate-500">{label}</p>
+              <p className="text-sm font-black text-slate-500 dark:text-white">{label}</p>
               <span className={`grid h-10 w-10 place-items-center rounded-2xl ${bg}`}>
                 <Icon size={18} className={color} />
               </span>
             </div>
             <p className={`mt-3 text-3xl font-black ${color}`}>{value}</p>
-            <p className="mt-1 text-xs font-semibold text-slate-400">{sub}</p>
+            <p className="mt-1 text-xs font-semibold text-slate-400 dark:text-white">{sub}</p>
           </div>
         ))}
       </div>
@@ -105,7 +105,7 @@ export default function VendorDashboardPage() {
                     className="w-full rounded-xl bg-brand-blue transition-all duration-500"
                     style={{ height: `${h}%`, opacity: i === 6 ? 1 : 0.55 + i * 0.06 }}
                   />
-                  <p className="text-[10px] font-bold text-slate-400">{days[i]}</p>
+                  <p className="text-[10px] font-bold text-slate-400 dark:text-white">{days[i]}</p>
                 </div>
               ))}
             </div>
@@ -124,7 +124,7 @@ export default function VendorDashboardPage() {
                 <thead>
                   <tr className="border-b border-sky-100 text-left">
                     {["Order ID", "Customer", "Items", "Total", "Slot", "Status", "Action"].map((h) => (
-                      <th key={h} className="pb-3 text-xs font-black uppercase tracking-widest text-slate-400">{h}</th>
+                      <th key={h} className="pb-3 text-xs font-black uppercase tracking-widest text-slate-400 dark:text-white">{h}</th>
                     ))}
                   </tr>
                 </thead>
@@ -142,9 +142,9 @@ export default function VendorDashboardPage() {
                             {order.customer}
                           </div>
                         </td>
-                        <td className="py-3 font-semibold text-slate-500">{order.items} items</td>
+                        <td className="py-3 font-semibold text-slate-500 dark:text-white">{order.items} items</td>
                         <td className="py-3 font-black">Rs. {order.total}</td>
-                        <td className="py-3 text-xs font-semibold text-slate-500">{order.slot}</td>
+                        <td className="py-3 text-xs font-semibold text-slate-500 dark:text-white">{order.slot}</td>
                         <td className="py-3">
                           <span className={`inline-flex items-center gap-1.5 rounded-full px-2.5 py-1 text-xs font-black ${sc.color}`}>
                             <span className={`h-1.5 w-1.5 rounded-full ${sc.dot}`} />
@@ -159,7 +159,7 @@ export default function VendorDashboardPage() {
                             <button onClick={() => advanceOrder(order.id, "Ready")} className="rounded-full bg-purple-100 px-3 py-1 text-xs font-black text-purple-700">Mark ready</button>
                           )}
                           {(order.status === "Ready" || order.status === "Completed") && (
-                            <span className="text-xs font-semibold text-slate-400">—</span>
+                            <span className="text-xs font-semibold text-slate-400 dark:text-white">—</span>
                           )}
                         </td>
                       </tr>
@@ -177,7 +177,7 @@ export default function VendorDashboardPage() {
             <h2 className="mb-4 text-base font-black">Quick access</h2>
             <div className="grid gap-2">
               {navLinks.map(({ label, href, icon: Icon }) => (
-                <Link key={label} href={href} className="flex items-center gap-3 rounded-xl px-3 py-2.5 text-sm font-bold text-slate-600 dark:text-slate-400 transition hover:bg-sky-50 hover:text-brand-blue">
+                <Link key={label} href={href} className="flex items-center gap-3 rounded-xl px-3 py-2.5 text-sm font-bold text-slate-600 dark:text-white transition hover:bg-sky-50 dark:bg-slate-900 hover:text-brand-blue">
                   <Icon size={16} className="text-brand-blue" /> {label}
                 </Link>
               ))}
@@ -192,8 +192,8 @@ export default function VendorDashboardPage() {
                 { label: "Customer satisfaction",  value: 92, color: "bg-amber-400"   },
               ].map(({ label, value, color }) => (
                 <div key={label}>
-                  <div className="mb-1 flex justify-between text-xs font-bold text-slate-500">
-                    <span>{label}</span><span className="font-black text-slate-700 dark:text-slate-300">{value}%</span>
+                  <div className="mb-1 flex justify-between text-xs font-bold text-slate-500 dark:text-white">
+                    <span>{label}</span><span className="font-black text-slate-700 dark:text-white">{value}%</span>
                   </div>
                   <div className="h-2 rounded-full bg-sky-100">
                     <div className={`h-2 rounded-full ${color}`} style={{ width: `${value}%` }} />
@@ -210,7 +210,7 @@ export default function VendorDashboardPage() {
               { icon: Users, label: "New customers",      value: "7"         },
             ].map(({ icon: Icon, label, value }) => (
               <div key={label} className="flex items-center justify-between border-b border-sky-50 py-2.5 last:border-0">
-                <div className="flex items-center gap-2 text-sm font-semibold text-slate-600 dark:text-slate-400">
+                <div className="flex items-center gap-2 text-sm font-semibold text-slate-600 dark:text-white">
                   <Icon size={14} className="text-brand-blue" /> {label}
                 </div>
                 <span className="text-sm font-black">{value}</span>

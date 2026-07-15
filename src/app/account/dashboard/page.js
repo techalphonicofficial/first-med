@@ -28,25 +28,25 @@ export default function AccountDashboardPage() {
               <p className="mt-2 text-sm font-semibold text-sky-200">akash@example.com · +91 98765 43210</p>
               
               <div className="mt-8 flex flex-wrap gap-3">
-                <Link href="/account/profile" className="rounded-full bg-white/10 px-5 py-2.5 text-sm font-black text-white backdrop-blur-md hover:bg-white/20 transition">Edit profile</Link>
+                <Link href="/account/profile" className="rounded-full bg-white dark:bg-slate-900 dark:border-slate-800/10 px-5 py-2.5 text-sm font-black text-white backdrop-blur-md hover:bg-white dark:bg-slate-900 dark:border-slate-800/20 transition">Edit profile</Link>
               </div>
             </div>
           </div>
 
           {/* Rx Status */}
-          <div className="flex flex-wrap items-center justify-between gap-4 rounded-[1.5rem] bg-sky-50 p-6 border border-sky-100">
+          <div className="flex flex-wrap items-center justify-between gap-4 rounded-[1.5rem] bg-sky-50 dark:bg-slate-900 p-6 border dark:border-slate-800 border dark:border-slate-800-sky-100">
             <div className="flex items-center gap-4">
               <div className={`grid h-12 w-12 shrink-0 place-items-center rounded-full ${prescription.status === "approved" ? "bg-emerald-100 text-emerald-600" : "bg-white text-brand-blue shadow-sm"}`}>
                 <ShieldCheck size={24} />
               </div>
               <div>
                 <h2 className="text-lg font-black text-brand-dark dark:text-white">Prescription Status</h2>
-                <p className="text-sm font-semibold text-slate-500">
+                <p className="text-sm font-semibold text-slate-500 dark:text-white">
                   {prescription.status === "approved" ? "Verified and ready for Rx checkout." : "No active prescription uploaded."}
                 </p>
               </div>
             </div>
-            <Link href="/prescription" className="rounded-full bg-white px-5 py-2.5 text-sm font-black text-brand-blue shadow-sm hover:shadow-md transition">
+            <Link href="/prescription" className="rounded-full bg-white dark:bg-slate-900 dark:border-slate-800 px-5 py-2.5 text-sm font-black text-brand-blue shadow-sm hover:shadow-md transition">
               {prescription.status === "approved" ? "View details" : "Upload now"}
             </Link>
           </div>
@@ -59,12 +59,12 @@ export default function AccountDashboardPage() {
             </div>
             
             <div className="grid gap-4">
-              <div className="flex flex-wrap items-center justify-between gap-4 rounded-2xl border border-sky-50 p-5 transition hover:bg-sky-50/50">
+              <div className="flex flex-wrap items-center justify-between gap-4 rounded-2xl border dark:border-slate-800 border dark:border-slate-800-sky-50 p-5 transition hover:bg-sky-50 dark:bg-slate-900/50">
                 <div className="flex items-center gap-4">
                   <div className="grid h-12 w-12 place-items-center rounded-xl bg-sky-100 text-brand-blue"><Package size={20} /></div>
                   <div>
                     <p className="font-black">FM-3041</p>
-                    <p className="text-sm font-semibold text-slate-500">3 items · Rs. 430</p>
+                    <p className="text-sm font-semibold text-slate-500 dark:text-white">3 items · Rs. 430</p>
                   </div>
                 </div>
                 <div className="flex items-center gap-4">
@@ -75,12 +75,12 @@ export default function AccountDashboardPage() {
                 </div>
               </div>
               
-              <div className="flex flex-wrap items-center justify-between gap-4 rounded-2xl border border-sky-50 p-5 transition hover:bg-sky-50/50">
+              <div className="flex flex-wrap items-center justify-between gap-4 rounded-2xl border dark:border-slate-800 border dark:border-slate-800-sky-50 p-5 transition hover:bg-sky-50 dark:bg-slate-900/50">
                 <div className="flex items-center gap-4">
-                  <div className="grid h-12 w-12 place-items-center rounded-xl bg-slate-50 text-slate-400"><Package size={20} /></div>
+                  <div className="grid h-12 w-12 place-items-center rounded-xl bg-slate-50 dark:bg-slate-950 dark:border-slate-800 text-slate-400 dark:text-white"><Package size={20} /></div>
                   <div>
                     <p className="font-black">FM-2908</p>
-                    <p className="text-sm font-semibold text-slate-500">1 item · Rs. 145</p>
+                    <p className="text-sm font-semibold text-slate-500 dark:text-white">1 item · Rs. 145</p>
                   </div>
                 </div>
                 <div className="flex items-center gap-4">
@@ -108,7 +108,7 @@ export default function AccountDashboardPage() {
                 { label: "Notifications", href: "/account/notifications", icon: Bell },
                 { label: "Profile Settings", href: "/account/profile", icon: User },
               ].map(({ label, href, icon: Icon }) => (
-                <Link key={label} href={href} className="flex items-center gap-3 rounded-xl p-3 text-sm font-bold text-slate-600 dark:text-slate-400 transition hover:bg-sky-50 hover:text-brand-blue">
+                <Link key={label} href={href} className="flex items-center gap-3 rounded-xl p-3 text-sm font-bold text-slate-600 dark:text-white transition hover:bg-sky-50 dark:bg-slate-900 hover:text-brand-blue">
                   <Icon size={18} className="text-brand-blue" /> {label}
                 </Link>
               ))}
@@ -129,9 +129,9 @@ export default function AccountDashboardPage() {
               <Bell size={18} className="text-amber-500" />
               <h2 className="text-lg font-black">Care reminders</h2>
             </div>
-            <div className="rounded-xl border border-sky-50 bg-sky-50/50 p-4">
+            <div className="rounded-xl border dark:border-slate-800 border dark:border-slate-800-sky-50 bg-sky-50 dark:bg-slate-900/50 p-4">
               <p className="text-sm font-black">Complete your profile</p>
-              <p className="mt-1 text-xs font-semibold text-slate-500">Add your default delivery address to speed up your next checkout.</p>
+              <p className="mt-1 text-xs font-semibold text-slate-500 dark:text-white">Add your default delivery address to speed up your next checkout.</p>
               <Link href="/account/addresses" className="mt-3 inline-block text-xs font-black text-brand-blue hover:underline">Add address →</Link>
             </div>
           </div>

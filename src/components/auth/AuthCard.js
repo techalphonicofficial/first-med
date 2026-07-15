@@ -53,7 +53,7 @@ export function AuthCard({ mode }) {
               { icon: Pill, title: "Prescription status saved", desc: "Upload once, reorder medicines instantly." },
               { icon: PackageCheck, title: "Fast reorder and saved addresses", desc: "Skip the details on your next checkout." }
             ].map(({ icon: Icon, title, desc }) => (
-              <div key={title} className="flex items-start gap-4 rounded-2xl bg-white/5 p-4 backdrop-blur-md border border-white/10">
+              <div key={title} className="flex items-start gap-4 rounded-2xl bg-white dark:bg-slate-900 dark:border-slate-800/5 p-4 backdrop-blur-md border border-white/10">
                 <div className="grid h-12 w-12 shrink-0 place-items-center rounded-xl bg-brand-blue/30 text-brand-yellow">
                   <Icon size={20} />
                 </div>
@@ -68,10 +68,10 @@ export function AuthCard({ mode }) {
       </div>
       
       {/* Auth Form Panel */}
-      <form onSubmit={handleSubmit(submit)} className="mx-auto w-full max-w-lg rounded-[2rem] bg-white p-8 sm:p-12 shadow-card xl:mx-0">
+      <form onSubmit={handleSubmit(submit)} className="mx-auto w-full max-w-lg rounded-[2rem] bg-white dark:bg-slate-900 dark:border-slate-800 p-8 sm:p-12 shadow-card xl:mx-0">
         <p className="text-xs font-black uppercase tracking-[0.18em] text-brand-blue">FirstMED account</p>
         <h1 className="mt-2 text-4xl font-black">{mode}</h1>
-        <p className="mt-2 text-sm font-semibold leading-6 text-slate-500">
+        <p className="mt-2 text-sm font-semibold leading-6 text-slate-500 dark:text-white">
           {isForgot ? "Enter your registered email or mobile number and we will send recovery instructions." : isVerify ? "Enter the one-time code sent to your email or mobile number." : "Use your email, mobile number, or OTP to continue safely."}
         </p>
         
@@ -100,7 +100,7 @@ export function AuthCard({ mode }) {
               <div className="relative">
                 <LockKeyhole className="absolute left-4 top-1/2 -translate-y-1/2 text-brand-blue" size={17} />
                 <input {...register("password", { required: `${passwordLabel} is required`, minLength: { value: 6, message: "Use at least 6 characters" } })} type={showPassword ? "text" : "password"} placeholder={passwordLabel} className={`w-full rounded-xl border bg-sky-50 py-3 pl-11 pr-12 font-semibold outline-brand-blue ${errors.password ? "border-rose-300" : "border-sky-100"}`} />
-                <button type="button" onClick={() => setShowPassword((value) => !value)} className="absolute right-3 top-1/2 -translate-y-1/2 rounded-full bg-white p-2 text-brand-blue" aria-label={showPassword ? "Hide password" : "Show password"}>
+                <button type="button" onClick={() => setShowPassword((value) => !value)} className="absolute right-3 top-1/2 -translate-y-1/2 rounded-full bg-white dark:bg-slate-900 dark:border-slate-800 p-2 text-brand-blue" aria-label={showPassword ? "Hide password" : "Show password"}>
                   {showPassword ? <EyeOff size={16} /> : <Eye size={16} />}
                 </button>
               </div>
@@ -110,11 +110,11 @@ export function AuthCard({ mode }) {
           {isReset ? (
             <label className="grid gap-2 text-sm font-black">
               Confirm password
-              <input {...register("confirm_password", { required: "Confirm your password" })} type="password" placeholder="Confirm password" className="rounded-xl border border-sky-100 bg-sky-50 px-4 py-3 font-semibold outline-brand-blue" />
+              <input {...register("confirm_password", { required: "Confirm your password" })} type="password" placeholder="Confirm password" className="rounded-xl border dark:border-slate-800 border dark:border-slate-800-sky-100 bg-sky-50 dark:bg-slate-900 px-4 py-3 font-semibold outline-brand-blue" />
             </label>
           ) : null}
           {isRegister ? (
-            <label className="flex items-start gap-3 rounded-xl bg-sky-50 p-4 text-xs font-bold text-slate-600 dark:text-slate-400 border border-sky-100">
+            <label className="flex items-start gap-3 rounded-xl bg-sky-50 dark:bg-slate-900 p-4 text-xs font-bold text-slate-600 dark:text-white border dark:border-slate-800 border dark:border-slate-800-sky-100">
               <input type="checkbox" {...register("terms", { required: "Accept terms to continue" })} className="mt-1 h-4 w-4 accent-brand-blue shrink-0" />
               I agree to prescription safety checks, privacy terms, and account notifications.
             </label>
@@ -129,17 +129,17 @@ export function AuthCard({ mode }) {
             <>
               <div className="relative flex items-center py-4">
                 <div className="flex-grow border-t border-sky-100"></div>
-                <span className="shrink-0 px-4 text-xs font-black text-slate-400 uppercase tracking-widest">or continue with</span>
+                <span className="shrink-0 px-4 text-xs font-black text-slate-400 dark:text-white uppercase tracking-widest">or continue with</span>
                 <div className="flex-grow border-t border-sky-100"></div>
               </div>
               
               <div className="grid gap-3 sm:grid-cols-2">
-                <button type="button" className="flex items-center justify-center gap-2 rounded-xl bg-white border border-sky-100 px-5 py-3 text-sm font-black text-slate-600 dark:text-slate-400 shadow-sm hover:bg-sky-50 transition">
+                <button type="button" className="flex items-center justify-center gap-2 rounded-xl bg-white dark:bg-slate-900 dark:border-slate-800 border border-sky-100 px-5 py-3 text-sm font-black text-slate-600 dark:text-white shadow-sm hover:bg-sky-50 transition">
                   {/* Google G Logo SVG */}
                   <svg viewBox="0 0 24 24" width="18" height="18" xmlns="http://www.w3.org/2000/svg"><g transform="matrix(1, 0, 0, 1, 27.009001, -39.238998)"><path fill="#4285F4" d="M -3.264 51.509 C -3.264 50.719 -3.334 49.969 -3.454 49.239 L -14.754 49.239 L -14.754 53.749 L -8.284 53.749 C -8.574 55.229 -9.424 56.479 -10.684 57.329 L -10.684 60.329 L -6.824 60.329 C -4.564 58.239 -3.264 55.159 -3.264 51.509 Z"/><path fill="#34A853" d="M -14.754 63.239 C -11.514 63.239 -8.804 62.159 -6.824 60.329 L -10.684 57.329 C -11.764 58.049 -13.134 58.489 -14.754 58.489 C -17.884 58.489 -20.534 56.379 -21.484 53.529 L -25.464 53.529 L -25.464 56.619 C -23.494 60.539 -19.444 63.239 -14.754 63.239 Z"/><path fill="#FBBC05" d="M -21.484 53.529 C -21.734 52.809 -21.864 52.039 -21.864 51.239 C -21.864 50.439 -21.724 49.669 -21.484 48.949 L -21.484 45.859 L -25.464 45.859 C -26.284 47.479 -26.754 49.299 -26.754 51.239 C -26.754 53.179 -26.284 54.999 -25.464 56.619 L -21.484 53.529 Z"/><path fill="#EA4335" d="M -14.754 43.989 C -12.984 43.989 -11.404 44.599 -10.154 45.789 L -6.734 42.369 C -8.804 40.429 -11.514 39.239 -14.754 39.239 C -19.444 39.239 -23.494 41.939 -25.464 45.859 L -21.484 48.949 C -20.534 46.099 -17.884 43.989 -14.754 43.989 Z"/></g></svg>
                   Google
                 </button>
-                <button type="button" className="flex items-center justify-center gap-2 rounded-xl bg-white border border-sky-100 px-5 py-3 text-sm font-black text-slate-600 dark:text-slate-400 shadow-sm hover:bg-sky-50 transition">
+                <button type="button" className="flex items-center justify-center gap-2 rounded-xl bg-white dark:bg-slate-900 dark:border-slate-800 border border-sky-100 px-5 py-3 text-sm font-black text-slate-600 dark:text-white shadow-sm hover:bg-sky-50 transition">
                   <Smartphone size={18} className="text-brand-blue" /> Mobile OTP
                 </button>
               </div>

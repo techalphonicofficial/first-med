@@ -69,11 +69,11 @@ export function PrescriptionForm() {
             { step: 2, label: "Details", active: Boolean(fileName), done: isApproved },
             { step: 3, label: "Unlock Cart", active: isApproved, done: isApproved }
           ].map((s) => (
-            <div key={s.step} className="flex flex-col items-center gap-2 bg-white px-2">
-              <div className={`grid h-10 w-10 place-items-center rounded-full border-4 border-white font-black transition-colors ${s.done ? "bg-brand-blue text-white" : s.active ? "bg-brand-yellow text-brand-blue ring-2 ring-brand-blue" : "bg-sky-100 text-slate-400"}`}>
+            <div key={s.step} className="flex flex-col items-center gap-2 bg-white dark:bg-slate-900 dark:border-slate-800 px-2">
+              <div className={`grid h-10 w-10 place-items-center rounded-full border-4 border-white font-black transition-colors ${s.done ? "bg-brand-blue text-white" : s.active ? "bg-brand-yellow text-brand-blue ring-2 ring-brand-blue" : "bg-sky-100 text-slate-400 dark:text-white"}`}>
                 {s.done ? <CheckCircle2 size={18} /> : s.step}
               </div>
-              <span className={`text-xs font-black ${s.active ? "text-brand-dark dark:text-white" : "text-slate-400"}`}>{s.label}</span>
+              <span className={`text-xs font-black ${s.active ? "text-brand-dark dark:text-white" : "text-slate-400 dark:text-white"}`}>{s.label}</span>
             </div>
           ))}
         </div>
@@ -94,7 +94,7 @@ export function PrescriptionForm() {
           </div>
         </div>
       ) : (
-        <form onSubmit={handleSubmit(onSubmit)} className="mx-auto mt-12 grid max-w-3xl gap-8 rounded-[2rem] bg-white p-8 sm:p-12 shadow-card border border-sky-50">
+        <form onSubmit={handleSubmit(onSubmit)} className="mx-auto mt-12 grid max-w-3xl gap-8 rounded-[2rem] bg-white dark:bg-slate-900 dark:border-slate-800 p-8 sm:p-12 shadow-card border border-sky-50">
           
           {/* Drag Drop Zone */}
           <div className="grid gap-2 text-sm font-black">
@@ -107,7 +107,7 @@ export function PrescriptionForm() {
             >
               {fileName ? (
                 <>
-                  <div className="grid h-16 w-16 place-items-center rounded-2xl bg-white text-brand-blue shadow-sm mb-4">
+                  <div className="grid h-16 w-16 place-items-center rounded-2xl bg-white dark:bg-slate-900 dark:border-slate-800 text-brand-blue shadow-sm mb-4">
                     <FileCheck2 size={32} />
                   </div>
                   <p className="text-base font-black text-brand-dark dark:text-white">{fileName}</p>
@@ -117,12 +117,12 @@ export function PrescriptionForm() {
                 </>
               ) : (
                 <>
-                  <div className="grid h-16 w-16 place-items-center rounded-full bg-white text-brand-blue shadow-sm mb-4">
+                  <div className="grid h-16 w-16 place-items-center rounded-full bg-white dark:bg-slate-900 dark:border-slate-800 text-brand-blue shadow-sm mb-4">
                     <UploadCloud size={32} />
                   </div>
                   <p className="text-base font-black">Drag and drop your file here</p>
-                  <p className="mt-1 text-sm font-semibold text-slate-500">or click to browse from your device</p>
-                  <p className="mt-4 text-xs font-bold text-slate-400">Accepted formats: JPG, PNG, PDF (Max 5MB)</p>
+                  <p className="mt-1 text-sm font-semibold text-slate-500 dark:text-white">or click to browse from your device</p>
+                  <p className="mt-4 text-xs font-bold text-slate-400 dark:text-white">Accepted formats: JPG, PNG, PDF (Max 5MB)</p>
                 </>
               )}
               <input 
@@ -162,7 +162,7 @@ export function PrescriptionForm() {
             <Button type="submit" className="w-full sm:w-auto h-12 px-10 text-base" disabled={!fileName}>
               Submit for verification
             </Button>
-            <p className="text-center text-xs font-semibold text-slate-500 max-w-md">
+            <p className="text-center text-xs font-semibold text-slate-500 dark:text-white max-w-md">
               Frontend demo rule: approval requires all fields and one uploaded file. Production should replace this with OCR and pharmacist review.
             </p>
           </div>

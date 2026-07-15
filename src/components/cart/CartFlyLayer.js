@@ -50,7 +50,7 @@ export function CartFlyLayer() {
           return (
           <motion.div
             key={flight.id}
-            className="fixed left-0 top-0 flex h-14 w-[min(220px,calc(100vw-32px))] items-center gap-2 rounded-full border border-sky-200 bg-white px-2.5 shadow-premium backdrop-blur-xl z-[90]"
+            className="fixed left-0 top-0 flex h-14 w-[min(220px,calc(100vw-32px))] items-center gap-2 rounded-full border border-sky-200 bg-white dark:bg-slate-900 dark:border-slate-800 px-2.5 shadow-premium backdrop-blur-xl z-[90]"
             initial={reduceMotion ? { x: flight.target.x - 110, y: flight.target.y + 18, opacity: 0, scale: 0.96 } : { x: centerX - 110, y: -100, opacity: 0, scale: 0.6 }}
             animate={reduceMotion ? { x: flight.target.x - 110, y: flight.target.y + 18, opacity: 1, scale: 1 } : {
               x: [centerX - 110, centerX - 110, centerX - 110, flight.target.x - 42],

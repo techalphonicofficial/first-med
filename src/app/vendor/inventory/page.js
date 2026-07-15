@@ -73,7 +73,7 @@ export default function InventoryPage() {
             value={search}
             onChange={(e) => setSearch(e.target.value)}
             placeholder="Search by name or SKU…"
-            className="w-full rounded-full border border-sky-100 bg-white py-2.5 pl-10 pr-4 text-sm font-bold outline-brand-blue"
+            className="w-full rounded-full border border-sky-100 bg-white dark:bg-slate-900 dark:border-slate-800 py-2.5 pl-10 pr-4 text-sm font-bold outline-brand-blue"
           />
         </div>
         <div className="flex gap-2">
@@ -81,7 +81,7 @@ export default function InventoryPage() {
             <button
               key={f}
               onClick={() => setFilter(f)}
-              className={`rounded-full px-4 py-2 text-xs font-black transition ${filter === f ? "bg-brand-blue text-white shadow-glow" : "bg-white text-slate-600 dark:text-slate-400 shadow-card hover:bg-sky-50"}`}
+              className={`rounded-full px-4 py-2 text-xs font-black transition ${filter === f ? "bg-brand-blue text-white shadow-glow" : "bg-white text-slate-600 dark:text-white shadow-card hover:bg-sky-50"}`}
             >
               {f}
             </button>
@@ -93,10 +93,10 @@ export default function InventoryPage() {
       <div className="soft-card overflow-hidden rounded-2xl">
         <div className="overflow-x-auto">
           <table className="w-full text-sm">
-            <thead className="border-b border-sky-100 bg-sky-50/50">
+            <thead className="border-b border-sky-100 bg-sky-50 dark:bg-slate-900/50">
               <tr>
                 {["Product", "SKU", "Category", "Stock", "Threshold", "Price", "Status", "Action"].map((h) => (
-                  <th key={h} className="px-4 py-3 text-left text-xs font-black uppercase tracking-widest text-slate-400">{h}</th>
+                  <th key={h} className="px-4 py-3 text-left text-xs font-black uppercase tracking-widest text-slate-400 dark:text-white">{h}</th>
                 ))}
               </tr>
             </thead>
@@ -111,19 +111,19 @@ export default function InventoryPage() {
                           <Package size={15} className="text-brand-blue" />
                         </div>
                         <div>
-                          <p className="font-black text-slate-800 dark:text-slate-200">{item.name}</p>
+                          <p className="font-black text-slate-800 dark:text-white">{item.name}</p>
                           {item.rxRequired && <span className="text-[10px] font-black text-amber-600">Rx required</span>}
                         </div>
                       </div>
                     </td>
-                    <td className="px-4 py-3 font-mono text-xs font-bold text-slate-500">{item.sku}</td>
-                    <td className="px-4 py-3 text-xs font-semibold text-slate-500">{item.category}</td>
+                    <td className="px-4 py-3 font-mono text-xs font-bold text-slate-500 dark:text-white">{item.sku}</td>
+                    <td className="px-4 py-3 text-xs font-semibold text-slate-500 dark:text-white">{item.category}</td>
                     <td className="px-4 py-3">
-                      <span className={`text-base font-black ${item.stock === 0 ? "text-rose-600" : item.stock <= item.threshold ? "text-amber-600" : "text-slate-800 dark:text-slate-200"}`}>
+                      <span className={`text-base font-black ${item.stock === 0 ? "text-rose-600" : item.stock <= item.threshold ? "text-amber-600" : "text-slate-800 dark:text-white"}`}>
                         {item.stock}
                       </span>
                     </td>
-                    <td className="px-4 py-3 text-sm font-semibold text-slate-400">{item.threshold}</td>
+                    <td className="px-4 py-3 text-sm font-semibold text-slate-400 dark:text-white">{item.threshold}</td>
                     <td className="px-4 py-3 font-black">Rs. {item.price}</td>
                     <td className="px-4 py-3">
                       <span className={`rounded-full px-2.5 py-1 text-xs font-black ${color}`}>{label}</span>

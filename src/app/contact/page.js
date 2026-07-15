@@ -20,11 +20,11 @@ export default function ContactPage() {
     <div className="mx-auto max-w-[104rem] px-4 py-10 pb-28 sm:px-6 lg:px-8 xl:px-10">
       {/* Header */}
       <div className="mb-12 text-center">
-        <span className="inline-flex items-center gap-2 rounded-full bg-sky-50 px-3 py-1 text-xs font-black uppercase tracking-widest text-brand-blue">
+        <span className="inline-flex items-center gap-2 rounded-full bg-sky-50 dark:bg-slate-900 px-3 py-1 text-xs font-black uppercase tracking-widest text-brand-blue">
           Support
         </span>
         <h1 className="mt-4 text-4xl font-black md:text-5xl">Contact our team</h1>
-        <p className="mx-auto mt-4 max-w-2xl text-lg font-semibold text-slate-500">
+        <p className="mx-auto mt-4 max-w-2xl text-lg font-semibold text-slate-500 dark:text-white">
           Reach FirstMED support for order help, prescription review questions, delivery updates and vendor onboarding.
         </p>
       </div>
@@ -51,7 +51,7 @@ export default function ContactPage() {
           </div>
 
           {/* Quick FAQ Accordion */}
-          <div className="rounded-[1.5rem] bg-white p-6 shadow-card">
+          <div className="rounded-[1.5rem] bg-white dark:bg-slate-900 dark:border-slate-800 p-6 shadow-card">
             <h2 className="mb-4 text-xl font-black">Support topics</h2>
             <div className="grid gap-3">
               {[
@@ -59,11 +59,11 @@ export default function ContactPage() {
                 { q: "Prescription review", a: "Keep the patient name, doctor details, issue date and uploaded file ready when asking about Rx verification." },
                 { q: "Vendor onboarding", a: "Pharmacies can prepare license files, service area, hours and inventory details before profile review." },
               ].map(({ q, a }) => (
-                <details key={q} className="group rounded-xl bg-slate-50 p-4 open:bg-sky-50">
-                  <summary className="cursor-pointer font-black text-slate-800 dark:text-slate-200 group-open:text-brand-blue">
+                <details key={q} className="group rounded-xl bg-slate-50 dark:bg-slate-950 dark:border-slate-800 p-4 open:bg-sky-50">
+                  <summary className="cursor-pointer font-black text-slate-800 dark:text-white group-open:text-brand-blue">
                     {q}
                   </summary>
-                  <p className="mt-3 text-sm font-semibold leading-6 text-slate-600 dark:text-slate-400">{a}</p>
+                  <p className="mt-3 text-sm font-semibold leading-6 text-slate-600 dark:text-white">{a}</p>
                 </details>
               ))}
             </div>
@@ -72,7 +72,7 @@ export default function ContactPage() {
 
         {/* Right: Contact Form */}
         <div className="soft-card h-fit rounded-[2rem] p-6 sm:p-10">
-          <div className="mb-6 flex items-center gap-3 rounded-xl border border-sky-100 bg-sky-50 p-4 text-sm font-bold text-brand-blue">
+          <div className="mb-6 flex items-center gap-3 rounded-xl border dark:border-slate-800 border dark:border-slate-800-sky-100 bg-sky-50 dark:bg-slate-900 p-4 text-sm font-bold text-brand-blue">
             <Clock size={18} /> We respond to all queries within 2 hours during business operations.
           </div>
           
@@ -81,7 +81,7 @@ export default function ContactPage() {
               <CheckCircle2 size={48} className="mx-auto mb-4" />
               <h2 className="text-2xl font-black">Message Sent!</h2>
               <p className="mt-2 font-semibold">Our support team will review your request and get back to you shortly.</p>
-              <Button onClick={() => setSubmitted(false)} className="mt-6 bg-white text-emerald-700 shadow-sm hover:bg-emerald-100">Send another</Button>
+              <Button onClick={() => setSubmitted(false)} className="mt-6 bg-white dark:bg-slate-900 dark:border-slate-800 text-emerald-700 shadow-sm hover:bg-emerald-100">Send another</Button>
             </div>
           ) : (
             <form onSubmit={handleSubmit(onSubmit)} className="grid gap-5">
@@ -97,7 +97,7 @@ export default function ContactPage() {
               </div>
               <label className="grid gap-2 text-sm font-black">
                 Subject (Optional Order ID)
-                <input {...register("subject")} className="rounded-xl border border-slate-200 bg-slate-50 px-4 py-3 font-semibold" placeholder="e.g. Missing item in FM-3041" />
+                <input {...register("subject")} className="rounded-xl border border-slate-200 bg-slate-50 dark:bg-slate-950 dark:border-slate-800 px-4 py-3 font-semibold" placeholder="e.g. Missing item in FM-3041" />
               </label>
               <label className="grid gap-2 text-sm font-black">
                 Message

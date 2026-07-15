@@ -9,7 +9,7 @@ export function LivePulseWidget() {
       initial={{ opacity: 0, scale: 0.9 }}
       animate={{ opacity: 1, scale: 1 }}
       transition={{ duration: 0.8, ease: "easeOut", delay: 0.5 }}
-      className="absolute bottom-[10%] right-[5%] lg:right-[15%] z-20 flex items-center gap-4 rounded-3xl bg-white/70 p-4 shadow-premium backdrop-blur-2xl border border-white/80"
+      className="absolute bottom-[10%] right-[5%] lg:right-[15%] z-20 flex items-center gap-4 rounded-3xl bg-white dark:bg-slate-900 dark:border-slate-800/70 p-4 shadow-premium backdrop-blur-2xl border border-white/80"
     >
       <div className="grid h-12 w-12 shrink-0 place-items-center rounded-2xl bg-rose-50 text-rose-500 shadow-inner relative overflow-hidden">
         <motion.div 
@@ -20,8 +20,8 @@ export function LivePulseWidget() {
         <Activity size={24} strokeWidth={2.5} className="relative z-10" />
       </div>
       <div className="hidden sm:block">
-        <p className="text-[10px] font-black uppercase tracking-widest text-slate-400">Network Live</p>
-        <p className="text-sm font-black text-slate-800 dark:text-slate-200">14 active dispatches</p>
+        <p className="text-[10px] font-black uppercase tracking-widest text-slate-400 dark:text-white">Network Live</p>
+        <p className="text-sm font-black text-slate-800 dark:text-white">14 active dispatches</p>
       </div>
       
       {/* Animated Heartbeat SVG */}

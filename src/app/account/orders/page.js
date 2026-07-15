@@ -32,19 +32,19 @@ export default function OrdersPage() {
           return (
             <div key={order.id} className="soft-card overflow-hidden rounded-[2rem] transition hover:shadow-premium">
               {/* Order Header */}
-              <div className="flex flex-wrap items-center justify-between gap-4 border-b border-sky-50 bg-sky-50/30 px-6 py-4 sm:px-8">
+              <div className="flex flex-wrap items-center justify-between gap-4 border-b border-sky-50 bg-sky-50 dark:bg-slate-900/30 px-6 py-4 sm:px-8">
                 <div className="flex flex-wrap items-center gap-6">
                   <div>
-                    <p className="text-xs font-bold text-slate-400">Order placed</p>
-                    <p className="font-black text-slate-700 dark:text-slate-300">{order.date}</p>
+                    <p className="text-xs font-bold text-slate-400 dark:text-white">Order placed</p>
+                    <p className="font-black text-slate-700 dark:text-white">{order.date}</p>
                   </div>
                   <div>
-                    <p className="text-xs font-bold text-slate-400">Total</p>
-                    <p className="font-black text-slate-700 dark:text-slate-300">Rs. {order.total}</p>
+                    <p className="text-xs font-bold text-slate-400 dark:text-white">Total</p>
+                    <p className="font-black text-slate-700 dark:text-white">Rs. {order.total}</p>
                   </div>
                   <div>
-                    <p className="text-xs font-bold text-slate-400">Order #</p>
-                    <p className="font-black text-slate-700 dark:text-slate-300">{order.id}</p>
+                    <p className="text-xs font-bold text-slate-400 dark:text-white">Order #</p>
+                    <p className="font-black text-slate-700 dark:text-white">{order.id}</p>
                   </div>
                 </div>
                 <Link href={`/account/orders/${order.id}`} className="text-sm font-black text-brand-blue hover:underline">
@@ -59,13 +59,13 @@ export default function OrdersPage() {
                   {/* Status & Timeline */}
                   <div className="w-full lg:w-1/2">
                     <h2 className="text-lg font-black">{isActive ? "Arriving today" : "Delivered"}</h2>
-                    <p className="mt-1 text-sm font-semibold text-slate-500">
+                    <p className="mt-1 text-sm font-semibold text-slate-500 dark:text-white">
                       {isActive ? `Expected delivery: ${order.eta}` : "Your package was delivered."}
                     </p>
                     
                     {/* Inline timeline */}
                     <div className="mt-6 flex w-full max-w-sm items-center justify-between relative">
-                      <div className="absolute left-0 right-0 top-3 h-1 bg-sky-50 -z-10" />
+                      <div className="absolute left-0 right-0 top-3 h-1 bg-sky-50 dark:bg-slate-900 -z-10" />
                       <div className="absolute left-0 top-3 h-1 bg-brand-blue -z-10" style={{ width: isActive ? "66%" : "100%" }} />
                       
                       {[
@@ -76,7 +76,7 @@ export default function OrdersPage() {
                       ].map((step, i) => (
                         <div key={i} className="flex flex-col items-center gap-2">
                           <div className={`grid h-6 w-6 place-items-center rounded-full border-2 border-white ${step.done ? "bg-brand-blue" : "bg-sky-100"}`} />
-                          <span className={`text-[10px] font-black ${step.done ? "text-brand-blue" : "text-slate-400"}`}>{step.label}</span>
+                          <span className={`text-[10px] font-black ${step.done ? "text-brand-blue" : "text-slate-400 dark:text-white"}`}>{step.label}</span>
                         </div>
                       ))}
                     </div>
@@ -86,7 +86,7 @@ export default function OrdersPage() {
                   <div className="flex w-full flex-col gap-4 lg:w-[auto] lg:min-w-[300px]">
                     <div className="flex -space-x-3">
                       {order.images.map((img, i) => (
-                        <div key={i} className="grid h-16 w-16 place-items-center rounded-2xl border-2 border-white bg-sky-50 p-2 shadow-sm">
+                        <div key={i} className="grid h-16 w-16 place-items-center rounded-2xl border-2 border-white bg-sky-50 dark:bg-slate-900 p-2 shadow-sm">
                           <Image src={img} alt="Product" width={40} height={40} className="object-contain mix-blend-multiply" />
                         </div>
                       ))}
@@ -103,11 +103,11 @@ export default function OrdersPage() {
                           <Navigation size={16} /> Track order
                         </Link>
                       ) : (
-                        <button className="flex flex-1 items-center justify-center gap-2 rounded-xl bg-sky-50 py-2.5 text-sm font-black text-brand-blue hover:bg-sky-100 transition">
+                        <button className="flex flex-1 items-center justify-center gap-2 rounded-xl bg-sky-50 dark:bg-slate-900 py-2.5 text-sm font-black text-brand-blue hover:bg-sky-100 transition">
                           <RefreshCw size={16} /> Reorder
                         </button>
                       )}
-                      <Link href={`/account/orders/${order.id}`} className="flex items-center justify-center rounded-xl bg-slate-50 px-4 text-slate-500 hover:bg-slate-100 transition">
+                      <Link href={`/account/orders/${order.id}`} className="flex items-center justify-center rounded-xl bg-slate-50 dark:bg-slate-950 dark:border-slate-800 px-4 text-slate-500 dark:text-white hover:bg-slate-100 transition">
                         <Box size={18} />
                       </Link>
                     </div>

@@ -46,11 +46,12 @@ export function GooeyNav({ items }) {
               href={item.href}
               onMouseEnter={() => setHoveredIndex(idx)}
               className={`relative flex shrink-0 items-center gap-2 rounded-full border px-4 py-2 text-[13px] font-black transition-colors z-10 shadow-sm ${
-                isBlobbed ? "border-transparent" : "border-sky-100 bg-white"
+                isBlobbed 
+                  ? "border-transparent text-white" 
+                  : isActive
+                    ? "border-sky-100 bg-white text-brand-blue dark:bg-slate-800 dark:border-slate-700 dark:text-sky-400"
+                    : "border-sky-100 bg-white text-slate-600 dark:bg-slate-800 dark:border-slate-700 dark:text-white"
               }`}
-              style={{
-                color: isBlobbed ? "#fff" : (isActive ? "#0284c7" : "#475569"),
-              }}
             >
               {isBlobbed && (
                 <motion.div
