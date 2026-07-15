@@ -262,9 +262,9 @@ export default function HomePage() {
             </div>
             <div className="rounded-2xl bg-white dark:bg-slate-900 dark:border-slate-800/10 p-5">
               {["Doctor name", "Clinic letterhead", "Registration number", "Patient name"].map((item) => (
-                <div key={item} className="mb-3 flex items-center gap-3 rounded-xl bg-white dark:bg-slate-900 dark:border-slate-800/10 p-3 text-sm font-bold">
+                <div key={item} className="mb-3 flex items-center gap-3 rounded-xl bg-white dark:bg-slate-900 dark:border-slate-800/10 p-3 text-sm font-bold text-slate-800 dark:text-white">
                   <FileCheck2 size={18} className="text-brand-yellow" />
-                  {item}
+                  <span className="!text-black dark:!text-white">{item}</span>
                   <span className="ml-auto h-2 w-2 rounded-full bg-brand-yellow" />
                 </div>
               ))}
