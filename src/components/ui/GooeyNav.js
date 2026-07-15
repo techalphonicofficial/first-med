@@ -1,10 +1,18 @@
 "use client";
-import React, { useState } from "react";
+import React, { useState, Suspense } from "react";
 import Link from "next/link";
 import { motion } from "framer-motion";
 import { useSearchParams } from "next/navigation";
 
 export function GooeyNav({ items }) {
+  return (
+    <Suspense fallback={<div className="h-14 w-full animate-pulse bg-transparent" />}>
+      <GooeyNavInner items={items} />
+    </Suspense>
+  );
+}
+
+function GooeyNavInner({ items }) {
   const [hoveredIndex, setHoveredIndex] = useState(null);
   const searchParams = useSearchParams();
   const currentCategory = searchParams.get("category");

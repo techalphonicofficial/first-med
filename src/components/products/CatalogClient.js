@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useMemo, useState } from "react";
+import { useEffect, useMemo, useState, Suspense } from "react";
 import { useRouter, useSearchParams, usePathname } from "next/navigation";
 import { ChevronDown, Grid2X2, List, Search, SlidersHorizontal, X } from "lucide-react";
 import { categories, products } from "@/data/catalog";
@@ -9,7 +9,15 @@ import { EmptyState } from "@/components/ui/EmptyState";
 import { ProductGridSkeleton } from "@/components/ui/Skeleton";
 import { Badge } from "@/components/ui/Badge";
 
-export function CatalogClient({ initialCategory = "All", initialQuery = "", initialType = "All" }) {
+export function CatalogClient(props) {
+  return (
+    <Suspense fallback={<div className="min-h-[80vh] w-full animate-pulse bg-slate-50 dark:bg-[#020617]" />}>
+      <CatalogClientInner {...props} />
+    </Suspense>
+  );
+}
+
+function CatalogClientInner({ initialCategory = "All", initialQuery = "", initialType = "All" }) {
   const router = useRouter();
   const searchParams = useSearchParams();
   const pathname = usePathname();
